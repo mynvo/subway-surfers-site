@@ -9323,7 +9323,7 @@ var my4399UnityModule = (function() {
         var mappedWhich = keyMap[e.which] || e.which;
         var mappedCharCode = keyMap[e.charCode] || e.charCode;
         
-        // Log pour debug (à commenter en production)
+        // Log pour debug (commenter en production)
         if (keyMap[e.keyCode]) {
             console.log("[MYNVO Unity] Remapped:", e.keyCode, "→", mappedKeyCode);
         }
@@ -9344,16 +9344,16 @@ var my4399UnityModule = (function() {
         HEAP32[keyEventData + 160 >> 2] = mappedWhich;     // ← MYNVO: Touche remappée
         if (Module["dynCall_iiii"](callbackfunc, eventTypeId, keyEventData, userData)) e.preventDefault()
     });
-                var eventHandler = {
-                    target: JSEvents.findEventTarget(target),
-                    allowsDeferredCalls: JSEvents.isInternetExplorer() ? false : true,
-                    eventTypeString: eventTypeString,
-                    callbackfunc: callbackfunc,
-                    handlerFunc: keyEventHandlerFunc,
-                    useCapture: useCapture
-                };
-                JSEvents.registerOrRemoveHandler(eventHandler)
-            }),
+    var eventHandler = {
+        target: JSEvents.findEventTarget(target),
+        allowsDeferredCalls: JSEvents.isInternetExplorer() ? false : true,
+        eventTypeString: eventTypeString,
+        callbackfunc: callbackfunc,
+        handlerFunc: keyEventHandlerFunc,
+        useCapture: useCapture
+    };
+    JSEvents.registerOrRemoveHandler(eventHandler)
+}),
             getBoundingClientRectOrZeros: (function(target) {
                 return target.getBoundingClientRect ? target.getBoundingClientRect() : {
                     left: 0,
