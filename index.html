@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subway Surfers by Mynvo</title>
+  <title>Subway Surfers by Mynvo - Jeu en ligne gratuit</title>
   <style>
     :root {
       --primary: #7c62dc;
@@ -15,7 +15,11 @@
       --warning: #ffaa00;
     }
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -54,7 +58,9 @@
       gap: 14px;
     }
     
-    .logo span { color: var(--primary); }
+    .logo span {
+      color: var(--primary);
+    }
     
     .nav-links {
       display: flex;
@@ -69,7 +75,9 @@
       cursor: pointer;
     }
     
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
     
     main {
       flex: 1;
@@ -104,29 +112,7 @@
       display: block;
     }
     
-    /* Bouton plein écran sur l'iframe */
-    .fs-button {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      z-index: 200;
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid var(--primary);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
-    
-    .fs-button:hover {
-      background: var(--primary);
-      color: #000;
-    }
-    
-    /* OVERLAYS - FORCÉS PARTOUT */
+    /* CRITICAL: Overlays TOUJOURS visibles même en fullscreen */
     #fps-overlay, #timer-overlay, #top3-overlay {
       position: fixed !important;
       z-index: 2147483647 !important;
@@ -134,6 +120,7 @@
       font-family: 'Courier New', monospace !important;
     }
     
+    /* Force l'affichage même dans fullscreen */
     :fullscreen #fps-overlay,
     :fullscreen #timer-overlay,
     :fullscreen #top3-overlay,
@@ -150,12 +137,12 @@
       left: 20px;
       background: rgba(0, 0, 0, 0.9);
       color: var(--primary);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 20px;
       font-weight: 700;
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 15px rgba(124, 98, 220, 0.5);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px rgba(124, 98, 220, 0.6);
     }
     
     #timer-overlay {
@@ -163,12 +150,12 @@
       right: 20px;
       background: rgba(0, 0, 0, 0.9);
       color: #fff;
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 2px solid var(--primary);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 3px solid var(--primary);
       font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 0 15px rgba(124, 98, 220, 0.5);
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(124, 98, 220, 0.6);
     }
     
     #timer-overlay.running {
@@ -177,20 +164,21 @@
     }
     
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 15px rgba(0, 204, 102, 0.5); }
-      50% { box-shadow: 0 0 25px rgba(0, 204, 102, 0.8); }
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 204, 102, 0.6); }
+      50% { box-shadow: 0 0 30px rgba(0, 204, 102, 0.9); }
     }
     
     .timer-display {
-      font-size: 18px;
+      font-size: 26px;
       font-weight: bold;
       color: var(--success);
+      text-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
     }
     
     .timer-status {
-      font-size: 10px;
+      font-size: 12px;
       color: #aaa;
-      margin-top: 2px;
+      margin-top: 4px;
     }
     
     #top3-overlay {
@@ -198,109 +186,34 @@
       left: 20px;
       background: rgba(0, 0, 0, 0.95);
       color: #fff;
-      padding: 14px 20px;
-      border-radius: 12px;
-      border: 2px solid var(--primary);
-      font-size: 13px;
-      min-width: 260px;
-      box-shadow: 0 0 20px rgba(124, 98, 220, 0.5);
+      padding: 18px 24px;
+      border-radius: 14px;
+      border: 3px solid var(--primary);
+      font-size: 14px;
+      min-width: 300px;
+      box-shadow: 0 0 25px rgba(124, 98, 220, 0.6);
     }
     
     #top3-overlay .title {
       color: var(--primary);
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 900;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-align: center;
     }
     
     #top3-overlay .player {
-      margin: 6px 0;
-      padding: 6px;
-      border-radius: 6px;
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 8px;
       background: rgba(124, 98, 220, 0.1);
     }
     
     #top3-overlay .player.first {
       color: var(--primary);
       font-weight: 700;
-      font-size: 14px;
-      background: rgba(124, 98, 220, 0.2);
-    }
-    
-    /* Menu paramètres */
-    #settings-menu {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.95);
-      border: 2px solid var(--primary);
-      border-radius: 12px;
-      padding: 14px 18px;
-      z-index: 999999;
-      color: #fff;
-      min-width: 240px;
-      box-shadow: 0 0 20px rgba(124, 98, 220, 0.5);
-      display: none;
-    }
-    
-    #settings-menu.visible {
-      display: block;
-    }
-    
-    .menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--primary);
-    }
-    
-    .menu-title {
       font-size: 16px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    
-    .close-btn {
-      background: var(--danger);
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      border-radius: 6px;
-      padding: 4px 10px;
-      cursor: pointer;
-    }
-    
-    .menu-btn {
-      width: 100%;
-      padding: 8px 10px;
-      background: #111;
-      border: 2px solid var(--primary);
-      border-radius: 8px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-      margin-top: 8px;
-      font-size: 14px;
-    }
-    
-    .menu-btn:hover {
-      background: var(--primary);
-      color: #000;
-    }
-    
-    .menu-btn.gold {
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
-      color: #000;
-      border: none;
-      font-weight: 700;
-    }
-    
-    .menu-btn.gold:hover {
-      transform: scale(1.03);
+      background: rgba(124, 98, 220, 0.2);
     }
     
     .notification {
@@ -310,17 +223,18 @@
       transform: translateX(-50%);
       background: rgba(20, 20, 30, 0.95);
       color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 14px 24px;
+      border-radius: 10px;
       border-left: 4px solid var(--primary);
       z-index: 2147483646;
       opacity: 0;
       transition: opacity 0.3s;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-      font-size: 14px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     }
     
-    .notification.show { opacity: 1; }
+    .notification.show {
+      opacity: 1;
+    }
     
     footer {
       text-align: center;
@@ -330,10 +244,12 @@
     }
 
     @media (max-width: 768px) {
-      iframe { height: 400px; }
+      iframe {
+        height: 400px;
+      }
       #fps-overlay, #timer-overlay, #top3-overlay {
-        font-size: 12px;
-        padding: 6px 10px;
+        font-size: 14px;
+        padding: 10px 14px;
       }
     }
   </style>
@@ -346,7 +262,6 @@
       </div>
       <div class="nav-links">
         <a id="play-link">Jouer</a>
-        <a id="settings-link">Paramètres</a>
         <a href="https://discord.gg/bQTtDXmF" target="_blank">Discord</a>
       </div>
     </div>
@@ -355,17 +270,17 @@
   <main>
     <div class="game-container">
       <div class="game-frame">
-        <button class="fs-button" id="fs-btn">⤢ Plein écran</button>
         <iframe id="game-iframe" src="./game/" allowfullscreen allow="autoplay; fullscreen *"></iframe>
       </div>
     </div>
   </main>
 
+  <!-- OVERLAYS PERMANENTS -->
   <div id="fps-overlay">🎮 FPS: <span id="fps-value">60</span></div>
 
   <div id="timer-overlay">
     <div class="timer-display"><span id="timer-value">00:00.00</span></div>
-    <div class="timer-status">F1=Start F2=Stop F3=Reset</div>
+    <div class="timer-status">Appuyez F1 pour démarrer</div>
   </div>
 
   <div id="top3-overlay">
@@ -373,16 +288,6 @@
     <div class="player first">🥇 Mynvo – 13:27</div>
     <div class="player">🥈 Le_A – 11:51</div>
     <div class="player">🥉 .... – 0:00</div>
-  </div>
-
-  <div id="settings-menu">
-    <div class="menu-header">
-      <div class="menu-title">⚙️ Paramètres</div>
-      <button class="close-btn" id="close-menu">✖</button>
-    </div>
-    <button class="menu-btn gold" id="give-btn">💰 Give Piece & Keys</button>
-    <button class="menu-btn" id="fps-toggle">📊 Toggle FPS</button>
-    <button class="menu-btn" id="top3-toggle">🏆 Toggle TOP3</button>
   </div>
 
   <footer>Subway Surfers by Mynvo © 2023</footer>
@@ -393,31 +298,166 @@
     let timerStart = 0;
     let timerElapsed = 0;
     let timerActive = false;
+    let giveAttempts = 0;
+    const MAX_GIVE_ATTEMPTS = 8;
 
-💰 999,999,999 pièces & clés données!', 'success');
-                        };
-                      }
+    // ============= 1. GIVE AUTOMATIQUE PUISSANT =============
+    function autoGiveResources() {
+      console.log(`💰 Tentative Give #${giveAttempts + 1}...`);
+      
+      try {
+        const iframeWindow = iframe.contentWindow;
+        const iframeDoc = iframeWindow.document;
+        
+        // Méthode 1: Injection de script PUISSANT
+        const scriptElement = iframeDoc.createElement('script');
+        scriptElement.id = 'mynvo-give-script-' + giveAttempts;
+        scriptElement.textContent = `
+          (function() {
+            console.log('💰 [MYNVO] Exécution du Give...');
+            
+            // Cibler TOUTES les variables possibles
+            const targets = [
+              'coins', 'Coins', 'COINS', 'coin', 'Coin',
+              'keys', 'Keys', 'KEYS', 'key', 'Key',
+              'gold', 'Gold', 'money', 'Money',
+              'currency', 'Currency'
+            ];
+            
+            const value = 999999999;
+            let modified = 0;
+            
+            // Parcourir window
+            targets.forEach(function(target) {
+              if (typeof window[target] !== 'undefined') {
+                window[target] = value;
+                modified++;
+                console.log('✅ window.' + target + ' = ' + value);
+              }
+            });
+            
+            // Chercher dans tous les objets globaux
+            for (let key in window) {
+              try {
+                const obj = window[key];
+                if (obj && typeof obj === 'object') {
+                  targets.forEach(function(target) {
+                    if (target in obj && typeof obj[target] === 'number') {
+                      obj[target] = value;
+                      modified++;
+                      console.log('✅ window.' + key + '.' + target + ' = ' + value);
+                    }
+                  });
+                }
+              } catch(e) {}
+            }
+            
+            // Unity WebGL SendMessage
+            if (typeof gameInstance !== 'undefined') {
+              try {
+                gameInstance.SendMessage('GameManager', 'AddCoins', value);
+                gameInstance.SendMessage('GameManager', 'AddKeys', value);
+                gameInstance.SendMessage('PlayerData', 'AddCoins', value);
+                gameInstance.SendMessage('PlayerData', 'AddKeys', value);
+                modified += 4;
+                console.log('✅ Unity gameInstance messages envoyés');
+              } catch(e) {
+                console.warn('Unity SendMessage error:', e);
+              }
+            }
+            
+            // Recherche dans localStorage
+            try {
+              for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && (key.includes('coin') || key.includes('key') || key.includes('save'))) {
+                  try {
+                    const data = JSON.parse(localStorage.getItem(key));
+                    if (data && typeof data === 'object') {
+                      targets.forEach(function(target) {
+                        if (target in data) {
+                          data[target] = value;
+                          modified++;
+                        }
+                      });
+                      localStorage.setItem(key, JSON.stringify(data));
+                      console.log('✅ localStorage.' + key + ' modifié');
                     }
                   } catch(e) {}
-                });
-              };
+                }
+              }
             } catch(e) {
-              console.warn('Erreur store:', e);
+              console.warn('localStorage error:', e);
             }
-          });
-        };
+            
+            console.log('💰 [MYNVO] Give terminé: ' + modified + ' modifications');
+            window.mynvoGiveSuccess = modified > 0;
+          })();
+        `;
         
-        request.onerror = () => {
-          console.warn('❌ IndexedDB non accessible');
-          showNotification('⚠️ Rechargez la page puis réessayez', 'warning');
-        };
+        iframeDoc.head.appendChild(scriptElement);
+        
+        // Méthode 2: PostMessage
+        iframeWindow.postMessage({
+          type: 'mynvo_give',
+          coins: 999999999,
+          keys: 999999999,
+          timestamp: Date.now()
+        }, '*');
+        
+        // Méthode 3: Direct window modification (backup)
+        setTimeout(() => {
+          try {
+            iframeWindow.coins = 999999999;
+            iframeWindow.keys = 999999999;
+            iframeWindow.Coins = 999999999;
+            iframeWindow.Keys = 999999999;
+            console.log('💰 Direct window modification effectuée');
+          } catch(e) {}
+        }, 100);
+        
+        giveAttempts++;
+        
+        // Check si succès
+        setTimeout(() => {
+          if (iframeWindow.mynvoGiveSuccess) {
+            console.log('✅ Give réussi!');
+            showNotification('💰 999,999,999 pièces & clés données avec succès!', 'success');
+          } else if (giveAttempts < MAX_GIVE_ATTEMPTS) {
+            console.log('⚠️ Give incomplet, retry...');
+            setTimeout(autoGiveResources, 2000);
+          }
+        }, 500);
         
       } catch (error) {
         console.error('❌ Erreur Give:', error);
+        if (giveAttempts < MAX_GIVE_ATTEMPTS) {
+          setTimeout(autoGiveResources, 2000);
+        }
       }
     }
 
-    // ============= TOUCHES ZQSD (ULTRA FORCÉ) =============
+    // Déclencher le give
+    iframe.addEventListener('load', () => {
+      console.log('✅ Iframe chargée');
+      giveAttempts = 0;
+      
+      // Premier give immédiat
+      setTimeout(autoGiveResources, 1000);
+      
+      // Gives de retry toutes les 3 secondes
+      let retryCount = 0;
+      const retryInterval = setInterval(() => {
+        if (retryCount++ < 5) {
+          autoGiveResources();
+        } else {
+          clearInterval(retryInterval);
+          console.log('✅ Séquence de Give terminée');
+        }
+      }, 3000);
+    });
+
+    // ============= 2. TOUCHES ZQSD FORCÉES =============
     const keyMapping = {
       'z': { key: 'ArrowUp', code: 'ArrowUp', keyCode: 38 },
       'q': { key: 'ArrowLeft', code: 'ArrowLeft', keyCode: 37 },
@@ -426,76 +466,54 @@
       ' ': { key: ' ', code: 'Space', keyCode: 32 }
     };
 
-    function setupZQSD() {
-      const sendToIframe = (type, mapped) => {
-        try {
-          const iframeWin = iframe.contentWindow;
-          const iframeDoc = iframe.contentDocument;
-          
-          const event = new KeyboardEvent(type, {
-            key: mapped.key,
-            code: mapped.code,
-            keyCode: mapped.keyCode,
-            which: mapped.keyCode,
-            bubbles: true,
-            cancelable: true,
-            composed: true
-          });
-          
-          // Multi-dispatch
-          if (iframeDoc) iframeDoc.dispatchEvent(event);
-          if (iframeWin) iframeWin.dispatchEvent(event);
-          if (iframeDoc && iframeDoc.body) iframeDoc.body.dispatchEvent(event);
-        } catch(e) {
-          console.warn('Dispatch error:', e);
-        }
-      };
-
-      ['keydown', 'keyup'].forEach(type => {
-        const handler = (e) => {
-          const key = e.key ? e.key.toLowerCase() : '';
+    function setupZQSDKeys() {
+      ['keydown', 'keyup'].forEach(eventType => {
+        // Capturer en phase de capture (true)
+        window.addEventListener(eventType, (e) => {
+          const key = e.key.toLowerCase();
           const mapped = keyMapping[key];
           
           if (mapped) {
             e.preventDefault();
-            e.stopPropagation();
             e.stopImmediatePropagation();
             
-            sendToIframe(type, mapped);
-            console.log(`🎮 ${type}: ${key} → ${mapped.key}`);
+            // Créer événement avec tous les paramètres
+            const newEvent = new KeyboardEvent(eventType, {
+              key: mapped.key,
+              code: mapped.code,
+              keyCode: mapped.keyCode,
+              which: mapped.keyCode,
+              bubbles: true,
+              cancelable: true,
+              composed: true
+            });
+            
+            try {
+              // Envoyer à l'iframe de multiples façons
+              iframe.contentWindow.document.dispatchEvent(newEvent);
+              iframe.contentWindow.dispatchEvent(newEvent);
+              iframe.contentDocument.dispatchEvent(newEvent);
+              
+              // PostMessage backup
+              iframe.contentWindow.postMessage({
+                type: 'keyboard_event',
+                eventType: eventType,
+                key: mapped.key,
+                keyCode: mapped.keyCode
+              }, '*');
+              
+              console.log(`🎮 ${eventType}: ${key} → ${mapped.key}`);
+            } catch (err) {
+              console.warn('Dispatch error:', err);
+            }
           }
-        };
-        
-        // Capturer PARTOUT
-        document.addEventListener(type, handler, { capture: true, passive: false });
-        window.addEventListener(type, handler, { capture: true, passive: false });
+        }, true);
       });
       
-      // Auto-focus permanent
-      setInterval(() => {
-        if (document.activeElement !== iframe) {
-          iframe.focus();
-        }
-      }, 100);
-      
-      console.log('✅ ZQSD Ultra Forcé activé');
+      console.log('✅ Touches ZQSD configurées');
     }
 
-    // ============= PLEIN ÉCRAN SUR IFRAME =============
-    document.getElementById('fs-btn').addEventListener('click', () => {
-      try {
-        if (iframe.requestFullscreen) {
-          iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) {
-          iframe.webkitRequestFullscreen();
-        }
-        showNotification('⤢ Mode plein écran activé', 'info');
-      } catch(e) {
-        console.error('Fullscreen error:', e);
-      }
-    });
-
-    // ============= TIMER =============
+    // ============= 3. TIMER MANUEL =============
     function setupTimer() {
       document.addEventListener('keydown', (e) => {
         if (e.key === 'F1') {
@@ -516,20 +534,23 @@
     function startTimer() {
       timerStart = Date.now() - timerElapsed;
       timerActive = true;
+      
       document.getElementById('timer-overlay').classList.add('running');
+      document.querySelector('.timer-status').textContent = 'En cours...';
       
       timerInterval = setInterval(() => {
         timerElapsed = Date.now() - timerStart;
         document.getElementById('timer-value').textContent = formatTime(timerElapsed);
       }, 10);
       
-      showNotification('▶️ Timer démarré', 'success');
+      showNotification('▶️ Timer démarré (F2=Stop, F3=Reset)', 'success');
     }
 
     function stopTimer() {
       clearInterval(timerInterval);
       timerActive = false;
       document.getElementById('timer-overlay').classList.remove('running');
+      document.querySelector('.timer-status').textContent = 'Arrêté';
       showNotification('⏸️ Timer arrêté', 'warning');
     }
 
@@ -539,113 +560,94 @@
       timerElapsed = 0;
       document.getElementById('timer-value').textContent = '00:00.00';
       document.getElementById('timer-overlay').classList.remove('running');
-      showNotification('🔄 Timer reset', 'info');
+      document.querySelector('.timer-status').textContent = 'Appuyez F1';
+      showNotification('🔄 Timer réinitialisé', 'info');
     }
 
     function formatTime(ms) {
-      const m = Math.floor(ms / 60000);
-      const s = Math.floor((ms % 60000) / 1000);
-      const cs = Math.floor((ms % 1000) / 10);
-      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(cs).padStart(2, '0')}`;
+      const minutes = Math.floor(ms / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      const centiseconds = Math.floor((ms % 1000) / 10);
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`;
     }
 
-    // ============= FPS =============
+    // ============= 4. FPS COUNTER =============
     let fpsFrames = 0;
-    let fpsLast = performance.now();
+    let fpsLastTime = performance.now();
     
     function updateFPS() {
       fpsFrames++;
       const now = performance.now();
       
-      if (now - fpsLast >= 1000) {
-        const fps = Math.round((fpsFrames * 1000) / (now - fpsLast));
+      if (now - fpsLastTime >= 1000) {
+        const fps = Math.round((fpsFrames * 1000) / (now - fpsLastTime));
         document.getElementById('fps-value').textContent = fps;
         
-        const el = document.getElementById('fps-overlay');
+        const fpsEl = document.getElementById('fps-overlay');
         if (fps >= 55) {
-          el.style.color = '#7c62dc';
-          el.style.borderColor = '#7c62dc';
+          fpsEl.style.color = '#7c62dc';
+          fpsEl.style.borderColor = '#7c62dc';
         } else if (fps >= 30) {
-          el.style.color = '#f59e0b';
-          el.style.borderColor = '#f59e0b';
+          fpsEl.style.color = '#f59e0b';
+          fpsEl.style.borderColor = '#f59e0b';
         } else {
-          el.style.color = '#ef4444';
-          el.style.borderColor = '#ef4444';
+          fpsEl.style.color = '#ef4444';
+          fpsEl.style.borderColor = '#ef4444';
         }
         
         fpsFrames = 0;
-        fpsLast = now;
+        fpsLastTime = now;
       }
       
       requestAnimationFrame(updateFPS);
     }
 
-    // ============= MENU PARAMÈTRES =============
-    document.getElementById('settings-link').addEventListener('click', () => {
-      document.getElementById('settings-menu').classList.toggle('visible');
-    });
-
-    document.getElementById('close-menu').addEventListener('click', () => {
-      document.getElementById('settings-menu').classList.remove('visible');
-    });
-
-    document.getElementById('give-btn').addEventListener('click', () => {
-      giveResources();
-    });
-
-    document.getElementById('fps-toggle').addEventListener('click', () => {
-      const fps = document.getElementById('fps-overlay');
-      fps.style.display = fps.style.display === 'none' ? 'block' : 'none';
-      showNotification('📊 FPS toggled', 'info');
-    });
-
-    document.getElementById('top3-toggle').addEventListener('click', () => {
-      const top3 = document.getElementById('top3-overlay');
-      top3.style.display = top3.style.display === 'none' ? 'block' : 'none';
-      showNotification('🏆 TOP3 toggled', 'info');
-    });
-
     // ============= NOTIFICATIONS =============
-    function showNotification(msg, type = 'info') {
-      const notif = document.createElement('div');
-      notif.className = 'notification';
-      notif.textContent = msg;
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
       
-      const colors = { success: '#00cc66', warning: '#ffaa00', error: '#ff4444', info: '#7c62dc' };
-      notif.style.borderLeftColor = colors[type];
+      const colors = {
+        success: '#00cc66',
+        warning: '#ffaa00',
+        error: '#ff4444',
+        info: '#7c62dc'
+      };
+      notification.style.borderLeftColor = colors[type] || colors.info;
       
-      document.body.appendChild(notif);
-      setTimeout(() => notif.classList.add('show'), 10);
+      document.body.appendChild(notification);
+      
+      setTimeout(() => notification.classList.add('show'), 10);
       setTimeout(() => {
-        notif.classList.remove('show');
-        setTimeout(() => notif.remove(), 300);
-      }, 3500);
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 4000);
     }
 
-    // ============= INIT =============
+    // ============= INITIALISATION =============
     document.addEventListener('DOMContentLoaded', () => {
-      setupZQSD();
+      setupZQSDKeys();
       setupTimer();
       updateFPS();
       
-      console.log('%c🎮 MYNVO READY', 'color:#7c62dc;font-weight:bold;font-size:16px');
-      console.log('%c⌨️  ZQSD Always Active', 'color:#7c62dc');
-      console.log('%c⏱️  F1/F2/F3 Timer', 'color:#7c62dc');
-      console.log('%c💰 IndexedDB Give', 'color:#00cc66');
+      console.log('%c🎮 MYNVO SYSTEM READY!', 'color: #7c62dc; font-weight: bold; font-size: 16px;');
+      console.log('%c💰 Give automatique: ACTIF', 'color: #00cc66; font-size: 14px;');
+      console.log('%c⌨️  Touches: ZQSD + Espace', 'color: #7c62dc; font-size: 14px;');
+      console.log('%c⏱️  Timer: F1=Start | F2=Stop | F3=Reset', 'color: #7c62dc; font-size: 14px;');
+      console.log('%c📊 FPS & Timer: Toujours visibles', 'color: #7c62dc; font-size: 14px;');
       
+      // Message de bienvenue
       setTimeout(() => {
-        showNotification('🎮 Système MYNVO activé! Touches ZQSD actives', 'success');
+        showNotification('🎮 Bienvenue! Système MYNVO initialisé avec succès', 'success');
+        setTimeout(() => {
+          showNotification('💰 Give automatique en cours...', 'info');
+        }, 2000);
       }, 1000);
     });
 
     document.getElementById('play-link').addEventListener('click', () => {
       document.querySelector('.game-container').scrollIntoView({ behavior: 'smooth' });
-      iframe.focus();
-    });
-
-    // Focus iframe au chargement
-    iframe.addEventListener('load', () => {
-      console.log('✅ Jeu chargé');
       iframe.focus();
     });
   </script>
