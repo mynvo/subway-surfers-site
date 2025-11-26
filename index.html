@@ -187,6 +187,34 @@
       }
     }
 
+    // BLOQUER les flèches natives dans l'iframe AUSSI depuis le parent
+    iframe.addEventListener('load', () => {
+      try {
+        const iframeDoc = iframe.contentDocument;
+        const iframeWin = iframe.contentWindow;
+        
+        if (iframeDoc) {
+          // Bloquer TOUTES les touches natives dans l'iframe
+          const blockedKeys = [37, 38, 39, 40, 32]; // Flèches + Espace
+          
+          ['keydown', 'keyup'].forEach(eventType => {
+            iframeDoc.addEventListener(eventType, (e) => {
+              if (blockedKeys.includes(e.keyCode)) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                console.log(`%c[MYNVO Parent] 🚫 Blocked native ${eventType} in iframe:`, 'color: #ff6b6b;', e.keyCode);
+                return false;
+              }
+            }, true); // CAPTURE PHASE - avant que Unity puisse les recevoir
+          });
+          
+          console.log('%c[MYNVO Parent] 🔒 Native keys blocked in iframe!', 'color: #ffd700; font-weight: bold;');
+        }
+      } catch (err) {
+        console.log('%c[MYNVO Parent] Could not block native keys (CORS)', 'color: #ff6b6b;');
+      }
+    }, { once: true });
+
     // Intercepter les touches
     document.addEventListener('keydown', (e) => {
       if (isCapturingKey) return;
