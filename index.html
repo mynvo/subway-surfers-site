@@ -109,6 +109,7 @@
     // ============= INJECTION DIRECTE DANS L'IFRAME =============
     let iframeReady = false;
     let keyStates = {}; // Pour éviter les répétitions
+    let currentCanvas = null; // Garder une référence au canvas actuel
 
     iframe.addEventListener('load', () => {
       document.getElementById('loading-ui').style.display = 'none';
@@ -127,14 +128,14 @@
             iframeReady = true;
             console.log('%c[MYNVO Parent] ✅ Iframe accessible! Direct injection mode.', 'color: #00ff00; font-weight: bold;');
             
-            // Attendre le canvas Unity
-            const checkCanvas = setInterval(() => {
+            // SURVEILLER EN CONTINU le canvas (même après la mort/restart)
+            setInterval(() => {
               const canvas = iframeDoc.querySelector('canvas');
-              if (canvas) {
-                console.log('%c[MYNVO Parent] 🎮 Unity canvas found!', 'color: #00ff00; font-weight: bold;');
-                clearInterval(checkCanvas);
+              if (canvas && canvas !== currentCanvas) {
+                currentCanvas = canvas;
+                console.log('%c[MYNVO Parent] 🎮 Unity canvas detected/updated!', 'color: #00ff00; font-weight: bold;');
               }
-            }, 100);
+            }, 500); // Vérifier toutes les 500ms
           }
         } catch (err) {
           console.warn('%c[MYNVO Parent] ⚠️ Cannot access iframe (CORS). Using postMessage fallback...', 'color: #ff6b6b;', err);
@@ -169,12 +170,12 @@
         iframeDoc.dispatchEvent(event);
         iframeWin.dispatchEvent(event);
         
-        const canvas = iframeDoc.querySelector('canvas');
-        if (canvas) {
-          canvas.dispatchEvent(event);
+        // Utiliser le canvas actuel (mis à jour en continu)
+        if (currentCanvas) {
+          currentCanvas.dispatchEvent(event);
         }
         
-        // Tous les canvas possibles
+        // Tous les canvas possibles (au cas où)
         iframeDoc.querySelectorAll('canvas, #canvas, #unity-canvas').forEach(el => {
           el.dispatchEvent(event);
         });
