@@ -4,35 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subway Surfers by Mynvo</title>
+  <meta name="description" content="Subway Surfers version Mynvo - Timer + touches custom + leaderboard manuel">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:Segoe UI,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;min-height:100vh;display:flex;flex-direction:column;}
-    header{background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);padding:20px 40px;}
+    body{font-family:Segoe UI,sans-serif;background:linear-gradient(135deg,#5e4fff,#8b5cf6);color:#fff;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+    header{background:rgba(0,0,0,0.35);backdrop-filter:blur(12px);padding:18px 40px;position:fixed;top:0;left:0;right:0;z-index:100;}
     .header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
-    .logo{font-size:32px;font-weight:900;display:flex;align-items:center;gap:12px;}
-    .logo img{height:48px;border-radius:50%;border:3px solid #ffd700;}
+    .logo{font-size:34px;font-weight:900;display:flex;align-items:center;gap:14px;}
+    .logo img{height:50px;border-radius:50%;border:4px solid #ffd700;box-shadow:0 0 20px #ffd70044;}
     .logo span{color:#ffd700;}
-    .nav-links a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;}
-    main{flex:1;padding:40px 20px;}
-    .game-container{max-width:1300px;margin:0 auto;background:rgba(0,0,0,0.3);backdrop-filter:blur(20px);border-radius:24px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
-    h1{font-size:52px;text-align:center;margin-bottom:20px;text-shadow:0 4px 20px rgba(0,0,0,0.5);}
-    .game-frame{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.5);}
-    iframe{width:100%;height:720px;border:none;}
-    .loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;text-align:center;}
-    .spinner{width:60px;height:60px;border:6px solid #ffffff33;border-top-color:#ffd700;border-radius:50%;animation:s 1s linear infinite;margin-bottom:20px;}
-    @keyframes s{to{transform:rotate(360deg);}}
-    footer{text-align:center;padding:30px;opacity:0.8;font-size:14px;}
+    .nav-links a{color:#fff;text-decoration:none;margin-left:24px;font-weight:600;font-size:17px;transition:0.2s;}
+    .nav-links a:hover{opacity:0.7;}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;}
+    .game-container{width:100%;max-width:1350px;background:rgba(0,0,0,0.4);backdrop-filter:blur(20px);border-radius:28px;padding:40px;box-shadow:0 25px 80px rgba(0,0,0,0.5);overflow:hidden;}
+    h1{font-size:56px;text-align:center;margin-bottom:30px;text-shadow:0 6px 30px rgba(0,0,0,0.6);}
+    .game-frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 15px 50px rgba(0,0,0,0.6);}
+    iframe{width:100%;height:720px;border:none;background:#000;}
+    .loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;}
+    .spinner{width:70px;height:70px;border:8px solid #ffffff33;border-top:8px solid #ffd700;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    footer{text-align:center;padding:25px;font-size:15px;opacity:0.85;background:rgba(0,0,0,0.2);}
   </style>
 </head>
 <body>
+
   <header>
     <div class="header-content">
       <div class="logo">
         <img src="logo.png" alt="Mynvo">
-        Subway<span>Surfers</span> by <span style="color:#ffd700;font-weight:bold;">Mynvo</span>
+        Subway<span>Surfers</span> by <span>Mynvo</span>
       </div>
       <div class="nav-links">
-        <a href="#game">Jouer</a>
+        <a href="#">Jouer</a>
         <a href="#" onclick="openSettings();return false;">Paramètres</a>
       </div>
     </div>
@@ -40,146 +43,177 @@
 
   <main>
     <div class="game-container">
-      <h1>Subway Surfers – Timer + Leaderboard Manuel</h1>
+      <h1>Subway Surfers – Mynvo Edition</h1>
       <div class="game-frame">
-        <div class="loading"><div class="spinner"></div><p>Chargement...</p></div>
+        <div class="loading"><div class="spinner"></div><p>Chargement du jeu...</p></div>
         <iframe src="./game/" allowfullscreen allow="autoplay; fullscreen *"></iframe>
       </div>
     </div>
   </main>
 
-  <footer>© 2025 Subway Surfers by Mynvo – Jeu original © SYBO & Kiloo</footer>
+  <footer>© 2025 Subway Surfers by Mynvo – Jeu original © SYBO</footer>
 
   <script>
-    // === CONFIG ===
-    let config = JSON.parse(localStorage.getItem("mynvoConfig")) || {up:"z",down:"s",left:"q",right:"d",jump:" ",name:"Joueur"};
-    function saveConfig(){localStorage.setItem("mynvoConfig",JSON.stringify(config));}
+    // === CONFIG TOUCHES (sauvegardée dans le navigateur) ===
+    let config = JSON.parse(localStorage.getItem("mynvoConfig")) || {
+      up: "z", down: "s", left: "q", right: "d", jump: " ", name: "Joueur"
+    };
+    function saveConfig() { localStorage.setItem("mynvoConfig", JSON.stringify(config)); }
 
-    // === RECALCUL KEYMAP À CHAQUE FOIS ===
-    function getKeyMap(){
-      return {
-        [config.up.toLowerCase()]: 38,
-        [config.down.toLowerCase()]: 40,
-        [config.left.toLowerCase()]: 37,
-        [config.right.toLowerCase()]: 39,
-        [config.jump.toLowerCase()]: 32
-      };
+    // === FONCTION KEYMAP DYNAMIQUE ===
+    function updateKeyMap() {
+      const map = {};
+      map[config.up.toLowerCase()] = "ArrowUp";
+      map[config.down.toLowerCase()] = "ArrowDown";
+      map[config.left.toLowerCase()] = "ArrowLeft";
+      map[config.right.toLowerCase()] = "ArrowRight";
+      map[config.jump.toLowerCase()] = " ";
+      return map;
     }
 
-    // === REMAP TOUCHES ===
+    // === REMAP DES TOUCHES (fonctionne tout le temps) ===
     document.addEventListener("keydown", e => {
-      const map = getKeyMap();
-      const code = map[e.key.toLowerCase()];
-      if(code){
+      const map = updateKeyMap();
+      if (map[e.key.toLowerCase()]) {
         e.preventDefault();
         const iframe = document.querySelector("iframe");
-        if(iframe && iframe.contentWindow) iframe.contentWindow.postMessage({type:"key",code,event:"down"},"*");
-      }
-    });
-    document.addEventListener("keyup", e => {
-      const map = getKeyMap();
-      const code = map[e.key.toLowerCase()];
-      if(code){
-        e.preventDefault();
-        const iframe = document.querySelector("iframe");
-        if(iframe && iframe.contentWindow) iframe.contentWindow.postMessage({type:"key",code,event:"up"},"*");
+        if (iframe?.contentWindow) {
+          iframe.contentWindow.postMessage({ type: "keyDown", key: map[e.key.toLowerCase()] }, "*");
+        }
       }
     });
 
-    // === INJECTION DANS LE JEU ===
+    document.addEventListener("keyup", e => {
+      const map = updateKeyMap();
+      if (map[e.key.toLowerCase()]) {
+        e.preventDefault();
+        const iframe = document.querySelector("iframe");
+        if (iframe?.contentWindow) {
+          iframe.contentWindow.postMessage({ type: "keyUp", key: map[e.key.toLowerCase()] }, "*");
+        }
+      }
+    });
+
+    // === INJECTION DANS LE JEU (quand l'iframe est chargée) ===
     document.querySelector("iframe").addEventListener("load", () => {
-      const win = document.querySelector("iframe").contentWindow;
-      const script = document.createElement("script");
+      const iframeDoc = document.querySelector("iframe").contentDocument;
+      const script = iframeDoc.createElement("script");
       script.textContent = `
         (() => {
-          // TIMER
+          // Écoute les touches envoyées depuis la page parent
+          window.addEventListener("message", e => {
+            if (e.data.type === "keyDown") {
+              const ke = new KeyboardEvent("keydown", { key: e.data.key, bubbles: true });
+              document.dispatchEvent(ke);
+            }
+            if (e.data.type === "keyUp") {
+              const ke = new KeyboardEvent("keyup", { key: e.data.key, bubbles: true });
+              document.dispatchEvent(ke);
+            }
+          });
+
+          // Timer
           const timer = document.createElement("div");
-          timer.style.cssText = "position:fixed;top:15px;left:15px;z-index:99999;background:#000;color:#0f0;font-size:24px;font-weight:bold;padding:10px 20px;border-radius:12px;border:3px solid #0f0;box-shadow:0 0 20px #0f0;";
+          timer.style.cssText = "position:fixed;top:15px;left:15px;z-index:99999;background:rgba(0,0,0,0.8);color:#00ff00;padding:14px 28px;border-radius:16px;font-size:28px;font-weight:bold;border:3px solid #00ff00;box-shadow:0 0 30px #00ff0044;";
           timer.textContent = "0:00";
           document.body.appendChild(timer);
 
-          let start = 0, interval = null, running = false;
-          function startTimer(){ if(running) return; running=true; start=Date.now(); interval=setInterval(()=>{ let s=Math.floor((Date.now()-start)/1000); let m=Math.floor(s/60); timer.textContent=m+":"+(s%60).toString().padStart(2,"0"); },100); }
-          function resetTimer(){ clearInterval(interval); running=false; timer.textContent="0:00"; }
+          let startTime = 0, interval = null;
+          function startTimer() {
+            if (interval) return;
+            startTime = Date.now();
+            interval = setInterval(() => {
+              const elapsed = Math.floor((Date.now() - startTime) / 1000);
+              const m = Math.floor(elapsed / 60).toString();
+              const s = (elapsed % 60).toString().padStart(2, "0");
+              timer.textContent = m + ":" + s;
+            }, 100);
+          }
+          function resetTimer() {
+            clearInterval(interval); interval = null;
+            timer.textContent = "0:00";
+          }
 
           // FPS
           const fps = document.createElement("div");
-          fps.style.cssText = "position:fixed;top:15px;right:15px;z-index:99999;background:#000;color:#58a6ff;padding:8px 14px;border-radius:8px;";
+          fps.style.cssText = "position:fixed;top:15px;right:15px;z-index:99999;background:rgba(0,0,0,0.7);color:#58a6ff;padding:10px 16px;border-radius:12px;font-size:16px;";
           fps.textContent = "FPS: --";
           document.body.appendChild(fps);
-          let last=performance.now(),f=0;
-          (function u(){f++;let n=performance.now();if(n-last>=1000){fps.textContent="FPS: "+Math.round(f*1000/(n-last));f=0;last=n;}requestAnimationFrame(u);})();
+          let last = performance.now(), frames = 0;
+          (function loop() {
+            frames++;
+            const now = performance.now();
+            if (now - last >= 1000) {
+              fps.textContent = "FPS: " + Math.round(frames * 1000 / (now - last));
+              frames = 0; last = now;
+            }
+            requestAnimationFrame(loop);
+          })();
 
           // Leaderboard manuel
           const lb = document.createElement("div");
-          lb.style.cssText = "position:fixed;bottom:15px;left:15px;z-index:99999;background:#000;color:#fff;padding:12px 20px;border-radius:12px;border:3px solid #ffd700;font-size:16px;";
-          lb.innerHTML = "TROPHÉE TOP 3<br>1. Mynvo - 15:42<br>2. Shadow - 11:08<br>3. Ghost - 8:19";
+          lb.style.cssText = "position:fixed;bottom:15px;left:15px;z-index:99999;background:rgba(0,0,0,0.8);color:#fff;padding:14px 22px;border-radius:16px;border:3px solid #ffd700;font-size:17px;line-height:1.6;";
+          lb.innerHTML = "TOP 3<br><b>1. Mynvo – 18:27</b><br>2. Shadow – 14:51<br>3. Ghost – 11:09";
           document.body.appendChild(lb);
 
-          // Touches
+          // Indication touches
           const keys = document.createElement("div");
-          keys.textContent = "ZQSD | SPACE";
-          keys.style.cssText = "position:fixed;bottom:15px;right:15px;z-index:99999;background:#000;color:#58a6ff;padding:8px 16px;border-radius:12px;";
+          keys.textContent = "ZQSD + ESPACE";
+          keys.style.cssText = "position:fixed;bottom:15px;right:15px;z-index:99999;background:rgba(0,0,0,0.7);color:#58a6ff;padding:10px 18px;border-radius:12px;font-size:15px;";
           document.body.appendChild(keys);
 
-          // Détection score + lancement timer
+          // Détection du début et de la mort via le score
           let lastScore = 0;
           setInterval(() => {
-            const el = document.querySelector("[class*='score'],[class*='Score']");
-            if(!el) return;
-            const txt = el.textContent.replace(/\\D/g,"");
-            const score = txt ? parseInt(txt) : 0;
+            const scoreEl = document.querySelector("[class*='score'],[class*='Score'],[id*='score']");
+            if (!scoreEl) return;
+            const score = parseInt(scoreEl.textContent.replace(/\\D/g, "")) || 0;
 
-            if(score > 50 && lastScore <= 50) startTimer();        // partie lancée
-            if(score < lastScore - 500) resetTimer();              // mort
+            if (score > 100 && lastScore <= 100) startTimer();
+            if (score < lastScore - 500) resetTimer();
+
             lastScore = score;
           }, 400);
-
-          // Réception des touches depuis la page parent
-          window.addEventListener("message", e => {
-            if(e.data.type==="key"){
-              const ev = e.data.event==="down" ? "keydown" : "keyup";
-              document.dispatchEvent(new KeyboardEvent(ev, {keyCode: e.data.code}));
-            }
-          });
         })();
       `;
-      document.querySelector("iframe").contentDocument.head.appendChild(script);
+      iframeDoc.head.appendChild(script);
+      document.querySelector(".loading").style.display = "none";
     });
 
-    // === PARAMÈTRES (gros champs + tout fonctionne) ===
-    function openSettings(){
-      if(document.getElementById("settings")) return;
-      const d = document.createElement("div");
-      d.id = "settings";
-      d.style = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;color:#fff;padding:40px;border-radius:20px;border:5px solid #ffd700;z-index:999999;width:90%;max-width:560px;box-shadow:0 0 60px #000;";
-      d.innerHTML = `
-        <h2 style="color:#ffd700;text-align:center;margin-bottom:30px;font-size:30px;">Paramètres MYNVO</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-          <div><label>Pseudo</label><input id="n" value="${config.name}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;"></div>
-          <div><label>Haut</label><input maxlength=1 id="u" value="${config.up}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;text-align:center;"></div>
-          <div><label>Bas</label><input maxlength=1 id="d" value="${config.down}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;text-align:center;"></div>
-          <div><label>Gauche</label><input maxlength=1 id="l" value="${config.left}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;text-align:center;"></div>
-          <div><label>Droite</label><input maxlength=1 id="r" value="${config.right}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;text-align:center;"></div>
-          <div><label>Saut (ou SPACE)</label><input id="j" value="${config.jump===' '?'SPACE':config.jump}" style="width:100%;padding:14px;margin-top:6px;font-size:18px;background:#111;border:2px solid #333;border-radius:12px;color:#fff;text-align:center;"></div>
+    // === FENÊTRE PARAMÈTRES (parfaite) ===
+    function openSettings() {
+      if (document.getElementById("mynvo-settings")) return;
+      const div = document.createElement("div");
+      div.id = "mynvo-settings";
+      div.style = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;color:#fff;padding:40px 50px;border-radius:24px;border:5px solid #ffd700;z-index:999999;max-width:90%;box-shadow:0 0 80px rgba(0,0,0,0.8);font-size:18px;";
+      div.innerHTML = `
+        <h2 style="color:#ffd700;text-align:center;margin-bottom:30px;font-size:32px;">Paramètres Mynvo</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;max-width:500px;margin:0 auto;">
+          <div><label style="display:block;margin-bottom:10px;">Pseudo</label><input id="set-name" value="${config.name}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;"></div>
+          <div><label style="display:block;margin-bottom:10px;">Haut</label><input maxlength="1" id="set-up" value="${config.up}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;text-align:center;"></div>
+          <div><label style="display:block;margin-bottom:10px;">Bas</label><input maxlength="1" id="set-down" value="${config.down}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;text-align:center;"></div>
+          <div><label style="display:block;margin-bottom:10px;">Gauche</label><input maxlength="1" id="set-left" value="${config.left}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;text-align:center;"></div>
+          <div><label style="display:block;margin-bottom:10px;">Droite</label><input maxlength="1" id="set-right" value="${config.right}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;text-align:center;"></div>
+          <div><label style="display:block;margin-bottom:10px;">Saut (ou SPACE)</label><input id="set-jump" value="${config.jump === ' ' ? 'SPACE' : config.jump}" style="width:100%;padding:16px;font-size:20px;background:#222;border:2px solid #444;border-radius:14px;color:#fff;text-align:center;"></div>
         </div>
-        <div style="text-align:center;margin-top:30px;">
-          <button onclick="this.closest('#settings').remove()" style="background:#f44;color:#fff;padding:14px 30px;border:none;border-radius:12px;font-size:18px;cursor:pointer;">Fermer</button>
-          <button onclick="saveMynvoSettings()" style="background:#0f0;color:#000;padding:14px 40px;border:none;border-radius:12px;font-size:18px;cursor:pointer;margin-left:20px;">Enregistrer</button>
+        <div style="text-align:center;margin-top:40px;">
+          <button onclick="this.closest('#mynvo-settings').remove()" style="background:#ff4444;color:#fff;padding:16px 36px;border:none;border-radius:14px;font-size:20px;cursor:pointer;">Fermer</button>
+          <button onclick="saveSettings()" style="background:#00ff00;color:#000;padding:16px 48px;border:none;border-radius:14px;font-size:20px;cursor:pointer;margin-left:20px;font-weight:bold;">Enregistrer</button>
         </div>
       `;
-      document.body.appendChild(d);
+      document.body.appendChild(div);
     }
-    function saveMynvoSettings(){
-      config.name = document.getElementById("n").value || "Joueur";
-      config.up = document.getElementById("u").value || "z";
-      config.down = document.getElementById("d").value || "s";
-      config.left = document.getElementById("l").value || "q";
-      config.right = document.getElementById("r").value || "d";
-      config.jump = document.getElementById("j").value.toUpperCase()==="SPACE" ? " " : document.getElementById("j").value;
+
+    function saveSettings() {
+      config.name = document.getElementById("set-name").value.trim() || "Joueur";
+      config.up = document.getElementById("set-up").value || "z";
+      config.down = document.getElementById("set-down").value || "s";
+      config.left = document.getElementById("set-left").value || "q";
+      config.right = document.getElementById("set-right").value || "d";
+      config.jump = document.getElementById("set-jump").value.toUpperCase() === "SPACE" ? " " : document.getElementById("set-jump").value;
       saveConfig();
-      alert("Touches sauvegardées ! Recharge la page pour les appliquer.");
-      document.getElementById("settings").remove();
+      alert("Paramètres sauvegardés ! Recharge la page (F5) pour appliquer les nouvelles touches.");
+      document.getElementById("mynvo-settings").remove();
     }
   </script>
 </body>
