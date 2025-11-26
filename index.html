@@ -7,7 +7,7 @@
   <meta name="description" content="Subway Surfers version Mynvo avec TOP 3 et FPS">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:Segoe UI,sans-serif;background:#000000;color:#fff;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+    body{font-family:Segoe UI,sans-serif;background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
     header{background:rgba(124,98,220,0.15);backdrop-filter:blur(12px);padding:18px 40px;position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:2px solid #7c62dc;}
     .header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
     .logo{font-size:34px;font-weight:900;display:flex;align-items:center;gap:14px;}
@@ -19,7 +19,7 @@
     .game-container{width:100%;max-width:1350px;background:rgba(124,98,220,0.1);backdrop-filter:blur(20px);border-radius:28px;padding:40px;box-shadow:0 25px 80px rgba(124,98,220,0.25);overflow:hidden;position:relative;border:2px solid #7c62dc;}
     h1{font-size:56px;text-align:center;margin-bottom:30px;text-shadow:0 6px 30px rgba(124,98,220,0.6);color:#7c62dc;}
     .game-frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 15px 50px rgba(124,98,220,0.3);border:2px solid #7c62dc;}
-    iframe{width:100%;height:720px;border:none;background:#000000;display:block;}
+    iframe{width:100%;height:720px;border:none;background:#000;display:block;}
     .loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;}
     .spinner{width:70px;height:70px;border:8px solid #ffffff33;border-top:8px solid #7c62dc;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px;}
     @keyframes spin{to{transform:rotate(360deg);}}
@@ -55,7 +55,7 @@
     <div class="header-content">
       <div class="logo">
         <img src="logo.png" alt="Mynvo" onerror="this.style.display='none'">
-        Subway<span>Surfers</span> by <span>Mynvo</span>
+        <span>Subway</span> by <span>Mynvo</span>
       </div>
       <div class="nav-links">
         <a id="play-link">Jouer</a>
@@ -67,7 +67,6 @@
 
   <main>
     <div class="game-container">
-      <h1>Subway Surfers – Mynvo</h1>
       <div class="game-frame">
         <div class="loading" id="loading-ui"><div class="spinner"></div><p>Chargement du jeu...</p></div>
         <button class="fs-button" id="fs-btn" title="Plein écran">⤢ Plein écran</button>
@@ -102,12 +101,12 @@
     <button class="quick-btn" onclick="openTimerMenu();">⏱️ Timer + touche</button>
     <button class="quick-btn" onclick="openUIEditor();">💻 Interface</button>
     <button class="quick-btn" onclick="openSkinsMenu();">🎨 Skins</button>
+    <button class="quick-btn" onclick="unlockAllSkins();">✨ Unlock All Skins</button>
   </div>
 
   <footer>Subway Surfers by Mynvo</footer>
 
   <script>
-    // ============= CONFIG =============
     let config = {
       up: "z", down: "s", left: "q", right: "d", jump: " ", name: "Joueur",
       showFPS: true, showTop3: true,
@@ -127,35 +126,13 @@
       console.log("✅ Config sauvegardée:", config);
     }
 
-    let isCapturingKey = false;
     const iframe = document.getElementById('game-iframe');
-
-    function applyOverlaysFromConfig() {
-      document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
-      document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
-      positionTop3(config.top3Position);
-      document.getElementById('fps-value').textContent = '60';
-      document.getElementById('timer-overlay').style.display = config.timerRunning ? 'block' : 'none';
-    }
-
-    function getKeyCode(key) {
-      const map = {
-        'ArrowUp': 38, 'ArrowDown': 40, 'ArrowLeft': 37, 'ArrowRight': 39,
-        ' ': 32, 'z': 90, 'Z': 90, 'q': 81, 'Q': 81,
-        's': 83, 'S': 83, 'd': 68, 'D': 68,
-        'w': 87, 'W': 87, 'a': 65, 'A': 65
-      };
-      return map[key] || 0;
-    }
-
     let iframeReady = false;
-    let keyStates = {};
     let currentCanvas = null;
 
     iframe.addEventListener('load', () => {
       document.getElementById('loading-ui').style.display = 'none';
       console.log('%c[MYNVO Parent] Iframe loaded!', 'color: #7c62dc; font-weight: bold;');
-
       setTimeout(() => {
         try {
           const iframeWin = iframe.contentWindow;
@@ -194,9 +171,7 @@
       } catch {}
     }
 
-    // --- key listeners omitted for brevity (same as your original) ---
-
-    // ============= FPS COUNTER ============
+    // FPS Counter
     let fpsFrames = 0;
     let fpsLastTime = performance.now();
     function updateFPS() {
@@ -204,12 +179,13 @@
       const now = performance.now();
       if (now - fpsLastTime >= 1000) {
         const fps = Math.round((fpsFrames * 1000) / (now - fpsLastTime));
-        document.getElementById('fps-value').textContent = fps;
-        const fpsEl = document.getElementById('fps-overlay');
-        if (fps >= 55) { fpsEl.style.color = '#7c62dc'; fpsEl.style.borderColor = '#7c62dc'; }
-        else if (fps >= 30) { fpsEl.style.color = '#f59e0b'; fpsEl.style.borderColor = '#f59e0b'; }
-        else { fpsEl.style.color = '#ef4444'; fpsEl.style.borderColor = '#ef4444'; }
-        fpsFrames = 0; fpsLastTime = now;
+        const fpsEl = document.getElementById('fps-value');
+        fpsEl.textContent = fps;
+        const overlay = document.getElementById('fps-overlay');
+        if (fps >= 55){ overlay.style.color='#7c62dc'; overlay.style.borderColor='#7c62dc'; }
+        else if (fps >=30){ overlay.style.color='#f59e0b'; overlay.style.borderColor='#f59e0b'; }
+        else { overlay.style.color='#ef4444'; overlay.style.borderColor='#ef4444'; }
+        fpsFrames=0; fpsLastTime=now;
       }
       requestAnimationFrame(updateFPS);
     }
@@ -217,15 +193,14 @@
 
     document.getElementById('fs-btn').addEventListener('click', toggleFullscreen);
     function toggleFullscreen(){
-      if (!document.fullscreenElement) {
-        iframe.requestFullscreen?.() || iframe.webkitRequestFullscreen?.();
-      } else { document.exitFullscreen(); }
+      if(!document.fullscreenElement){ iframe.requestFullscreen?.() || iframe.webkitRequestFullscreen?.(); }
+      else{ document.exitFullscreen(); }
     }
 
-    function positionTop3(pos) {
+    function positionTop3(pos){
       const el = document.getElementById('top3-overlay');
       el.style.top = el.style.bottom = el.style.left = el.style.right = '';
-      switch(pos) {
+      switch(pos){
         case 'bottom-left': el.style.bottom='20px'; el.style.left='20px'; break;
         case 'bottom-right': el.style.bottom='20px'; el.style.right='20px'; break;
         case 'top-left': el.style.top='20px'; el.style.left='20px'; break;
@@ -233,13 +208,15 @@
       }
     }
 
-    // ============= SKINS MENU ============
-    function openSkinsMenu() {
-      if (document.getElementById('mynvo-skins')) return;
+    // SKINS MENU
+    const allSkins = ["Skin1","Skin2","Skin3","Skin4","Skin5","Skin6","Skin7","Skin8","Skin9","Skin10","Skin11","Skin12"];
+
+    function openSkinsMenu(){
+      if(document.getElementById('mynvo-skins')) return;
       const div = document.createElement('div');
-      div.id = 'mynvo-skins';
-      div.className = 'mynvo-modal';
-      div.innerHTML = `
+      div.id='mynvo-skins';
+      div.className='mynvo-modal';
+      div.innerHTML=`
         <h3 style="color:#7c62dc;margin-bottom:10px;text-align:center;">🎨 Choisir un Skin</h3>
         <div id="skins-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;max-height:400px;overflow-y:auto;padding:10px;"></div>
         <div style="text-align:center;margin-top:12px;">
@@ -247,38 +224,46 @@
         </div>
       `;
       document.body.appendChild(div);
-
-      const skins = ["Skin1","Skin2","Skin3","Skin4","Skin5","Skin6","Skin7","Skin8"];
       const container = div.querySelector('#skins-list');
-      skins.forEach(skin => {
+      allSkins.forEach(skin=>{
         const btn = document.createElement('button');
-        btn.textContent = skin;
-        btn.style.cssText = 'padding:8px;border:2px solid #7c62dc;border-radius:8px;background:#111;color:#fff;cursor:pointer;font-weight:600;transition:0.15s;';
-        btn.addEventListener('mouseover', () => btn.style.background = '#7c62dc');
-        btn.addEventListener('mouseout', () => btn.style.background = '#111');
-        btn.addEventListener('click', () => {
-          console.log('Skin sélectionné:', skin);
-          postToIframe({type:'select_skin', skin});
-          alert('🎨 Skin sélectionné : ' + skin);
-          div.remove();
+        btn.textContent=skin;
+        btn.style.cssText='padding:8px;border:2px solid #7c62dc;border-radius:8px;background:#111;color:#fff;cursor:pointer;font-weight:600;transition:0.15s;';
+        btn.addEventListener('mouseover',()=>btn.style.background='#7c62dc');
+        btn.addEventListener('mouseout',()=>btn.style.background='#111');
+        btn.addEventListener('click',()=>{
+          postToIframe({type:'select_skin',skin});
+          alert('🎨 Skin sélectionné : '+skin);
         });
         container.appendChild(btn);
       });
-      div.querySelector('#close-skins').addEventListener('click', () => div.remove());
+      div.querySelector('#close-skins').addEventListener('click',()=>div.remove());
     }
 
-    // Placeholder for other menu functions
+    function unlockAllSkins(){
+      allSkins.forEach(skin=>{
+        postToIframe({type:'select_skin',skin});
+      });
+      alert("🎨 Tous les skins ont été débloqués !");
+    }
+
+    // Placeholder menus
     function openSettings(){ alert("Ouverture menu touches..."); }
     function openTouchesDCP(){ alert("Ouverture touches DCP..."); }
-    function toggleFPS(){ config.showFPS=!config.showFPS;applyOverlaysFromConfig();saveConfig(); }
+    function toggleFPS(){ config.showFPS=!config.showFPS; applyOverlaysFromConfig(); saveConfig(); }
     function openSongMenu(){ alert("Ouverture menu son..."); }
     function openMapMenu(){ alert("Ouverture menu map..."); }
     function openTimerMenu(){ alert("Ouverture timer..."); }
     function openUIEditor(){ alert("Ouverture éditeur UI..."); }
 
-    document.getElementById('close-bottom-menu').addEventListener('click', ()=>{
-      document.getElementById('bottom-menu').style.display='none';
-    });
+    document.getElementById('close-bottom-menu').addEventListener('click',()=>document.getElementById('bottom-menu').style.display='none');
+
+    function applyOverlaysFromConfig(){
+      document.getElementById('fps-overlay').style.display = config.showFPS?'block':'none';
+      document.getElementById('top3-overlay').style.display = config.showTop3?'block':'none';
+      positionTop3(config.top3Position);
+      document.getElementById('timer-overlay').style.display = config.timerRunning?'block':'none';
+    }
 
     applyOverlaysFromConfig();
   </script>
