@@ -1,2 +1,5 @@
 # subway-surfers-site
-Site officiel pour jouer à Subway Surfers avec l'extension MYNVO (mode NO COIN + leaderboard)
+Site officiel pour jouer à Subway Surfers sans besoin de l'extension (mode NO COIN + leaderboard)
+
+
+MYNVO 
