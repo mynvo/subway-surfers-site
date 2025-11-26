@@ -9294,66 +9294,35 @@ var my4399UnityModule = (function() {
                 }
             }),
             registerKeyEventCallback: (function(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
-    if (!JSEvents.keyEvent) JSEvents.keyEvent = _malloc(164);
-    var keyEventHandlerFunc = (function(event) {
-        var e = event || window.event;
-        var keyEventData = JSEvents.keyEvent;
-        
-        // ========== MYNVO KEY REMAPPING ==========
-        // Récupérer la config depuis localStorage
-        var mynvoConfig = {up: "z", down: "s", left: "q", right: "d", jump: " "};
-        try {
-            var saved = localStorage.getItem("mynvoConfig");
-            if (saved) {
-                var parsed = JSON.parse(saved);
-                mynvoConfig = parsed;
-            }
-        } catch(err) {}
-        
-        // Mapping dynamique basé sur la config
-        var keyMap = {};
-        keyMap[mynvoConfig.up.toLowerCase().charCodeAt(0)] = 38;      // Haut → ArrowUp
-        keyMap[mynvoConfig.down.toLowerCase().charCodeAt(0)] = 40;    // Bas → ArrowDown
-        keyMap[mynvoConfig.left.toLowerCase().charCodeAt(0)] = 37;    // Gauche → ArrowLeft
-        keyMap[mynvoConfig.right.toLowerCase().charCodeAt(0)] = 39;   // Droite → ArrowRight
-        if (mynvoConfig.jump === " ") keyMap[32] = 32;                // Espace reste espace
-        
-        // Remapper les touches AVANT de les envoyer à Unity
-        var mappedKeyCode = keyMap[e.keyCode] || e.keyCode;
-        var mappedWhich = keyMap[e.which] || e.which;
-        var mappedCharCode = keyMap[e.charCode] || e.charCode;
-        
-        // Log pour debug (commenter en production)
-        if (keyMap[e.keyCode]) {
-            console.log("[MYNVO Unity] Remapped:", e.keyCode, "→", mappedKeyCode);
-        }
-        // ========== FIN MYNVO KEY REMAPPING ==========
-        
-        stringToUTF8(e.key ? e.key : "", keyEventData + 0, 32);
-        stringToUTF8(e.code ? e.code : "", keyEventData + 32, 32);
-        HEAP32[keyEventData + 64 >> 2] = e.location;
-        HEAP32[keyEventData + 68 >> 2] = e.ctrlKey;
-        HEAP32[keyEventData + 72 >> 2] = e.shiftKey;
-        HEAP32[keyEventData + 76 >> 2] = e.altKey;
-        HEAP32[keyEventData + 80 >> 2] = e.metaKey;
-        HEAP32[keyEventData + 84 >> 2] = e.repeat;
-        stringToUTF8(e.locale ? e.locale : "", keyEventData + 88, 32);
-        stringToUTF8(e.char ? e.char : "", keyEventData + 120, 32);
-        HEAP32[keyEventData + 152 >> 2] = mappedCharCode;  // ← MYNVO: Touche remappée
-        HEAP32[keyEventData + 156 >> 2] = mappedKeyCode;   // ← MYNVO: Touche remappée
-        HEAP32[keyEventData + 160 >> 2] = mappedWhich;     // ← MYNVO: Touche remappée
-        if (Module["dynCall_iiii"](callbackfunc, eventTypeId, keyEventData, userData)) e.preventDefault()
-    });
-    var eventHandler = {
-        target: JSEvents.findEventTarget(target),
-        allowsDeferredCalls: JSEvents.isInternetExplorer() ? false : true,
-        eventTypeString: eventTypeString,
-        callbackfunc: callbackfunc,
-        handlerFunc: keyEventHandlerFunc,
-        useCapture: useCapture
-    };
-    JSEvents.registerOrRemoveHandler(eventHandler)
-}),
+                if (!JSEvents.keyEvent) JSEvents.keyEvent = _malloc(164);
+                var keyEventHandlerFunc = (function(event) {
+                    var e = event || window.event;
+                    var keyEventData = JSEvents.keyEvent;
+                    stringToUTF8(e.key ? e.key : "", keyEventData + 0, 32);
+                    stringToUTF8(e.code ? e.code : "", keyEventData + 32, 32);
+                    HEAP32[keyEventData + 64 >> 2] = e.location;
+                    HEAP32[keyEventData + 68 >> 2] = e.ctrlKey;
+                    HEAP32[keyEventData + 72 >> 2] = e.shiftKey;
+                    HEAP32[keyEventData + 76 >> 2] = e.altKey;
+                    HEAP32[keyEventData + 80 >> 2] = e.metaKey;
+                    HEAP32[keyEventData + 84 >> 2] = e.repeat;
+                    stringToUTF8(e.locale ? e.locale : "", keyEventData + 88, 32);
+                    stringToUTF8(e.char ? e.char : "", keyEventData + 120, 32);
+                    HEAP32[keyEventData + 152 >> 2] = e.charCode;
+                    HEAP32[keyEventData + 156 >> 2] = e.keyCode;
+                    HEAP32[keyEventData + 160 >> 2] = e.which;
+                    if (Module["dynCall_iiii"](callbackfunc, eventTypeId, keyEventData, userData)) e.preventDefault()
+                });
+                var eventHandler = {
+                    target: JSEvents.findEventTarget(target),
+                    allowsDeferredCalls: JSEvents.isInternetExplorer() ? false : true,
+                    eventTypeString: eventTypeString,
+                    callbackfunc: callbackfunc,
+                    handlerFunc: keyEventHandlerFunc,
+                    useCapture: useCapture
+                };
+                JSEvents.registerOrRemoveHandler(eventHandler)
+            }),
             getBoundingClientRectOrZeros: (function(target) {
                 return target.getBoundingClientRect ? target.getBoundingClientRect() : {
                     left: 0,
