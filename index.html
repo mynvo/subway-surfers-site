@@ -1,199 +1,232 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subway Surfers – Mynvo</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Surfers</title>
 
-  <style>
-    /* RESET */
-    * { margin:0; padding:0; box-sizing:border-box; }
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #0d0d0f;
+            font-family: Arial, sans-serif;
+        }
 
-    /* GLOBAL */
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0c0618, #000);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+        #menu {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #0d0d0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            color: #fff;
+            user-select: none;
+        }
 
-    /* HEADER */
-    header {
-      background: rgba(124, 98, 220, 0.15);
-      backdrop-filter: blur(14px);
-      padding: 18px 40px;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      border-bottom: 1px solid #7c62dc66;
-      z-index: 100;
-      animation: fadeInDown 0.6s ease;
-    }
+        #menu h1 {
+            margin-bottom: 20px;
+            font-size: 42px;
+            color: #ffffff;
+            text-shadow: 0px 0px 12px #7c62dc;
+        }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        #startBtn {
+            width: 180px;
+            padding: 15px;
+            background-color: #7c62dc;
+            color: #ffffff;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
 
-    .header-content {
-      max-width: 1400px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        #startBtn:hover {
+            background-color: #9e87ff;
+            box-shadow: 0px 0px 12px #7c62dc;
+        }
 
-    .logo {
-      font-size: 32px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-shadow: 0 0 12px #7c62dc88;
-    }
+        /* Frame du jeu */
+        #game-iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            outline: none;
+        }
 
-    .logo span {
-      color: #7c62dc;
-    }
+        /* Overlay du mode éditeur */
+        #overlay-editor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #000000aa;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 998;
+        }
 
-    .logo img {
-      height: 52px;
-      border-radius: 50%;
-      border: 3px solid #7c62dc;
-      box-shadow: 0 0 20px #7c62dc55;
-    }
+        #editor-box {
+            background: #1a1a1d;
+            padding: 20px;
+            border-radius: 10px;
+            width: 420px;
+            color: #fff;
+            border: 2px solid #7c62dc66;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #fff;
-      margin-left: 26px;
-      font-size: 17px;
-      font-weight: 600;
-      transition: .2s;
-    }
+        .editor-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            background: #111;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 6px;
+        }
 
-    .nav-links a:hover {
-      color: #7c62dc;
-      text-shadow: 0 0 12px #7c62dc;
-    }
+        .editor-btn {
+            padding: 10px;
+            width: 100%;
+            background-color: #7c62dc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
 
-    /* MAIN */
-    main {
-      flex: 1;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 120px;
-      padding: 20px;
-    }
+        .editor-btn:hover {
+            background-color: #9676ff;
+        }
 
-    .game-container {
-      width: 100%;
-      max-width: 1350px;
-      background: rgba(124,98,220,0.08);
-      border: 2px solid #7c62dc44;
-      backdrop-filter: blur(25px);
-      padding: 40px;
-      border-radius: 30px;
-      box-shadow: 0 0 50px #7c62dc33;
-      animation: fadeIn 0.9s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    h1 {
-      font-size: 52px;
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #7c62dc, #c8a8ff);
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 20px #7c62dc55;
-    }
-
-    .game-frame {
-      border-radius: 22px;
-      overflow: hidden;
-      border: 2px solid #7c62dc;
-      box-shadow: 0 0 40px #7c62dc55;
-      position: relative;
-    }
-
-    iframe {
-      width: 100%;
-      height: 750px;
-      border: none;
-    }
-
-    /* FULLSCREEN BUTTON */
-    .fs-button {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.85);
-      border: 2px solid #7c62dc;
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .fs-button:hover {
-      background: #7c62dc;
-      color: #000;
-      box-shadow: 0 0 18px #7c62dcaa;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 22px;
-      color: #7c62dc;
-      background: rgba(124,98,220,0.05);
-      font-size: 15px;
-      border-top: 1px solid #7c62dc33;
-    }
-  </style>
+    </style>
 </head>
-
 <body>
 
-<header>
-  <div class="header-content">
-    <div class="logo">
-      <img src="logo.png" alt="Mynvo">
-      Subway<span>Surfers</span> • <span>Mynvo</span>
+    <div id="menu">
+        <h1>Subway Surfers</h1>
+        <button id="startBtn">Start Game</button>
     </div>
-    <div class="nav-links">
-      <a id="play-link">Jouer</a>
-      <a onclick="openSettings()">Paramètres</a>
-      <a href="https://discord.gg/bQTtDXmF" target="_blank">Discord</a>
+
+    <iframe id="game-iframe" src="./game/index.html" allow="autoplay; fullscreen"></iframe>
+
+    <div id="overlay-editor">
+        <div id="editor-box">
+            <h2>UI Editor</h2>
+
+            <input type="text" id="editor-key" class="editor-input" placeholder="Key (ex: ArrowLeft)">
+            <input type="text" id="editor-bind" class="editor-input" placeholder="Bind action">
+            <input type="number" id="editor-volume" class="editor-input" placeholder="Volume (0-100)">
+            <button id="save-editor" class="editor-btn">Save</button>
+        </div>
     </div>
-  </div>
-</header>
+<script>
+    const startBtn = document.getElementById("startBtn");
+    const menu = document.getElementById("menu");
+    const iframe = document.getElementById("game-iframe");
 
-<main>
-  <div class="game-container">
-    <h1>Subway Surfers – Mynvo</h1>
+    startBtn.addEventListener("click", () => {
+        menu.style.display = "none";
+        iframe.focus();
 
-    <div class="game-frame">
-      <button class="fs-button" id="fs-btn">⤢ Plein écran</button>
-      <iframe id="game-iframe" src="./game/" allowfullscreen allow="autoplay; fullscreen *"></iframe>
-    </div>
-  </div>
-</main>
+        iframe.contentWindow.postMessage({ type: "start_game" }, "*");
+    });
 
-<footer>Subway Surfers • Mynvo</footer>
+    // Plein écran (si utilisé par le jeu)
+    function goFullscreen() {
+        if (iframe.requestFullscreen) iframe.requestFullscreen();
+        else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
+        else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
+    }
+</script>
+<script>
+    let config = {
+        jump: "Space",
+        left: "ArrowLeft",
+        right: "ArrowRight",
+        roll: "ArrowDown",
+        volume: 50
+    };
 
-<script src="./main.js"></script>
+    const editorOverlay = document.getElementById("overlay-editor");
+    const saveEditor = document.getElementById("save-editor");
+
+    window.addEventListener("message", (event) => {
+        const data = event.data;
+        if (!data || typeof data !== "object") return;
+
+        if (data.type === "open_editor") {
+            editorOverlay.style.display = "flex";
+        }
+
+        if (data.type === "request_config") {
+            iframe.contentWindow.postMessage({
+                type: "mynvo_config",
+                config: config
+            }, "*");
+        }
+    });
+
+    saveEditor.addEventListener("click", () => {
+        let newKey = document.getElementById("editor-key").value;
+        let newBind = document.getElementById("editor-bind").value;
+        let newVolume = document.getElementById("editor-volume").value;
+
+        if (newKey && newBind) {
+            config[newBind] = newKey;
+        }
+
+        if (newVolume !== "") {
+            config.volume = Number(newVolume);
+        }
+
+        editorOverlay.style.display = "none";
+
+        iframe.contentWindow.postMessage({
+            type: "mynvo_config",
+            config: config
+        }, "*");
+    });
+</script>
+<script>
+    function postToIframe(msg) {
+        const iframe = document.getElementById("game-iframe");
+        if (!iframe) return;
+        iframe.contentWindow.postMessage(msg, "*");
+    }
+
+    function getKeyDisplay(key) {
+        if (!key) return "?";
+        return key.length === 1 ? key.toUpperCase() : key;
+    }
+
+    window.addEventListener("message", (event) => {
+        const data = event.data;
+        if (!data || typeof data !== "object") return;
+
+        if (data.type === "request_config") {
+            postToIframe({
+                type: "mynvo_config",
+                config: { volume: config.volume }
+            });
+        }
+    });
+
+    console.log("%c[MYNVO Parent] Touch system initialized!", "color:#7c62dc;font-weight:bold;");
+    console.log("%c[MYNVO Parent] Current config:", "color:#7c62dc;", config);
+</script>
 
 </body>
 </html>
