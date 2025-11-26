@@ -394,59 +394,7 @@
     let timerElapsed = 0;
     let timerActive = false;
 
-    // ============= GIVE DIRECT INDEXEDDB =============
-    function giveResources() {
-      console.log('💰 [MYNVO] Give IndexedDB Direct...');
-      
-      try {
-        // Ouvrir IndexedDB Unity
-        const request = indexedDB.open('/idbfs');
-        
-        request.onsuccess = (e) => {
-          const db = e.target.result;
-          console.log('✅ IndexedDB ouvert:', db.objectStoreNames);
-          
-          // Parcourir tous les stores
-          const stores = Array.from(db.objectStoreNames);
-          stores.forEach(storeName => {
-            try {
-              const tx = db.transaction(storeName, 'readwrite');
-              const store = tx.objectStore(storeName);
-              const getAllReq = store.getAll();
-              
-              getAllReq.onsuccess = () => {
-                const records = getAllReq.result;
-                console.log(`📦 Store [${storeName}]:`, records.length, 'records');
-                
-                records.forEach((record, idx) => {
-                  try {
-                    // Si c'est un objet avec timestamp (format Unity)
-                    if (record && record.timestamp && record.contents) {
-                      let modified = false;
-                      let data = record.contents;
-                      
-                      // Si c'est un Uint8Array, convertir en string
-                      if (data instanceof Uint8Array) {
-                        const str = new TextDecoder().decode(data);
-                        let newStr = str;
-                        
-                        // Remplacer toutes les occurrences de coins/keys
-                        newStr = newStr.replace(/"coins":\d+/gi, '"coins":999999999');
-                        newStr = newStr.replace(/"keys":\d+/gi, '"keys":999999999');
-                        newStr = newStr.replace(/"Coins":\d+/gi, '"Coins":999999999');
-                        newStr = newStr.replace(/"Keys":\d+/gi, '"Keys":999999999');
-                        
-                        if (newStr !== str) {
-                          record.contents = new TextEncoder().encode(newStr);
-                          modified = true;
-                        }
-                      }
-                      
-                      if (modified) {
-                        const putReq = store.put(record);
-                        putReq.onsuccess = () => {
-                          console.log(`✅ Record ${idx} modifié!`);
-                          showNotification('💰 999,999,999 pièces & clés données!', 'success');
+💰 999,999,999 pièces & clés données!', 'success');
                         };
                       }
                     }
@@ -469,7 +417,7 @@
       }
     }
 
-    // ============= TOUCHES ZQSD (ALWAYS ACTIVE) =============
+    // ============= TOUCHES ZQSD (ULTRA FORCÉ) =============
     const keyMapping = {
       'z': { key: 'ArrowUp', code: 'ArrowUp', keyCode: 38 },
       'q': { key: 'ArrowLeft', code: 'ArrowLeft', keyCode: 37 },
@@ -479,46 +427,58 @@
     };
 
     function setupZQSD() {
+      const sendToIframe = (type, mapped) => {
+        try {
+          const iframeWin = iframe.contentWindow;
+          const iframeDoc = iframe.contentDocument;
+          
+          const event = new KeyboardEvent(type, {
+            key: mapped.key,
+            code: mapped.code,
+            keyCode: mapped.keyCode,
+            which: mapped.keyCode,
+            bubbles: true,
+            cancelable: true,
+            composed: true
+          });
+          
+          // Multi-dispatch
+          if (iframeDoc) iframeDoc.dispatchEvent(event);
+          if (iframeWin) iframeWin.dispatchEvent(event);
+          if (iframeDoc && iframeDoc.body) iframeDoc.body.dispatchEvent(event);
+        } catch(e) {
+          console.warn('Dispatch error:', e);
+        }
+      };
+
       ['keydown', 'keyup'].forEach(type => {
-        // Capturer PARTOUT (document + window)
         const handler = (e) => {
-          const key = e.key.toLowerCase();
+          const key = e.key ? e.key.toLowerCase() : '';
           const mapped = keyMapping[key];
           
           if (mapped) {
             e.preventDefault();
+            e.stopPropagation();
             e.stopImmediatePropagation();
             
-            const newEvent = new KeyboardEvent(type, {
-              key: mapped.key,
-              code: mapped.code,
-              keyCode: mapped.keyCode,
-              which: mapped.keyCode,
-              bubbles: true,
-              cancelable: true
-            });
-            
-            try {
-              iframe.contentWindow.document.dispatchEvent(newEvent);
-              iframe.contentWindow.dispatchEvent(newEvent);
-              console.log(`🎮 ${type}: ${key} → ${mapped.key}`);
-            } catch(e) {}
+            sendToIframe(type, mapped);
+            console.log(`🎮 ${type}: ${key} → ${mapped.key}`);
           }
         };
         
-        // Triple capture pour être sûr
-        document.addEventListener(type, handler, true);
-        window.addEventListener(type, handler, true);
-        document.body.addEventListener(type, handler, true);
+        // Capturer PARTOUT
+        document.addEventListener(type, handler, { capture: true, passive: false });
+        window.addEventListener(type, handler, { capture: true, passive: false });
       });
       
-      // Focus automatique sur l'iframe au clic
-      document.addEventListener('click', () => {
-        iframe.focus();
-      }, true);
+      // Auto-focus permanent
+      setInterval(() => {
+        if (document.activeElement !== iframe) {
+          iframe.focus();
+        }
+      }, 100);
       
-      // Focus initial
-      setTimeout(() => iframe.focus(), 1000);
+      console.log('✅ ZQSD Ultra Forcé activé');
     }
 
     // ============= PLEIN ÉCRAN SUR IFRAME =============
