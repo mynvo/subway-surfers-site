@@ -104,6 +104,28 @@
       display: block;
     }
     
+    /* Bouton plein écran sur l'iframe */
+    .fs-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--primary);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    .fs-button:hover {
+      background: var(--primary);
+      color: #000;
+    }
+    
     /* OVERLAYS - FORCÉS PARTOUT */
     #fps-overlay, #timer-overlay, #top3-overlay {
       position: fixed !important;
@@ -128,12 +150,12 @@
       left: 20px;
       background: rgba(0, 0, 0, 0.9);
       color: var(--primary);
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 20px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: 700;
-      border: 3px solid var(--primary);
-      box-shadow: 0 0 20px rgba(124, 98, 220, 0.6);
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 15px rgba(124, 98, 220, 0.5);
     }
     
     #timer-overlay {
@@ -141,12 +163,12 @@
       right: 20px;
       background: rgba(0, 0, 0, 0.9);
       color: #fff;
-      padding: 14px 20px;
-      border-radius: 12px;
-      border: 3px solid var(--primary);
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 2px solid var(--primary);
       font-weight: 700;
-      font-size: 18px;
-      box-shadow: 0 0 20px rgba(124, 98, 220, 0.6);
+      font-size: 14px;
+      box-shadow: 0 0 15px rgba(124, 98, 220, 0.5);
     }
     
     #timer-overlay.running {
@@ -155,21 +177,20 @@
     }
     
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(0, 204, 102, 0.6); }
-      50% { box-shadow: 0 0 30px rgba(0, 204, 102, 0.9); }
+      0%, 100% { box-shadow: 0 0 15px rgba(0, 204, 102, 0.5); }
+      50% { box-shadow: 0 0 25px rgba(0, 204, 102, 0.8); }
     }
     
     .timer-display {
-      font-size: 26px;
+      font-size: 18px;
       font-weight: bold;
       color: var(--success);
-      text-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
     }
     
     .timer-status {
-      font-size: 12px;
+      font-size: 10px;
       color: #aaa;
-      margin-top: 4px;
+      margin-top: 2px;
     }
     
     #top3-overlay {
@@ -177,34 +198,109 @@
       left: 20px;
       background: rgba(0, 0, 0, 0.95);
       color: #fff;
-      padding: 18px 24px;
-      border-radius: 14px;
-      border: 3px solid var(--primary);
-      font-size: 14px;
-      min-width: 300px;
-      box-shadow: 0 0 25px rgba(124, 98, 220, 0.6);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      font-size: 13px;
+      min-width: 260px;
+      box-shadow: 0 0 20px rgba(124, 98, 220, 0.5);
     }
     
     #top3-overlay .title {
       color: var(--primary);
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-align: center;
     }
     
     #top3-overlay .player {
-      margin: 8px 0;
-      padding: 8px;
-      border-radius: 8px;
+      margin: 6px 0;
+      padding: 6px;
+      border-radius: 6px;
       background: rgba(124, 98, 220, 0.1);
     }
     
     #top3-overlay .player.first {
       color: var(--primary);
       font-weight: 700;
-      font-size: 16px;
+      font-size: 14px;
       background: rgba(124, 98, 220, 0.2);
+    }
+    
+    /* Menu paramètres */
+    #settings-menu {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.95);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px 18px;
+      z-index: 999999;
+      color: #fff;
+      min-width: 240px;
+      box-shadow: 0 0 20px rgba(124, 98, 220, 0.5);
+      display: none;
+    }
+    
+    #settings-menu.visible {
+      display: block;
+    }
+    
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--primary);
+    }
+    
+    .menu-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .close-btn {
+      background: var(--danger);
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+    
+    .menu-btn {
+      width: 100%;
+      padding: 8px 10px;
+      background: #111;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    
+    .menu-btn:hover {
+      background: var(--primary);
+      color: #000;
+    }
+    
+    .menu-btn.gold {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #000;
+      border: none;
+      font-weight: 700;
+    }
+    
+    .menu-btn.gold:hover {
+      transform: scale(1.03);
     }
     
     .notification {
@@ -214,13 +310,14 @@
       transform: translateX(-50%);
       background: rgba(20, 20, 30, 0.95);
       color: white;
-      padding: 14px 24px;
-      border-radius: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
       border-left: 4px solid var(--primary);
       z-index: 2147483646;
       opacity: 0;
       transition: opacity 0.3s;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      font-size: 14px;
     }
     
     .notification.show { opacity: 1; }
@@ -235,8 +332,8 @@
     @media (max-width: 768px) {
       iframe { height: 400px; }
       #fps-overlay, #timer-overlay, #top3-overlay {
-        font-size: 14px;
-        padding: 10px 14px;
+        font-size: 12px;
+        padding: 6px 10px;
       }
     }
   </style>
@@ -249,6 +346,7 @@
       </div>
       <div class="nav-links">
         <a id="play-link">Jouer</a>
+        <a id="settings-link">Paramètres</a>
         <a href="https://discord.gg/bQTtDXmF" target="_blank">Discord</a>
       </div>
     </div>
@@ -257,6 +355,7 @@
   <main>
     <div class="game-container">
       <div class="game-frame">
+        <button class="fs-button" id="fs-btn">⤢ Plein écran</button>
         <iframe id="game-iframe" src="./game/" allowfullscreen allow="autoplay; fullscreen *"></iframe>
       </div>
     </div>
@@ -266,7 +365,7 @@
 
   <div id="timer-overlay">
     <div class="timer-display"><span id="timer-value">00:00.00</span></div>
-    <div class="timer-status">F1=Start | F2=Stop | F3=Reset</div>
+    <div class="timer-status">F1=Start F2=Stop F3=Reset</div>
   </div>
 
   <div id="top3-overlay">
@@ -274,6 +373,16 @@
     <div class="player first">🥇 Mynvo – 13:27</div>
     <div class="player">🥈 Le_A – 11:51</div>
     <div class="player">🥉 .... – 0:00</div>
+  </div>
+
+  <div id="settings-menu">
+    <div class="menu-header">
+      <div class="menu-title">⚙️ Paramètres</div>
+      <button class="close-btn" id="close-menu">✖</button>
+    </div>
+    <button class="menu-btn gold" id="give-btn">💰 Give Piece & Keys</button>
+    <button class="menu-btn" id="fps-toggle">📊 Toggle FPS</button>
+    <button class="menu-btn" id="top3-toggle">🏆 Toggle TOP3</button>
   </div>
 
   <footer>Subway Surfers by Mynvo © 2023</footer>
@@ -285,138 +394,82 @@
     let timerElapsed = 0;
     let timerActive = false;
 
-    // ============= GIVE UNITY FILESYSTEM =============
-    function unityGiveResources() {
-      console.log('💰 [MYNVO] Injection Unity FS Give...');
+    // ============= GIVE DIRECT INDEXEDDB =============
+    function giveResources() {
+      console.log('💰 [MYNVO] Give IndexedDB Direct...');
       
       try {
-        const iframeWindow = iframe.contentWindow;
+        // Ouvrir IndexedDB Unity
+        const request = indexedDB.open('/idbfs');
         
-        // Attendre que FS soit disponible
-        const waitForFS = setInterval(() => {
-          if (iframeWindow.FS && iframeWindow.Module) {
-            clearInterval(waitForFS);
-            console.log('✅ Unity FS détecté!');
-            
-            // Injecter le script de modification
-            const script = iframeWindow.document.createElement('script');
-            script.textContent = `
-              (function() {
-                console.log('💰 [MYNVO] Hook Unity FileSystem...');
+        request.onsuccess = (e) => {
+          const db = e.target.result;
+          console.log('✅ IndexedDB ouvert:', db.objectStoreNames);
+          
+          // Parcourir tous les stores
+          const stores = Array.from(db.objectStoreNames);
+          stores.forEach(storeName => {
+            try {
+              const tx = db.transaction(storeName, 'readwrite');
+              const store = tx.objectStore(storeName);
+              const getAllReq = store.getAll();
+              
+              getAllReq.onsuccess = () => {
+                const records = getAllReq.result;
+                console.log(`📦 Store [${storeName}]:`, records.length, 'records');
                 
-                // Hook writeFile pour modifier les sauvegardes
-                if (typeof FS !== 'undefined' && FS.writeFile) {
-                  const originalWrite = FS.writeFile;
-                  
-                  FS.writeFile = function(path, data, options) {
-                    console.log('📝 Unity Write:', path);
-                    
-                    // Si c'est une sauvegarde de données joueur
-                    if (path && (path.includes('save') || path.includes('player') || path.includes('data'))) {
-                      try {
-                        // Convertir en string si c'est un buffer
-                        let dataStr = data;
-                        if (data instanceof Uint8Array) {
-                          dataStr = new TextDecoder().decode(data);
+                records.forEach((record, idx) => {
+                  try {
+                    // Si c'est un objet avec timestamp (format Unity)
+                    if (record && record.timestamp && record.contents) {
+                      let modified = false;
+                      let data = record.contents;
+                      
+                      // Si c'est un Uint8Array, convertir en string
+                      if (data instanceof Uint8Array) {
+                        const str = new TextDecoder().decode(data);
+                        let newStr = str;
+                        
+                        // Remplacer toutes les occurrences de coins/keys
+                        newStr = newStr.replace(/"coins":\d+/gi, '"coins":999999999');
+                        newStr = newStr.replace(/"keys":\d+/gi, '"keys":999999999');
+                        newStr = newStr.replace(/"Coins":\d+/gi, '"Coins":999999999');
+                        newStr = newStr.replace(/"Keys":\d+/gi, '"Keys":999999999');
+                        
+                        if (newStr !== str) {
+                          record.contents = new TextEncoder().encode(newStr);
+                          modified = true;
                         }
-                        
-                        // Chercher et modifier les valeurs
-                        let modified = dataStr;
-                        
-                        // Patterns Unity communs pour coins/keys
-                        modified = modified.replace(/"coins":\\d+/g, '"coins":999999999');
-                        modified = modified.replace(/"keys":\\d+/g, '"keys":999999999');
-                        modified = modified.replace(/"Coins":\\d+/g, '"Coins":999999999');
-                        modified = modified.replace(/"Keys":\\d+/g, '"Keys":999999999');
-                        modified = modified.replace(/"gold":\\d+/g, '"gold":999999999');
-                        modified = modified.replace(/"currency":\\d+/g, '"currency":999999999');
-                        
-                        if (modified !== dataStr) {
-                          console.log('✅ Données modifiées!');
-                          // Reconvertir en Uint8Array si nécessaire
-                          if (data instanceof Uint8Array) {
-                            data = new TextEncoder().encode(modified);
-                          } else {
-                            data = modified;
-                          }
-                        }
-                      } catch(e) {
-                        console.warn('Erreur modification:', e);
+                      }
+                      
+                      if (modified) {
+                        const putReq = store.put(record);
+                        putReq.onsuccess = () => {
+                          console.log(`✅ Record ${idx} modifié!`);
+                          showNotification('💰 999,999,999 pièces & clés données!', 'success');
+                        };
                       }
                     }
-                    
-                    return originalWrite.call(this, path, data, options);
-                  };
-                  
-                  console.log('✅ Hook FS.writeFile installé!');
-                }
-                
-                // Hook readFile pour forcer les valeurs au chargement
-                if (typeof FS !== 'undefined' && FS.readFile) {
-                  const originalRead = FS.readFile;
-                  
-                  FS.readFile = function(path, options) {
-                    const result = originalRead.call(this, path, options);
-                    
-                    if (path && (path.includes('save') || path.includes('player') || path.includes('data'))) {
-                      console.log('📖 Unity Read:', path);
-                      
-                      try {
-                        let dataStr = result;
-                        if (result instanceof Uint8Array) {
-                          dataStr = new TextDecoder().decode(result);
-                        }
-                        
-                        let modified = dataStr;
-                        modified = modified.replace(/"coins":\\d+/g, '"coins":999999999');
-                        modified = modified.replace(/"keys":\\d+/g, '"keys":999999999');
-                        modified = modified.replace(/"Coins":\\d+/g, '"Coins":999999999');
-                        modified = modified.replace(/"Keys":\\d+/g, '"Keys":999999999');
-                        
-                        if (modified !== dataStr) {
-                          console.log('✅ Lecture modifiée!');
-                          if (result instanceof Uint8Array) {
-                            return new TextEncoder().encode(modified);
-                          }
-                          return modified;
-                        }
-                      } catch(e) {}
-                    }
-                    
-                    return result;
-                  };
-                  
-                  console.log('✅ Hook FS.readFile installé!');
-                }
-                
-                console.log('💰 [MYNVO] Hooks Unity installés avec succès!');
-              })();
-            `;
-            
-            iframeWindow.document.head.appendChild(script);
-            showNotification('💰 Give Unity activé! Les sauvegardes seront modifiées', 'success');
-          }
-        }, 500);
+                  } catch(e) {}
+                });
+              };
+            } catch(e) {
+              console.warn('Erreur store:', e);
+            }
+          });
+        };
         
-        // Timeout après 10 secondes
-        setTimeout(() => clearInterval(waitForFS), 10000);
+        request.onerror = () => {
+          console.warn('❌ IndexedDB non accessible');
+          showNotification('⚠️ Rechargez la page puis réessayez', 'warning');
+        };
         
       } catch (error) {
         console.error('❌ Erreur Give:', error);
       }
     }
 
-    // Déclencher au chargement
-    iframe.addEventListener('load', () => {
-      console.log('✅ Iframe chargée');
-      
-      // Attendre que Unity soit initialisé
-      setTimeout(unityGiveResources, 2000);
-      setTimeout(unityGiveResources, 5000);
-      setTimeout(unityGiveResources, 8000);
-    });
-
-    // ============= TOUCHES ZQSD =============
+    // ============= TOUCHES ZQSD (ALWAYS ACTIVE) =============
     const keyMapping = {
       'z': { key: 'ArrowUp', code: 'ArrowUp', keyCode: 38 },
       'q': { key: 'ArrowLeft', code: 'ArrowLeft', keyCode: 37 },
@@ -427,7 +480,8 @@
 
     function setupZQSD() {
       ['keydown', 'keyup'].forEach(type => {
-        window.addEventListener(type, (e) => {
+        // Capturer PARTOUT (document + window)
+        const handler = (e) => {
           const key = e.key.toLowerCase();
           const mapped = keyMapping[key];
           
@@ -450,9 +504,36 @@
               console.log(`🎮 ${type}: ${key} → ${mapped.key}`);
             } catch(e) {}
           }
-        }, true);
+        };
+        
+        // Triple capture pour être sûr
+        document.addEventListener(type, handler, true);
+        window.addEventListener(type, handler, true);
+        document.body.addEventListener(type, handler, true);
       });
+      
+      // Focus automatique sur l'iframe au clic
+      document.addEventListener('click', () => {
+        iframe.focus();
+      }, true);
+      
+      // Focus initial
+      setTimeout(() => iframe.focus(), 1000);
     }
+
+    // ============= PLEIN ÉCRAN SUR IFRAME =============
+    document.getElementById('fs-btn').addEventListener('click', () => {
+      try {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        }
+        showNotification('⤢ Mode plein écran activé', 'info');
+      } catch(e) {
+        console.error('Fullscreen error:', e);
+      }
+    });
 
     // ============= TIMER =============
     function setupTimer() {
@@ -539,6 +620,31 @@
       requestAnimationFrame(updateFPS);
     }
 
+    // ============= MENU PARAMÈTRES =============
+    document.getElementById('settings-link').addEventListener('click', () => {
+      document.getElementById('settings-menu').classList.toggle('visible');
+    });
+
+    document.getElementById('close-menu').addEventListener('click', () => {
+      document.getElementById('settings-menu').classList.remove('visible');
+    });
+
+    document.getElementById('give-btn').addEventListener('click', () => {
+      giveResources();
+    });
+
+    document.getElementById('fps-toggle').addEventListener('click', () => {
+      const fps = document.getElementById('fps-overlay');
+      fps.style.display = fps.style.display === 'none' ? 'block' : 'none';
+      showNotification('📊 FPS toggled', 'info');
+    });
+
+    document.getElementById('top3-toggle').addEventListener('click', () => {
+      const top3 = document.getElementById('top3-overlay');
+      top3.style.display = top3.style.display === 'none' ? 'block' : 'none';
+      showNotification('🏆 TOP3 toggled', 'info');
+    });
+
     // ============= NOTIFICATIONS =============
     function showNotification(msg, type = 'info') {
       const notif = document.createElement('div');
@@ -553,7 +659,7 @@
       setTimeout(() => {
         notif.classList.remove('show');
         setTimeout(() => notif.remove(), 300);
-      }, 4000);
+      }, 3500);
     }
 
     // ============= INIT =============
@@ -563,17 +669,24 @@
       updateFPS();
       
       console.log('%c🎮 MYNVO READY', 'color:#7c62dc;font-weight:bold;font-size:16px');
-      console.log('%c⌨️  ZQSD + Espace', 'color:#7c62dc;font-size:14px');
-      console.log('%c⏱️  F1/F2/F3 Timer', 'color:#7c62dc;font-size:14px');
-      console.log('%c💰 Give FS Hook', 'color:#00cc66;font-size:14px');
+      console.log('%c⌨️  ZQSD Always Active', 'color:#7c62dc');
+      console.log('%c⏱️  F1/F2/F3 Timer', 'color:#7c62dc');
+      console.log('%c💰 IndexedDB Give', 'color:#00cc66');
       
       setTimeout(() => {
-        showNotification('🎮 Système MYNVO activé!', 'success');
+        showNotification('🎮 Système MYNVO activé! Touches ZQSD actives', 'success');
       }, 1000);
     });
 
     document.getElementById('play-link').addEventListener('click', () => {
       document.querySelector('.game-container').scrollIntoView({ behavior: 'smooth' });
+      iframe.focus();
+    });
+
+    // Focus iframe au chargement
+    iframe.addEventListener('load', () => {
+      console.log('✅ Jeu chargé');
+      iframe.focus();
     });
   </script>
 </body>
