@@ -224,46 +224,12 @@
       transform: scale(1.05);
     }
     
-    .key-display {
-      display: inline-block;
-      min-width: 50px;
-      padding: 10px 16px;
-      background: var(--bg-dark);
-      border: 2px solid var(--primary);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    
-    .key-display:hover {
-      border-color: var(--primary-light);
-      background: #1a1a1a;
-    }
-    
-    .key-display.active {
-      border-color: var(--success);
-      background: #1a4d1a;
-      animation: pulse 0.5s;
-    }
-    
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-    
-    /* Overlays améliorés */
+    /* Overlays qui restent en plein écran */
     #fps-overlay {
       position: fixed;
       top: 100px;
       left: 20px;
-      z-index: 999999;
+      z-index: 2147483647; /* Maximum z-index */
       background: rgba(0, 0, 0, 0.95);
       color: var(--primary);
       padding: 10px 18px;
@@ -281,7 +247,7 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      z-index: 999999;
+      z-index: 2147483647;
       background: rgba(0, 0, 0, 0.98);
       color: #fff;
       padding: 16px 22px;
@@ -319,6 +285,48 @@
       background: rgba(124, 98, 220, 0.15);
     }
     
+    /* Timer overlay - reste en plein écran */
+    #timer-overlay {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      z-index: 2147483647;
+      font-weight: 700;
+      font-size: 18px;
+      display: none;
+      box-shadow: 0 0 20px rgba(124, 98, 220, 0.4);
+      backdrop-filter: blur(5px);
+      pointer-events: none;
+    }
+    
+    #timer-overlay.running {
+      border-color: var(--success);
+      animation: pulse 2s infinite;
+    }
+    
+    #timer-overlay.stopped {
+      border-color: var(--danger);
+    }
+    
+    .timer-display {
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--success);
+      text-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
+    }
+    
+    .timer-status {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
     /* Bottom menu - CACHÉ PAR DÉFAUT */
     #bottom-menu {
       position: fixed;
@@ -335,7 +343,7 @@
       box-shadow: 0 0 25px rgba(124, 98, 220, 0.55);
       backdrop-filter: blur(10px);
       transition: all 0.3s;
-      display: none; /* CACHÉ PAR DÉFAUT */
+      display: none;
     }
     
     #bottom-menu.visible {
@@ -364,31 +372,22 @@
       transform: translateX(5px);
     }
     
-    /* Timer overlay amélioré */
-    #timer-overlay {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.9);
-      color: #fff;
+    /* Style pour le bouton Give Piece */
+    .give-piece-btn {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #000;
+      border: none;
+      border-radius: 10px;
       padding: 12px 16px;
-      border-radius: 12px;
-      border: 2px solid var(--primary);
-      z-index: 999999;
       font-weight: 700;
-      font-size: 18px;
-      display: none;
-      box-shadow: 0 0 20px rgba(124, 98, 220, 0.4);
-      backdrop-filter: blur(5px);
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     }
     
-    #timer-overlay.running {
-      border-color: var(--success);
-      animation: pulse 2s infinite;
-    }
-    
-    #timer-overlay.stopped {
-      border-color: var(--danger);
+    .give-piece-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
     }
     
     /* Modal amélioré */
@@ -433,22 +432,38 @@
       color: var(--text-muted);
     }
     
-    input[type="range"] {
-      width: 100%;
-      height: 8px;
-      border-radius: 5px;
-      background: #333;
-      outline: none;
-      -webkit-appearance: none;
+    .key-display {
+      display: inline-block;
+      min-width: 50px;
+      padding: 10px 16px;
+      background: var(--bg-dark);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
     }
     
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--primary);
-      cursor: pointer;
+    .key-display:hover {
+      border-color: var(--primary-light);
+      background: #1a1a1a;
+    }
+    
+    .key-display.active {
+      border-color: var(--success);
+      background: #1a4d1a;
+      animation: pulse 0.5s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
     }
     
     /* Nouveau style pour les sections de paramètres */
@@ -467,100 +482,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-    
-    /* Style pour le bouton Give Piece */
-    .give-piece-btn {
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
-      color: #000;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-    }
-    
-    .give-piece-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-    }
-    
-    /* Améliorations responsive */
-    @media (max-width: 1200px) {
-      .game-container {
-        padding: 30px;
-      }
-      
-      iframe {
-        height: 600px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        padding: 14px 20px;
-      }
-      
-      .logo {
-        font-size: 24px;
-      }
-      
-      .logo img {
-        height: 40px;
-        width: 40px;
-      }
-      
-      .nav-links a {
-        margin-left: 16px;
-        font-size: 15px;
-      }
-      
-      .game-container {
-        padding: 20px;
-      }
-      
-      iframe {
-        height: 400px;
-      }
-      
-      #bottom-menu {
-        min-width: 240px;
-        right: 10px;
-        bottom: 10px;
-      }
-      
-      #top3-overlay, #fps-overlay {
-        position: relative;
-        margin: 10px;
-        width: calc(100% - 20px);
-      }
-      
-      #timer-overlay {
-        top: 80px;
-        right: 10px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .header-content {
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .nav-links {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .nav-links a {
-        margin: 0 10px;
-      }
-      
-      iframe {
-        height: 300px;
-      }
     }
     
     /* Animation de particules en arrière-plan */
@@ -622,19 +543,69 @@
       opacity: 1;
     }
     
-    /* Style pour le nouveau timer */
-    .timer-display {
-      font-family: 'Courier New', monospace;
-      font-size: 24px;
-      font-weight: bold;
-      color: var(--success);
-      text-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
+    /* Améliorations responsive */
+    @media (max-width: 1200px) {
+      .game-container {
+        padding: 30px;
+      }
+      
+      iframe {
+        height: 600px;
+      }
     }
     
-    .timer-status {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 20px;
+      }
+      
+      .logo {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .nav-links a {
+        margin-left: 16px;
+        font-size: 15px;
+      }
+      
+      .game-container {
+        padding: 20px;
+      }
+      
+      iframe {
+        height: 400px;
+      }
+      
+      #bottom-menu {
+        min-width: 240px;
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .nav-links a {
+        margin: 0 10px;
+      }
+      
+      iframe {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -667,10 +638,10 @@
     </div>
   </main>
 
-  <!-- FPS Counter -->
+  <!-- FPS Counter - RESTE EN PLEIN ÉCRAN -->
   <div id="fps-overlay">🎮 FPS: <span id="fps-value">60</span></div>
 
-  <!-- TOP 3 -->
+  <!-- TOP 3 - RESTE EN PLEIN ÉCRAN -->
   <div id="top3-overlay">
     <div class="title">🏆 TOP 3 NO COIN</div>
     <div class="player first">🥇 Mynvo – 13:27</div>
@@ -678,7 +649,7 @@
     <div class="player">🥉 .... – 0:00</div>
   </div>
 
-  <!-- TIMER overlay -->
+  <!-- TIMER overlay - RESTE EN PLEIN ÉCRAN -->
   <div id="timer-overlay">
     <div class="timer-display"><span id="timer-value">00:00.00</span></div>
     <div class="timer-status" id="timer-status">En attente...</div>
@@ -691,7 +662,7 @@
       <button id="close-bottom-menu" style="background:#7c62dc;border:none;color:#000;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;">✖</button>
     </div>
 
-    <button class="quick-btn" onclick="openSettings();">🎮 Touches (ZQSD)</button>
+    <button class="quick-btn" onclick="openKeySettings();">🎮 Touches (ZQSD)</button>
     <button class="quick-btn" onclick="openTimerSettings();">⏱️ Timer Manuel</button>
     <button class="quick-btn" onclick="toggleFPS();">📊 FPS (afficher/masquer)</button>
     <button class="quick-btn" onclick="toggleFullscreen();">⤢ Plein écran</button>
@@ -746,22 +717,96 @@
       document.getElementById('bottom-menu').classList.remove('visible');
     });
 
-    // ============= FONCTION GIVE PIECE =============
+    // ============= FONCTION GIVE PIECE FONCTIONNELLE =============
     function giveResources() {
-      const coins = 9999999999;
-      const keys = 9999999999;
-      
-      // Envoie la commande à l'iframe
-      postToIframe({
-        type: 'give_resources',
-        coins: coins,
-        keys: keys
-      });
-      
-      // Affiche une notification
-      showNotification(`💰 Pièces: ${coins.toLocaleString()} | 🔑 Clés: ${keys.toLocaleString()}`, 'success');
-      
-      console.log(`💰 Resources données: ${coins} pièces, ${keys} clés`);
+      // Injection directe dans l'iframe
+      try {
+        const iframeWindow = iframe.contentWindow;
+        
+        // Méthode 1: Injection de script dans l'iframe
+        const scriptContent = `
+          // Give Coins
+          if (typeof SubwaySurfer !== 'undefined') {
+            SubwaySurfer.coins = 9999999999;
+          }
+          // Give Keys  
+          if (typeof SubwaySurfer !== 'undefined') {
+            SubwaySurfer.keys = 9999999999;
+          }
+          // Unity WebGL method
+          if (typeof gameInstance !== 'undefined') {
+            gameInstance.SendMessage('Player', 'AddCoins', 9999999999);
+            gameInstance.SendMessage('Player', 'AddKeys', 9999999999);
+          }
+          // Fallback pour la plupart des jeux
+          if (typeof coins !== 'undefined') coins = 9999999999;
+          if (typeof keys !== 'undefined') keys = 9999999999;
+          if (typeof window.coins !== 'undefined') window.coins = 9999999999;
+          if (typeof window.keys !== 'undefined') window.keys = 9999999999;
+          
+          console.log('💰 Resources données: 9999999999 pièces et clés');
+        `;
+        
+        const script = iframeWindow.document.createElement('script');
+        script.textContent = scriptContent;
+        iframeWindow.document.head.appendChild(script);
+        
+        // Méthode 2: PostMessage
+        postToIframe({
+          type: 'give_resources',
+          coins: 9999999999,
+          keys: 9999999999
+        });
+        
+        showNotification(`💰 9,999,999,999 pièces & clés données!`, 'success');
+        console.log('💰 Give Piece exécuté');
+        
+      } catch (error) {
+        console.error('❌ Erreur Give Piece:', error);
+        showNotification('❌ Erreur Give Piece - Vérifiez la console', 'error');
+      }
+    }
+
+    // ============= SYSTÈME DE TOUCHES ZQSD =============
+    function setupZQSDKeys() {
+      const keyMap = {
+        'z': { key: 'ArrowUp', code: 38 },
+        'q': { key: 'ArrowLeft', code: 37 },
+        's': { key: 'ArrowDown', code: 40 },
+        'd': { key: 'ArrowRight', code: 39 },
+        ' ': { key: ' ', code: 32 }
+      };
+
+      const keyStates = {};
+
+      function handleKeyEvent(e, type) {
+        const key = e.key.toLowerCase();
+        const mapped = keyMap[key];
+        
+        if (mapped && !keyStates[mapped.code]) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          
+          if (type === 'down') {
+            keyStates[mapped.code] = true;
+          } else {
+            keyStates[mapped.code] = false;
+          }
+
+          // Envoi à l'iframe
+          postToIframe({
+            type: 'keyboard_event',
+            eventType: type,
+            key: mapped.key,
+            keyCode: mapped.code
+          });
+
+          console.log(`🎮 ${type}: ${key} → ${mapped.key}`);
+        }
+      }
+
+      document.addEventListener('keydown', (e) => handleKeyEvent(e, 'keydown'), true);
+      document.addEventListener('keyup', (e) => handleKeyEvent(e, 'keyup'), true);
     }
 
     // ============= TIMER MANUEL =============
@@ -772,16 +817,16 @@
 
     function setupTimerKeys() {
       document.addEventListener('keydown', function(e) {
-        // Timer Start
-        if (e.key === config.timerStartKey && !timerActive) {
+        // Timer Start - F1
+        if (e.key === 'F1' && !timerActive) {
           startTimer();
         }
-        // Timer Stop
-        else if (e.key === config.timerStopKey && timerActive) {
+        // Timer Stop - F2
+        else if (e.key === 'F2' && timerActive) {
           stopTimer();
         }
-        // Timer Reset
-        else if (e.key === config.timerResetKey) {
+        // Timer Reset - F3
+        else if (e.key === 'F3') {
           resetTimer();
         }
       });
@@ -805,7 +850,7 @@
         document.getElementById('timer-value').textContent = formatTime(timerElapsed);
       }, 10);
       
-      showNotification("▶️ Timer démarré (F1=F1, Stop=F2, Reset=F3)", "success");
+      showNotification("▶️ Timer démarré (F1=Start, F2=Stop, F3=Reset)", "success");
     }
 
     function stopTimer() {
@@ -845,6 +890,46 @@
       const centiseconds = Math.floor((total % 1000) / 10);
       
       return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`;
+    }
+
+    // ============= FPS COUNTER =============
+    let fpsFrames = 0;
+    let fpsLastTime = performance.now();
+    
+    function updateFPS() {
+      fpsFrames++;
+      const now = performance.now();
+      
+      if (now - fpsLastTime >= 1000) {
+        const fps = Math.round((fpsFrames * 1000) / (now - fpsLastTime));
+        document.getElementById('fps-value').textContent = fps;
+        
+        // Changement de couleur selon les FPS
+        const fpsEl = document.getElementById('fps-overlay');
+        if (fps >= 55) {
+          fpsEl.style.color = '#7c62dc';
+          fpsEl.style.borderColor = '#7c62dc';
+        } else if (fps >= 30) {
+          fpsEl.style.color = '#f59e0b';
+          fpsEl.style.borderColor = '#f59e0b';
+        } else {
+          fpsEl.style.color = '#ef4444';
+          fpsEl.style.borderColor = '#ef4444';
+        }
+        
+        fpsFrames = 0;
+        fpsLastTime = now;
+      }
+      
+      requestAnimationFrame(updateFPS);
+    }
+    updateFPS();
+
+    function toggleFPS() {
+      config.showFPS = !config.showFPS;
+      document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
+      saveConfig();
+      showNotification(config.showFPS ? "📊 FPS affiché" : "📊 FPS masqué", "info");
     }
 
     // ============= NOTIFICATIONS =============
@@ -904,22 +989,6 @@
       }
     }
 
-    // FPS Counter
-    let fpsFrames = 0;
-    let fpsLastTime = performance.now();
-    function updateFPS() {
-      fpsFrames++;
-      const now = performance.now();
-      if (now - fpsLastTime >= 1000) {
-        const fps = Math.round((fpsFrames * 1000) / (now - fpsLastTime));
-        document.getElementById('fps-value').textContent = fps;
-        fpsFrames = 0;
-        fpsLastTime = now;
-      }
-      requestAnimationFrame(updateFPS);
-    }
-    updateFPS();
-
     // Fullscreen
     document.getElementById('fs-btn').addEventListener('click', async () => {
       try {
@@ -939,15 +1008,10 @@
       }
     }
 
-    function toggleFPS(){
-      config.showFPS = !config.showFPS;
-      document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
-      saveConfig();
-    }
-
     // ============= INITIALISATION =============
     document.addEventListener('DOMContentLoaded', function() {
       initParticles();
+      setupZQSDKeys();
       setupTimerKeys();
       
       try {
@@ -985,10 +1049,51 @@
       localStorage.setItem("mynvoConfig", JSON.stringify(config));
     }
 
-    // ============= FONCTIONS DES MODALS (abrégées) =============
-    function openSettings() {
-      // Code existant pour les paramètres de touches
-      showNotification("⚙️ Ouverture des paramètres de touches...", "info");
+    // ============= FONCTIONS DES MODALS =============
+    function openKeySettings() {
+      if (document.getElementById('mynvo-keys')) return;
+      
+      const div = document.createElement('div');
+      div.id = 'mynvo-keys';
+      div.className = 'mynvo-modal';
+      div.innerHTML = `
+        <h3 style="color:#7c62dc;margin-bottom:10px;text-align:center;">🎮 Configuration des Touches</h3>
+        
+        <div class="settings-section">
+          <h3>🎯 Touches de Jeu</h3>
+          <div class="mynvo-row">
+            <div class="mynvo-label">Haut (Z)</div>
+            <div class="key-display" data-key="up">Z</div>
+          </div>
+          <div class="mynvo-row">
+            <div class="mynvo-label">Bas (S)</div>
+            <div class="key-display" data-key="down">S</div>
+          </div>
+          <div class="mynvo-row">
+            <div class="mynvo-label">Gauche (Q)</div>
+            <div class="key-display" data-key="left">Q</div>
+          </div>
+          <div class="mynvo-row">
+            <div class="mynvo-label">Droite (D)</div>
+            <div class="key-display" data-key="right">D</div>
+          </div>
+          <div class="mynvo-row">
+            <div class="mynvo-label">Saut (Espace)</div>
+            <div class="key-display" data-key="jump">ESPACE</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:12px;">
+          <button onclick="closeKeySettings()" style="background:#ff4444;color:#fff;padding:8px 14px;border:none;border-radius:8px;cursor:pointer;">Fermer</button>
+        </div>
+      `;
+      
+      document.body.appendChild(div);
+    }
+
+    function closeKeySettings() {
+      const modal = document.getElementById('mynvo-keys');
+      if (modal) modal.remove();
     }
 
     function openTimerSettings() {
@@ -1004,15 +1109,15 @@
           <h3>🎮 Touches du Timer</h3>
           <div class="mynvo-row">
             <div class="mynvo-label">Démarrer</div>
-            <div class="key-display" data-key="timerStartKey">${config.timerStartKey}</div>
+            <div class="key-display">F1</div>
           </div>
           <div class="mynvo-row">
             <div class="mynvo-label">Arrêter</div>
-            <div class="key-display" data-key="timerStopKey">${config.timerStopKey}</div>
+            <div class="key-display">F2</div>
           </div>
           <div class="mynvo-row">
             <div class="mynvo-label">Réinitialiser</div>
-            <div class="key-display" data-key="timerResetKey">${config.timerResetKey}</div>
+            <div class="key-display">F3</div>
           </div>
         </div>
 
@@ -1022,25 +1127,6 @@
       `;
       
       document.body.appendChild(div);
-      
-      // Gestion de la capture des touches
-      div.querySelectorAll('.key-display').forEach(el => {
-        el.addEventListener('click', function() {
-          const keyType = this.dataset.key;
-          this.textContent = '...';
-          this.classList.add('active');
-          
-          const keyHandler = function(e) {
-            e.preventDefault();
-            config[keyType] = e.key;
-            saveConfig();
-            document.removeEventListener('keydown', keyHandler);
-            openTimerSettings(); // Recharge le modal
-          };
-          
-          document.addEventListener('keydown', keyHandler, { once: true });
-        });
-      });
     }
 
     function closeTimerSettings() {
