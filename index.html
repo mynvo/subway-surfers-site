@@ -106,7 +106,7 @@
       return map[key] || 0;
     }
 
-    // ============= INJECTION DIRECTE DANS L'IFRAME ===========
+    // ============= INJECTION DIRECTE DANS L'IFRAME =============
     let iframeReady = false;
     let keyStates = {}; // Pour éviter les répétitions
     let currentCanvas = null; // Garder une référence au canvas actuel
@@ -319,10 +319,9 @@
 
     // ============= FULLSCREEN =============
     document.getElementById('fs-btn').addEventListener('click', async () => {
-      const container = document.querySelector('.game-container');
       try {
-        if (container.requestFullscreen) await container.requestFullscreen();
-        else if (container.webkitRequestFullscreen) await container.webkitRequestFullscreen();
+        if (iframe.requestFullscreen) await iframe.requestFullscreen();
+        else if (iframe.webkitRequestFullscreen) await iframe.webkitRequestFullscreen();
       } catch (err) {
         alert('Plein écran non supporté');
       }
