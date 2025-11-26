@@ -4,14 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subway Surfers by Mynvo</title>
-  <meta name="description" content="Subway Surfers + Mode NO COIN + Leaderboard mondial - Créé par Mynvo">
+  <meta name="description" content="Subway Surfers + Timer simple + Leaderboard manuel - Créé par Mynvo">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white; min-height: 100vh; display: flex; flex-direction: column;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; min-height: 100vh; display: flex; flex-direction: column; }
     header { background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); padding: 20px 40px; }
     .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 32px; font-weight: 900; display:flex; align-items:center; gap:12px; }
@@ -48,13 +44,12 @@
 
   <main>
     <div class="game-container">
-      <h1>Subway Surfers – Mode NO COIN + Leaderboard Mondial</h1>
+      <h1>Subway Surfers – Timer + Leaderboard Manuel</h1>
       <div class="game-frame">
         <div class="loading">
           <div class="spinner"></div>
           <p>Chargement du jeu...</p>
         </div>
-        <!-- LIGNE CORRIGÉE : le jeu charge enfin ! -->
         <iframe src="./game/" 
                 allowfullscreen 
                 allow="autoplay; fullscreen *; gyroscope; accelerometer" 
@@ -62,175 +57,78 @@
                 onload="this.parentElement.querySelector('.loading').style.display='none'">
         </iframe>
       </div>
-      <p style="text-align:center; margin-top:30px; font-size:18px;">
-        Toutes les fonctionnalités MYNVO (NO COIN, leaderboard, touches perso, FPS) sont <strong>intégrées directement</strong> – aucune extension à installer !
-      </p>
     </div>
   </main>
 
   <footer>
-    © 2024 Subway Surfers by Mynvo – Jeu original © SYBO & Kiloo
+    © 2025 Subway Surfers by Mynvo – Jeu original © SYBO & Kiloo
   </footer>
 
-  <!-- TOUT LE CODE MYNVO INTÉGRÉ (ex-extension) -->
   <script>
-    const defaultConfig = { up:"z", down:"s", left:"q", right:"d", jump:" ", name:"Joueur", fps:true };
+    // === CONFIG JOUEUR ===
+    const defaultConfig = { up:"z", down:"s", left:"q", right:"d", jump:" ", name:"Joueur" };
     let config = JSON.parse(localStorage.getItem("mynvoConfig")) || defaultConfig;
     function saveConfig(){ localStorage.setItem("mynvoConfig", JSON.stringify(config)); }
 
+    // === TOUCHES ZQSD ===
     const keyMap = { [config.up.toLowerCase()]:38, [config.down.toLowerCase()]:40, [config.left.toLowerCase()]:37, [config.right.toLowerCase()]:39, [config.jump.toLowerCase()]:32 };
-    document.addEventListener("keydown", e => {
-      const code = keyMap[e.key.toLowerCase()];
-      if(code){
-        e.preventDefault();
-        const iframe = document.querySelector("iframe");
-        if(iframe) iframe.contentWindow.postMessage({type:"key", code, event:"down"}, "*");
-      }
-    });
-    document.addEventListener("keyup", e => {
-      const code = keyMap[e.key.toLowerCase()];
-      if(code){
-        e.preventDefault();
-        const iframe = document.querySelector("iframe");
-        if(iframe) iframe.contentWindow.postMessage({type:"key", code, event:"up"}, "*");
-      }
-    });
+    document.addEventListener("keydown", e => { const code = keyMap[e.key.toLowerCase()]; if(code){ e.preventDefault(); document.querySelector("iframe").contentWindow.postMessage({type:"key",code,event:"down"},"*");}});
+    document.addEventListener("keyup",   e => { const code = keyMap[e.key.toLowerCase()]; if(code){ e.preventDefault(); document.querySelector("iframe").contentWindow.postMessage({type:"key",code,event:"up"},"*");}});
 
+    // === INJECTION DANS LE JEU ===
     document.querySelector("iframe").addEventListener("load", () => {
       const iframe = document.querySelector("iframe");
       const script = iframe.contentDocument.createElement("script");
       script.textContent = `
         (() => {
-          console.log("%cMYNVO ACTIVÉ – TOP3 MONDIAL + NO COIN", "color:#58a6ff;font-size:22px;font-weight:bold");
-          function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return \`\${mins}:\${secs.toString().padStart(2, '0')}\`;
-          }
-          const FIREBASE_URL = "https://mynvo-nocoin-default-rtdb.europe-west1.firebasedatabase.app";
-          const firebaseGet = async () => {
-            try {
-              const res = await fetch(\`\${FIREBASE_URL}/leaderboard.json\`);
-              if (!res.ok) return null;
-              return await res.json();
-            } catch (e) { return null; }
-          };
-          const firebasePost = async (name, time) => {
-            try {
-              const res = await fetch(\`\${FIREBASE_URL}/leaderboard.json\`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, time, timestamp: Date.now() })
-              });
-              if (!res.ok) return null;
-              return await res.json();
-            } catch (e) { return null; }
-          };
-          window.addEventListener("message", e => {
-            if (e.data.type === "key") {
-              const eventType = e.data.event === "down" ? "keydown" : "keyup";
-              const ke = new KeyboardEvent(eventType, { keyCode: e.data.code, bubbles: true });
-              document.dispatchEvent(ke);
-            }
-          });
-          const wait = setInterval(() => {
-            const canvas = document.querySelector("canvas");
-            if (!canvas) return;
-            clearInterval(wait);
-            const touches = document.createElement("div");
-            touches.textContent = "ZQSD | SPACE";
-            touches.style.cssText = "position:fixed;bottom:15px;right:15px;z-index:999999999;background:#0d1117;color:#58a6ff;padding:8px 16px;border-radius:12px;font-weight:bold;border:1px solid #30363d;box-shadow:0 0 15px #58a6ff33;pointer-events:none;font-size:14px;";
-            document.body.appendChild(touches);
-            const fpsCounter = document.createElement("div");
-            fpsCounter.id = "fps-counter";
-            fpsCounter.style.cssText = "position:fixed;top:15px;left:15px;z-index:999999999;background:#0d1117;color:#22c55e;padding:10px 18px;border-radius:12px;font-weight:bold;border:1px solid #30363d;box-shadow:0 0 15px #22c55e33;cursor:pointer;pointer-events:auto;";
-            fpsCounter.textContent = "FPS: --";
-            fpsCounter.onclick = () => fpsCounter.style.display = fpsCounter.style.display === "none" ? "block" : "none";
-            document.body.appendChild(fpsCounter);
-            let lastTime = performance.now();
-            let frameCount = 0;
-            const updateFPS = () => {
-              frameCount++;
-              const now = performance.now();
-              if (now - lastTime >= 1000) {
-                fpsCounter.textContent = \`FPS: \${Math.round(frameCount / ((now - lastTime) / 1000))}\`;
-                frameCount = 0;
-                lastTime = now;
-              }
-              requestAnimationFrame(updateFPS);
-            };
-            updateFPS();
-            const leaderboard = document.createElement("div");
-            leaderboard.style.cssText = "position:fixed;bottom:15px;left:15px;z-index:999999999;background:#0d1117;color:#c9d1d9;padding:12px 20px;border-radius:12px;font-weight:bold;border:1px solid #30363d;box-shadow:0 0 15px #ffd70033;max-height:200px;overflow-y:auto;";
-            leaderboard.innerHTML = "TROPHÉE TOP 3<br>Chargement...";
-            document.body.appendChild(leaderboard);
-            const updateLeaderboard = async () => {
-              const data = await firebaseGet();
-              if (!data) return;
-              const scores = Object.values(data || {}).sort((a, b) => b.time - a.time).slice(0, 3);
-              leaderboard.innerHTML = "TROPHÉE TOP 3<br>" + scores.map((s, i) => \`\${i + 1}. \${s.name} - \${formatTime(s.time)}\`).join("<br>");
-            };
-            updateLeaderboard();
-            setInterval(updateLeaderboard, 10000);
-            const coinIndicator = document.createElement("div");
-            coinIndicator.style.cssText = "position:fixed;top:15px;left:15px;z-index:999999999;background:#0d1117;color:#22c55e;padding:12px 20px;border-radius:12px;font-weight:bold;border:1px solid #30363d;box-shadow:0 0 15px #22c55e33;transition:opacity 0.5s;opacity:0;";
-            document.body.appendChild(coinIndicator);
-            let isGameRunning = false;
-            let gameStartTime = 0;
-            let bestNoCoinTime = 0;
-            let hasCollectedCoin = false;
-            let runStartCoinCount = 0;
-            let previousCoinCount = 0;
-            let timerInterval = null;
-            const checkGame = () => {
-              const scoreElements = document.querySelectorAll("[class*='score'], [id*='score'], [class*='coin'], [id*='coin']");
-              let currentCoinCount = 0;
-              scoreElements.forEach(el => {
-                const text = el.textContent.trim();
-                if (/^\\d+$/.test(text)) currentCoinCount = parseInt(text);
-              });
-              if (currentCoinCount > previousCoinCount && !isGameRunning) {
-                isGameRunning = true;
-                gameStartTime = Date.now();
-                bestNoCoinTime = 0;
-                hasCollectedCoin = false;
-                runStartCoinCount = currentCoinCount;
-                coinIndicator.style.opacity = "1";
-                coinIndicator.style.color = "#22c55e";
-                coinIndicator.style.borderColor = "#22c55e";
-                coinIndicator.innerHTML = 'NO COIN | <span id="run-timer">0:00</span><br><small style="font-size:11px;color:#58a6ff;">Record: <span id="best-time">0:00</span></small>';
-                timerInterval = setInterval(() => {
-                  if (!isGameRunning) { clearInterval(timerInterval); return; }
-                  const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
-                  document.getElementById('run-timer').textContent = formatTime(elapsed);
-                  if (currentCoinCount === runStartCoinCount && elapsed > bestNoCoinTime) {
-                    bestNoCoinTime = elapsed;
-                    document.getElementById('best-time').textContent = formatTime(bestNoCoinTime);
-                  }
-                }, 1000);
-              }
-              if (isGameRunning && currentCoinCount > runStartCoinCount && !hasCollectedCoin) {
-                hasCollectedCoin = true;
-                coinIndicator.style.borderColor = '#ef4444';
-                coinIndicator.style.color = '#ef4444';
-                coinIndicator.innerHTML = 'PIÈCE COLLECTÉE !<br><small style="font-size:11px;color:#58a6ff;">Temps avant: ' + formatTime(bestNoCoinTime) + '</small>';
-                if (bestNoCoinTime >= 5) firebasePost("${config.name}", bestNoCoinTime);
-              }
-              if (isGameRunning && previousCoinCount > currentCoinCount + 50) {
-                if (!hasCollectedCoin && bestNoCoinTime >= 5) firebasePost("${config.name}", bestNoCoinTime);
-                isGameRunning = false;
-                clearInterval(timerInterval);
-                setTimeout(() => coinIndicator.style.opacity = '0', 3000);
-              }
-              previousCoinCount = currentCoinCount;
-            };
-            setInterval(checkGame, 100);
-          }, 100);
+          // Timer simple qui se remet à zéro à la mort
+          const timerDiv = document.createElement("div");
+          timerDiv.style.cssText = "position:fixed;top:15px;left:15px;z-index:999999;background:#0d1117;color:#22c55e;padding:12px 20px;border-radius:12px;font-weight:bold;font-size:18px;border:2px solid #22c55e;box-shadow:0 0 20px #22c55e33;";
+          timerDiv.textContent = "0:00";
+          document.body.appendChild(timerDiv);
+
+          let startTime = 0;
+          let timerInterval = null;
+          function startTimer(){ startTime = Date.now(); timerInterval = setInterval(()=>{ const s = Math.floor((Date.now()-startTime)/1000); const m = Math.floor(s/60); timerDiv.textContent = m+":"+(s%60).toString().padStart(2,"0"); }, 100); }
+          function resetTimer(){ clearInterval(timerInterval); timerDiv.textContent = "0:00"; }
+
+          // FPS
+          const fpsDiv = document.createElement("div");
+          fpsDiv.style.cssText = "position:fixed;top:15px;right:15px;z-index:999999;background:#0d1117;color:#58a6ff;padding:8px 14px;border-radius:12px;font-weight:bold;border:1px solid #30363d;";
+          fpsDiv.textContent = "FPS: --";
+          document.body.appendChild(fpsDiv);
+          let last = performance.now(), frames = 0;
+          const updateFPS = () => { frames++; const now = performance.now(); if(now-last>=1000){ fpsDiv.textContent="FPS: "+Math.round(frames*1000/(now-last)); frames=0; last=now; } requestAnimationFrame(updateFPS); };
+          updateFPS();
+
+          // Leaderboard manuel (édite ici quand tu veux)
+          const leaderboard = document.createElement("div");
+          leaderboard.style.cssText = "position:fixed;bottom:15px;left:15px;z-index:999999;background:#0d1117;color:#c9d1d9;padding:12px 20px;border-radius:12px;font-weight:bold;border:2px solid #ffd700;box-shadow:0 0 20px #ffd70033;";
+          leaderboard.innerHTML = "TROPHÉE TOP 3<br>1. Mynvo - 15:42<br>2. Shadow - 11:08<br>3. Ghost - 8:19";
+          document.body.appendChild(leaderboard);
+
+          // Touches ZQSD
+          const touches = document.createElement("div");
+          touches.textContent = "ZQSD | SPACE";
+          touches.style.cssText = "position:fixed;bottom:15px;right:15px;z-index:999999;background:#0d1117;color:#58a6ff;padding:8px 16px;border-radius:12px;font-weight:bold;border:1px solid #30363d;";
+          document.body.appendChild(touches);
+
+          // Détection début / mort
+          let previousScore = 0;
+          setInterval(() => {
+            const scoreEl = document.querySelector("[class*='score'], [id*='score']");
+            if (!scoreEl) return;
+            const currentScore = parseInt(scoreEl.textContent.replace(/[^0-9]/g,"")) || 0;
+            if (currentScore < previousScore - 100) resetTimer(); // mort détectée
+            if (currentScore > previousScore + 50 && currentScore > 100) startTimer(); // partie commencée
+            previousScore = currentScore;
+          }, 500);
         })();
       `;
       iframe.contentDocument.head.appendChild(script);
     });
 
+    // === PARAMÈTRES ===
     function openSettings(){
       if(document.getElementById("mynvo-settings")) return;
       const div = document.createElement("div");
