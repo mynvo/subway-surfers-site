@@ -89,7 +89,7 @@
   <footer>Subway Surfers 2025 by Mynvo © 2025 - Tous droits réservés</footer>
 
   <script>
-  console.log('%c[MYNVO] Système d\'extension intégré activé!', 'color: #7c62dc; font-weight: bold; font-size: 14px;');
+ console.log('%c[MYNVO] Système d\'extension intégré activé!', 'color: #7c62dc; font-weight: bold; font-size: 14px;');
 
 // ============= CONFIGURATION AMÉLIORÉE =============
 let config = {
@@ -454,106 +454,6 @@ function changeTheme(themeName) {
   showNotification(`🎨 Thème ${themeName.charAt(0).toUpperCase() + themeName.slice(1)} appliqué!`, 'success');
 }
 
-// ============= DRAG & DROP =============
-function setupDragAndDrop() {
-  const draggableElements = [
-    document.getElementById('fps-overlay'),
-    document.getElementById('top3-overlay'),
-    document.getElementById('speedrun-timer-overlay')
-  ];
-  
-  draggableElements.forEach(element => {
-    if (!element) return;
-    
-    element.addEventListener('mousedown', startDrag);
-    element.addEventListener('touchstart', startDragTouch, { passive: false });
-  });
-  
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('touchmove', dragTouch, { passive: false });
-  document.addEventListener('mouseup', stopDrag);
-  document.addEventListener('touchend', stopDrag);
-}
-
-function startDrag(e) {
-  isDragging = true;
-  currentDraggedElement = e.target;
-  
-  const rect = currentDraggedElement.getBoundingClientRect();
-  dragOffset.x = e.clientX - rect.left;
-  dragOffset.y = e.clientY - rect.top;
-  
-  currentDraggedElement.style.opacity = '0.7';
-  e.preventDefault();
-}
-
-function startDragTouch(e) {
-  if (e.touches.length !== 1) return;
-  
-  isDragging = true;
-  currentDraggedElement = e.target;
-  
-  const rect = currentDraggedElement.getBoundingClientRect();
-  dragOffset.x = e.touches[0].clientX - rect.left;
-  dragOffset.y = e.touches[0].clientY - rect.top;
-  
-  currentDraggedElement.style.opacity = '0.7';
-  e.preventDefault();
-}
-
-function drag(e) {
-  if (!isDragging || !currentDraggedElement) return;
-  
-  const x = e.clientX - dragOffset.x;
-  const y = e.clientY - dragOffset.y;
-  
-  currentDraggedElement.style.left = `${x}px`;
-  currentDraggedElement.style.top = `${y}px`;
-  currentDraggedElement.style.right = 'auto';
-  currentDraggedElement.style.bottom = 'auto';
-  
-  saveOverlayPosition(currentDraggedElement.id, { left: `${x}px`, top: `${y}px` });
-}
-
-function dragTouch(e) {
-  if (!isDragging || !currentDraggedElement || e.touches.length !== 1) return;
-  
-  const x = e.touches[0].clientX - dragOffset.x;
-  const y = e.touches[0].clientY - dragOffset.y;
-  
-  currentDraggedElement.style.left = `${x}px`;
-  currentDraggedElement.style.top = `${y}px`;
-  currentDraggedElement.style.right = 'auto';
-  currentDraggedElement.style.bottom = 'auto';
-  
-  saveOverlayPosition(currentDraggedElement.id, { left: `${x}px`, top: `${y}px` });
-  
-  e.preventDefault();
-}
-
-function stopDrag() {
-  if (!isDragging || !currentDraggedElement) return;
-  
-  currentDraggedElement.style.opacity = '';
-  isDragging = false;
-  currentDraggedElement = null;
-}
-
-function saveOverlayPosition(id, position) {
-  const overlayKey = id.replace('-overlay', '');
-  config.overlayPositions[overlayKey] = position;
-  saveConfig();
-}
-
-function applyOverlayPositions() {
-  Object.keys(config.overlayPositions).forEach(key => {
-    const element = document.getElementById(`${key}-overlay`);
-    if (element && config.overlayPositions[key]) {
-      Object.assign(element.style, config.overlayPositions[key]);
-    }
-  });
-}
-
 // ============= MODAL DE CONFIGURATION CORRIGÉ =============
 function openSettingsModal() {
   console.log('🔧 Ouverture des paramètres...');
@@ -891,8 +791,6 @@ function applyOverlaysFromConfig() {
   document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
   document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
   timerVisible = config.showTimer;
-  
-  applyOverlayPositions();
 }
 
 // ============= INITIALISATION COMPLÈTE =============
@@ -903,7 +801,6 @@ function initializeExtensionFeatures() {
   applyOverlaysFromConfig();
   setupZQSDSystem();
   setupTimerSystem();
-  setupDragAndDrop();
   
   console.log('✅ Tous les systèmes activés!');
 }
