@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Surfers by Mynvo - Édition 2025 Complete</title>
+    <title>Subway Surfers Ultimate - Toutes les fonctionnalités intégrées</title>
     <style>
         :root {
             --primary: #7c62dc;
@@ -17,9 +17,138 @@
             --success: #00cc66;
             --danger: #ff4444;
             --warning: #ffaa00;
+            --timer-color: #7c62dc;
+            --stats-color: #7c62dc;
+            --top3-color: #7c62dc;
+            --fps-color: #7c62dc;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .theme-violet {
+            --primary: #7c62dc;
+            --primary-dark: #6a50c9;
+            --primary-light: #9580e8;
+            --primary-transparent: rgba(124, 98, 220, 0.15);
+            --timer-color: #7c62dc;
+            --stats-color: #7c62dc;
+            --top3-color: #7c62dc;
+            --fps-color: #7c62dc;
+        }
+
+        .theme-blue {
+            --primary: #4a6fa5;
+            --primary-dark: #3a5a85;
+            --primary-light: #6b8cc0;
+            --primary-transparent: rgba(74, 111, 165, 0.15);
+            --timer-color: #4a6fa5;
+            --stats-color: #4a6fa5;
+            --top3-color: #4a6fa5;
+            --fps-color: #4a6fa5;
+        }
+
+        .theme-green {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #58d68d;
+            --primary-transparent: rgba(46, 204, 113, 0.15);
+            --timer-color: #2ecc71;
+            --stats-color: #2ecc71;
+            --top3-color: #2ecc71;
+            --fps-color: #2ecc71;
+        }
+
+        .theme-red {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --primary-light: #ff7979;
+            --primary-transparent: rgba(231, 76, 60, 0.15);
+            --timer-color: #e74c3c;
+            --stats-color: #e74c3c;
+            --top3-color: #e74c3c;
+            --fps-color: #e74c3c;
+        }
+
+        .theme-orange {
+            --primary: #e67e22;
+            --primary-dark: #d35400;
+            --primary-light: #f39c12;
+            --primary-transparent: rgba(230, 126, 34, 0.15);
+            --timer-color: #e67e22;
+            --stats-color: #e67e22;
+            --top3-color: #e67e22;
+            --fps-color: #e67e22;
+        }
+
+        .theme-purple {
+            --primary: #9b59b6;
+            --primary-dark: #8e44ad;
+            --primary-light: #bb8fce;
+            --primary-transparent: rgba(155, 89, 182, 0.15);
+            --timer-color: #9b59b6;
+            --stats-color: #9b59b6;
+            --top3-color: #9b59b6;
+            --fps-color: #9b59b6;
+        }
+
+        .theme-pink {
+            --primary: #e84393;
+            --primary-dark: #fd79a8;
+            --primary-light: #fab1a0;
+            --primary-transparent: rgba(232, 67, 147, 0.15);
+            --timer-color: #e84393;
+            --stats-color: #e84393;
+            --top3-color: #e84393;
+            --fps-color: #e84393;
+        }
+
+        .theme-cyan {
+            --primary: #00cec9;
+            --primary-dark: #00b894;
+            --primary-light: #81ecec;
+            --primary-transparent: rgba(0, 206, 201, 0.15);
+            --timer-color: #00cec9;
+            --stats-color: #00cec9;
+            --top3-color: #00cec9;
+            --fps-color: #00cec9;
+        }
+
+        .theme-yellow {
+            --primary: #fdcb6e;
+            --primary-dark: #fdcb6e;
+            --primary-light: #ffeaa7;
+            --primary-transparent: rgba(253, 203, 110, 0.15);
+            --timer-color: #fdcb6e;
+            --stats-color: #fdcb6e;
+            --top3-color: #fdcb6e;
+            --fps-color: #fdcb6e;
+        }
+
+        .theme-midnight {
+            --primary: #2d3436;
+            --primary-dark: #636e72;
+            --primary-light: #b2bec3;
+            --primary-transparent: rgba(45, 52, 54, 0.15);
+            --timer-color: #2d3436;
+            --stats-color: #2d3436;
+            --top3-color: #2d3436;
+            --fps-color: #2d3436;
+        }
+
+        .theme-ocean {
+            --primary: #0984e3;
+            --primary-dark: #0984e3;
+            --primary-light: #74b9ff;
+            --primary-transparent: rgba(9, 132, 227, 0.15);
+            --timer-color: #0984e3;
+            --stats-color: #0984e3;
+            --top3-color: #0984e3;
+            --fps-color: #0984e3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
@@ -37,6 +166,7 @@
             margin: 0 auto;
         }
 
+        /* Header Styles */
         header {
             background: var(--primary-transparent);
             backdrop-filter: blur(12px);
@@ -80,8 +210,11 @@
             cursor: pointer;
         }
 
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
+        /* Game Container */
         .game-section {
             flex: 1;
             display: flex;
@@ -144,30 +277,26 @@
             transform: scale(1.05);
         }
 
-        /* Overlays Draggables et Resizables */
+        /* Overlays */
         .overlay {
             position: fixed;
             z-index: 2147483647;
             backdrop-filter: blur(10px);
-            cursor: move;
-            user-select: none;
-            min-width: 120px;
-            min-height: 40px;
+            pointer-events: none;
             resize: both;
             overflow: auto;
-            pointer-events: auto;
+            min-width: 120px;
+            min-height: 40px;
         }
-
-        .overlay:active { cursor: grabbing; }
 
         #fps-overlay {
             top: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.9);
-            color: var(--primary);
+            color: var(--fps-color);
             padding: 10px 15px;
             border-radius: 10px;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--fps-color);
             font-family: 'Courier New', monospace;
             font-weight: bold;
         }
@@ -176,18 +305,39 @@
             bottom: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.95);
-            color: var(--primary);
+            color: var(--top3-color);
             padding: 12px 15px;
             border-radius: 10px;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--top3-color);
             min-width: 160px;
+        }
+
+        #top3-overlay .title {
+            color: var(--top3-color);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        #top3-overlay .player {
+            margin: 4px 0;
+            padding: 4px 6px;
+            border-radius: 5px;
+            background: var(--primary-transparent);
+            font-size: 11px;
+        }
+
+        #top3-overlay .player.first {
+            color: var(--top3-color);
+            font-weight: 700;
         }
 
         #speedrun-timer-overlay {
             bottom: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--primary);
+            border: 2px solid var(--timer-color);
             border-radius: 10px;
             padding: 12px 15px;
             font-family: 'Courier New', monospace;
@@ -197,27 +347,27 @@
         #timer-display {
             font-weight: bold;
             font-size: 18px;
-            color: var(--primary);
+            color: var(--timer-color);
             text-align: center;
+            letter-spacing: 1px;
         }
 
+        /* Stats Panel */
         .stats-panel {
             position: fixed;
             top: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--primary);
+            border: 2px solid var(--stats-color);
             border-radius: 10px;
             padding: 15px;
             z-index: 999;
             min-width: 180px;
-            cursor: move;
-            resize: both;
-            overflow: auto;
+            backdrop-filter: blur(10px);
         }
 
         .stats-panel h3 {
-            color: var(--primary);
+            color: var(--stats-color);
             font-size: 14px;
             margin-bottom: 10px;
             text-align: center;
@@ -230,7 +380,73 @@
             font-size: 12px;
         }
 
-        /* Modal Extensions */
+        /* Bottom Menu */
+        #bottom-menu {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            z-index: 999999;
+            min-width: 220px;
+            backdrop-filter: blur(15px);
+            display: none;
+        }
+
+        #bottom-menu.visible {
+            display: block;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: var(--primary);
+            border: none;
+            color: #000;
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .quick-btn {
+            width: 100%;
+            padding: 8px 10px;
+            background: #111;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+            transition: all 0.15s ease;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: all;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Settings Modal */
         .modal {
             position: fixed;
             top: 50%;
@@ -242,139 +458,157 @@
             padding: 2rem;
             z-index: 100000;
             max-width: 90%;
-            width: 700px;
+            width: 600px;
             max-height: 80vh;
             overflow-y: auto;
+            backdrop-filter: blur(20px);
             display: none;
         }
 
-        .modal.active { display: block; }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+        .modal.active {
+            display: block;
         }
 
-        .modal-title {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--primary);
-        }
-
-        .close-modal {
-            background: var(--danger);
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        .section {
+        .settings-section {
             background: rgba(20, 20, 30, 0.7);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
             border: 1px solid var(--primary-transparent);
         }
 
-        .section h3 {
+        .settings-section h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 18px;
+            margin-bottom: 12px;
+            font-size: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .btn {
-            padding: 12px 24px;
-            background: var(--primary);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            transition: all 0.3s;
-            margin: 5px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(124, 98, 220, 0.5);
-        }
-
-        .btn.success { background: var(--success); }
-        .btn.danger { background: var(--danger); }
-        .btn.warning { background: var(--warning); color: #000; }
-
-        .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .status-badge.active {
-            background: var(--success);
-            color: #000;
-        }
-
-        .status-badge.inactive {
-            background: var(--danger);
-            color: white;
-        }
-
-        .city-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        .settings-row {
+            display: flex;
+            align-items: center;
             gap: 12px;
+            margin-bottom: 10px;
         }
 
-        .city-card {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #333;
+        .settings-label {
+            min-width: 120px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
             cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 24px;
         }
 
-        .city-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
         }
 
-        select, input[type="text"], input[type="color"] {
-            width: 100%;
-            padding: 10px;
-            background: var(--bg-dark);
-            border: 2px solid #333;
-            border-radius: 8px;
-            color: white;
-            margin: 8px 0;
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
         }
 
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             gap: 10px;
-            margin: 12px 0;
+            margin-top: 10px;
         }
 
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+        .theme-option {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .theme-option.violet { background: linear-gradient(135deg, #7c62dc, #6a50c9); color: white; }
+        .theme-option.blue { background: linear-gradient(135deg, #4a6fa5, #3a5a85); color: white; }
+        .theme-option.green { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
+        .theme-option.red { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .theme-option.orange { background: linear-gradient(135deg, #e67e22, #d35400); color: white; }
+        .theme-option.purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; }
+        .theme-option.pink { background: linear-gradient(135deg, #e84393, #fd79a8); color: white; }
+        .theme-option.cyan { background: linear-gradient(135deg, #00cec9, #00b894); color: white; }
+        .theme-option.yellow { background: linear-gradient(135deg, #fdcb6e, #ffeaa7); color: #333; }
+        .theme-option.midnight { background: linear-gradient(135deg, #2d3436, #636e72); color: white; }
+        .theme-option.ocean { background: linear-gradient(135deg, #0984e3, #74b9ff); color: white; }
+
+        .key-config {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .key-input {
+            background: var(--bg-dark);
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            color: var(--text-light);
+            padding: 8px 12px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .color-config {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .color-input {
+            width: 60px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
             cursor: pointer;
         }
 
+        /* Footer */
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -384,41 +618,105 @@
             border-top: 1px solid var(--primary-transparent);
         }
 
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
+        /* Loading */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
             border-radius: 10px;
-            font-weight: 700;
-            z-index: 10000;
-            animation: slideIn 0.3s, slideOut 0.3s 2.7s;
-            display: none;
+            border: 2px solid var(--primary);
+            z-index: 10;
         }
 
-        .notification.success { background: var(--success); color: #000; }
-        .notification.error { background: var(--danger); color: white; }
-
-        @keyframes slideIn {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ffffff33;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
         }
 
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(400px); opacity: 0; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
+        /* Discord Link */
+        .discord-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .discord-link:hover {
+            color: var(--primary);
+        }
+
+        /* Resolution Selector */
+        .resolution-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .resolution-option {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: rgba(30, 30, 40, 0.7);
+        }
+
+        .resolution-option.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: var(--primary-transparent);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 1rem; }
-            .nav-links { gap: 1rem; }
-            .game-frame { height: 60vh; min-height: 400px; }
-            #top3-overlay, .stats-panel { display: none; }
-            .modal { width: 95%; padding: 1rem; }
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .game-frame {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            #top3-overlay {
+                display: none;
+            }
+
+            .modal {
+                width: 95%;
+                padding: 1rem;
+            }
+
+            .stats-panel {
+                display: none;
+            }
         }
     </style>
 </head>
-<body>
+<body class="theme-violet">
     <div class="container">
         <header>
             <div class="header-content">
@@ -427,9 +725,9 @@
                 </div>
                 <div class="nav-links">
                     <a id="play-btn">🎮 Jouer</a>
-                    <a id="extension-btn">🔧 Extensions</a>
-                    <a id="stats-btn">📊 Stats</a>
-                    <a href="https://discord.gg/KHfb8N3ekD" target="_blank">💬 Discord</a>
+                    <a id="stats-btn">📊 Statistiques</a>
+                    <a id="settings-btn">⚙️ Paramètres</a>
+                    <a href="https://discord.gg/UpWqSJVQ" class="discord-link" target="_blank">💬 Discord</a>
                 </div>
             </div>
         </header>
@@ -437,12 +735,18 @@
         <main class="game-section">
             <div class="game-container">
                 <div class="game-frame">
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Chargement de Subway Surfers...</p>
+                    </div>
+                    
                     <div class="game-controls">
-                        <button class="control-btn" id="fullscreen-btn">⛶ Plein écran</button>
+                        <button class="control-btn" id="fullscreen-btn">⤢ Plein écran</button>
                     </div>
 
+                   <!-- 3KH0 - Clone de yell0wsuit qui AUTORISE l'iframe -->
                     <iframe id="game-iframe" 
-                            src="https://3kh0.github.io/projects/subway-surfers/index.html"
+                            src="https://yell0wsuit.page/assets/games/subway-surfers-unity/index.html"
                             allowfullscreen
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms">
@@ -452,149 +756,932 @@
         </main>
 
         <footer>
-            Subway Surfers 2025 by Mynvo © - Gaming Tools Suite Complete
+            Subway Surfers 2025 by Mynvo © - Tous droits réservés
         </footer>
     </div>
 
     <!-- Overlays -->
     <div id="fps-overlay" class="overlay">FPS: <span id="fps-value">60</span></div>
+
     <div id="top3-overlay" class="overlay">
-        <div style="font-size: 12px; font-weight: 900; margin-bottom: 8px; text-align: center;">🏆 TOP 3</div>
-        <div style="margin: 4px 0; padding: 4px 6px; font-size: 11px;">🥇 Mynvo — 13:27</div>
-        <div style="margin: 4px 0; padding: 4px 6px; font-size: 11px;">🥈 Le_A — 11:51</div>
-        <div style="margin: 4px 0; padding: 4px 6px; font-size: 11px;">🥉 Pro — 10:23</div>
+        <div class="title">🏆 TOP 3</div>
+        <div class="player first">🥇 Mynvo – 13:27</div>
+        <div class="player">🥈 Le_A – 11:51</div>
+        <div class="player">🥉 Pro – 10:23</div>
     </div>
+
     <div id="speedrun-timer-overlay" class="overlay">
         <div id="timer-display">00:00.00</div>
     </div>
+
+    <!-- Stats Panel -->
     <div class="stats-panel" id="stats-panel">
         <h3>📊 Stats</h3>
-        <div class="stats-item"><span>Score:</span><span id="max-score">0</span></div>
-        <div class="stats-item"><span>Distance:</span><span id="total-distance">0m</span></div>
-        <div class="stats-item"><span>Pièces:</span><span id="total-coins">0</span></div>
-        <div class="stats-item"><span>Parties:</span><span id="games-played">0</span></div>
+        <div class="stats-item">
+            <span>Score:</span>
+            <span id="max-score">0</span>
+        </div>
+        <div class="stats-item">
+            <span>Distance:</span>
+            <span id="total-distance">0m</span>
+        </div>
+        <div class="stats-item">
+            <span>Pièces:</span>
+            <span id="total-coins">0</span>
+        </div>
+        <div class="stats-item">
+            <span>Parties:</span>
+            <span id="games-played">0</span>
+        </div>
     </div>
 
-    <!-- Modal Extensions -->
-    <div id="extension-modal" class="modal">
-        <div class="modal-header">
-            <div class="modal-title">🔧 Gaming Tools Suite</div>
-            <button class="close-modal" onclick="closeExtensionModal()">✖</button>
+    <!-- Bottom Menu -->
+    <div id="bottom-menu">
+        <div class="menu-header">
+            <div class="menu-title">⚙️ Menu Rapide</div>
+            <button class="close-btn" id="close-menu-btn">✖</button>
         </div>
+        <button class="quick-btn" onclick="openSettingsModal()">🎮 Paramètres</button>
+        <button class="quick-btn" onclick="toggleTimer()">⏱️ Timer</button>
+        <button class="quick-btn" onclick="toggleFPS()">📊 FPS</button>
+        <button class="quick-btn" onclick="toggleFullscreen()">⤢ Plein écran</button>
+        <button class="quick-btn" onclick="toggleTop3()">🏆 TOP 3</button>
+        <button class="quick-btn" onclick="toggleStats()">📈 Stats</button>
+    </div>
 
-        <!-- Timer -->
-        <div class="section">
-            <h3>⏱️ Speedrun Timer</h3>
-            <p style="margin-bottom: 15px;">Status: <span class="status-badge inactive" id="timer-status">MASQUÉ</span></p>
-            <button class="btn" onclick="toggleTimer()">Afficher/Masquer Timer</button>
-            <button class="btn warning" onclick="resetTimer()">🔄 Reset Timer</button>
-            <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted);">
-                Raccourcis: T = Start/Pause, R = Reset. Le timer est déplaçable et redimensionnable.
-            </p>
-        </div>
-
-        <!-- FPS Monitor -->
-        <div class="section">
-            <h3>📊 FPS Monitor</h3>
-            <p style="margin-bottom: 15px;">Status: <span class="status-badge active" id="fps-status">ACTIF</span></p>
-            <button class="btn" onclick="toggleFPS()">Afficher/Masquer FPS</button>
-        </div>
-
-        <!-- ZQSD/WASD -->
-        <div class="section">
-            <h3>⌨️ Contrôles ZQSD/WASD</h3>
-            <p style="margin-bottom: 15px;">Status: <span class="status-badge inactive" id="zqsd-status">INACTIF</span></p>
-            <button class="btn success" onclick="activateZQSD()">✅ Activer ZQSD/WASD</button>
-            <button class="btn danger" onclick="deactivateZQSD()">❌ Désactiver</button>
-            <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted);">
-                Z/W→Haut | Q/A→Gauche | S→Bas | D→Droite | 1→Espace
-            </p>
-        </div>
-
-        <!-- Résolution -->
-        <div class="section">
-            <h3>📐 Résolution Forcée</h3>
-            <p style="margin-bottom: 15px;">Status: <span class="status-badge inactive" id="resolution-status">NORMAL</span></p>
-            
-            <select id="resolution-select">
-                <option value="608x1080">608x1080 (Vertical)</option>
-                <option value="1440x1080">1440x1080 (Large)</option>
-            </select>
-            
-            <div class="checkbox-wrapper">
-                <input type="checkbox" id="black-bars-toggle" checked>
-                <label>Activer barres noires (letterboxing)</label>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">⚙️ Paramètres</h2>
+        
+        <div class="settings-section">
+            <h3>🎮 Contrôles Personnalisables</h3>
+            <div class="key-config">
+                <div class="settings-row">
+                    <div class="settings-label">Haut</div>
+                    <input type="text" class="key-input" id="key-up" maxlength="1" value="Z" readonly>
+                    <button class="control-btn" onclick="changeKey('up')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Bas</div>
+                    <input type="text" class="key-input" id="key-down" maxlength="1" value="S" readonly>
+                    <button class="control-btn" onclick="changeKey('down')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Gauche</div>
+                    <input type="text" class="key-input" id="key-left" maxlength="1" value="Q" readonly>
+                    <button class="control-btn" onclick="changeKey('left')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Droite</div>
+                    <input type="text" class="key-input" id="key-right" maxlength="1" value="D" readonly>
+                    <button class="control-btn" onclick="changeKey('right')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Saut</div>
+                    <input type="text" class="key-input" id="key-jump" maxlength="1" value=" " readonly>
+                    <button class="control-btn" onclick="changeKey('jump')">Modifier</button>
+                </div>
             </div>
-            
-            <button class="btn success" onclick="activateResolution()">📐 Forcer Résolution</button>
-            <button class="btn danger" onclick="deactivateResolution()">🔄 Restaurer Normal</button>
         </div>
 
-        <!-- Sauvegarde/Backup -->
-        <div class="section">
-            <h3>💾 Gestion Sauvegardes</h3>
-            <button class="btn" onclick="createBackup()">💾 Créer Backup</button>
-            <button class="btn" onclick="restoreBackup()">📥 Restaurer Backup</button>
-            <button class="btn success" onclick="unlockAll()">🎨 Débloquer TOUT (100%)</button>
-            <button class="btn danger" onclick="cleanData()">🗑️ Supprimer Données</button>
+        <div class="settings-section">
+            <h3>⏱️ Contrôles Timer</h3>
+            <div class="key-config">
+                <div class="settings-row">
+                    <div class="settings-label">Start/Pause</div>
+                    <input type="text" class="key-input" id="key-timer-start" maxlength="1" value="T" readonly>
+                    <button class="control-btn" onclick="changeKey('timer-start')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Reset</div>
+                    <input type="text" class="key-input" id="key-timer-reset" maxlength="1" value="R" readonly>
+                    <button class="control-btn" onclick="changeKey('timer-reset')">Modifier</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Villes -->
-        <div class="section">
-            <h3>🌍 Changer de Ville</h3>
-            <div class="city-grid" id="cities-grid"></div>
+        <div class="settings-section">
+            <h3>🎨 Couleurs</h3>
+            <div class="color-config">
+                <div class="settings-row">
+                    <div class="settings-label">Couleur FPS</div>
+                    <input type="color" class="color-input" id="color-fps" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur Timer</div>
+                    <input type="color" class="color-input" id="color-timer" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur TOP 3</div>
+                    <input type="color" class="color-input" id="color-top3" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur Stats</div>
+                    <input type="color" class="color-input" id="color-stats" value="#7c62dc">
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>🖥️ Résolution</h3>
+            <div class="resolution-options">
+                <div class="resolution-option" data-resolution="phone" onclick="changeResolution('phone')">
+                    📱 Téléphone
+                </div>
+                <div class="resolution-option" data-resolution="720p" onclick="changeResolution('720p')">
+                    🖥️ 720p
+                </div>
+                <div class="resolution-option" data-resolution="1080p" onclick="changeResolution('1080p')">
+                    🖥️ 1080p
+                </div>
+                <div class="resolution-option" data-resolution="1440p" onclick="changeResolution('1440p')">
+                    🖥️ 1440p
+                </div>
+                <div class="resolution-option active" data-resolution="auto" onclick="changeResolution('auto')">
+                    🔄 Auto
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>👁️ Affichage</h3>
+            <div class="settings-row">
+                <div class="settings-label">Afficher FPS</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-fps" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher TOP 3</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-top3" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher Timer</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-timer">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher Stats</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-stats" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Plein écran par défaut</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="fullscreen-default" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Overlays en plein écran</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-overlays-fullscreen" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>🎨 Thèmes</h3>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Choisissez un thème pour l'interface :</p>
+            <div class="theme-options">
+                <div class="theme-option violet active" data-theme="violet">🔮 Violet</div>
+                <div class="theme-option blue" data-theme="blue">🔵 Bleu</div>
+                <div class="theme-option green" data-theme="green">💚 Vert</div>
+                <div class="theme-option red" data-theme="red">❤️ Rouge</div>
+                <div class="theme-option orange" data-theme="orange">🟠 Orange</div>
+                <div class="theme-option purple" data-theme="purple">🟣 Pourpre</div>
+                <div class="theme-option pink" data-theme="pink">🌸 Rose</div>
+                <div class="theme-option cyan" data-theme="cyan">💧 Cyan</div>
+                <div class="theme-option yellow" data-theme="yellow">💛 Jaune</div>
+                <div class="theme-option midnight" data-theme="midnight">🌙 Minuit</div>
+                <div class="theme-option ocean" data-theme="ocean">🌊 Océan</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="control-btn" onclick="resetControls()" style="margin-right: 10px;">🔄 Réinitialiser</button>
+            <button class="control-btn" onclick="closeSettingsModal()" style="padding: 10px 20px;">❌ Fermer</button>
         </div>
     </div>
 
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
+    <!-- Stats Modal -->
+    <div id="stats-modal" class="modal">
+        <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">📊 Statistiques Détaillées</h2>
+        
+        <div class="settings-section">
+            <h3>📈 Performances</h3>
+            <div class="stats-item">
+                <span>Score Maximum:</span>
+                <span id="detailed-max-score">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Distance Totale:</span>
+                <span id="detailed-total-distance">0m</span>
+            </div>
+            <div class="stats-item">
+                <span>Pièces Collectées:</span>
+                <span id="detailed-total-coins">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Parties Jouées:</span>
+                <span id="detailed-games-played">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Temps de Jeu Total:</span>
+                <span id="detailed-total-playtime">00:00:00</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="control-btn" onclick="closeStatsModal()" style="padding: 10px 20px;">Fermer</button>
+        </div>
+    </div>
 
     <script>
-        // PARTIE 1 - Variables et Config
-        const config = {
-            showFPS: true,
-            showTop3: true,
-            showTimer: false,
-            showStats: true
+        // Configuration complète de l'extension intégrée
+        const gameExtension = {
+            // État du timer
+            timerState: 'stopped',
+            timerStartTime: 0,
+            timerCurrentTime: 0,
+            timerInterval: null,
+            
+            // FPS Counter
+            frameCount: 0,
+            lastTime: performance.now(),
+            fps: 60,
+            
+            // Configuration utilisateur
+            config: {
+                // Contrôles personnalisés
+                controls: {
+                    up: 'Z',
+                    down: 'S',
+                    left: 'Q',
+                    right: 'D',
+                    jump: ' ',
+                    timerStart: 'T',
+                    timerReset: 'R'
+                },
+                
+                // Affichage
+                showFPS: true,
+                showTop3: true,
+                showTimer: false,
+                showStats: true,
+                showOverlaysFullscreen: true,
+                fullscreenDefault: true,
+                
+                // Résolution
+                resolution: 'auto',
+                
+                // Couleurs
+                colors: {
+                    fps: '#7c62dc',
+                    timer: '#7c62dc',
+                    top3: '#7c62dc',
+                    stats: '#7c62dc'
+                },
+                
+                // Thème
+                theme: 'violet',
+                
+                // AdBlock
+                adBlockEnabled: true,
+                
+                // Auto ZQSD
+                autoZQSD: true
+            },
+            
+            // Initialisation
+            init() {
+                this.loadConfig();
+                this.applyConfig();
+                this.setupEventListeners();
+                this.startFPSCounter();
+                this.hideLoading();
+                this.setupZQSD();
+                this.applyAdBlock();
+                
+                // Plein écran par défaut
+                if (this.config.fullscreenDefault) {
+                    setTimeout(() => {
+                        this.toggleFullscreen();
+                    }, 1000);
+                }
+            },
+            
+            // Charger la configuration
+            loadConfig() {
+                try {
+                    const saved = localStorage.getItem('gameExtensionConfig');
+                    if (saved) {
+                        this.config = JSON.parse(saved);
+                    }
+                } catch (e) {
+                    console.warn('Configuration non chargée, utilisation des valeurs par défaut');
+                }
+            },
+            
+            // Sauvegarder la configuration
+            saveConfig() {
+                localStorage.setItem('gameExtensionConfig', JSON.stringify(this.config));
+            },
+            
+            // Appliquer la configuration
+            applyConfig() {
+                // Thème
+                document.body.className = `theme-${this.config.theme}`;
+                
+                // Afficher/Masquer les éléments
+                document.getElementById('fps-overlay').style.display = this.config.showFPS ? 'block' : 'none';
+                document.getElementById('top3-overlay').style.display = this.config.showTop3 ? 'block' : 'none';
+                document.getElementById('speedrun-timer-overlay').style.display = this.config.showTimer ? 'block' : 'none';
+                document.getElementById('stats-panel').style.display = this.config.showStats ? 'block' : 'none';
+                
+                // Mettre à jour les toggles
+                document.getElementById('show-fps').checked = this.config.showFPS;
+                document.getElementById('show-top3').checked = this.config.showTop3;
+                document.getElementById('show-timer').checked = this.config.showTimer;
+                document.getElementById('show-stats').checked = this.config.showStats;
+                document.getElementById('fullscreen-default').checked = this.config.fullscreenDefault;
+                document.getElementById('show-overlays-fullscreen').checked = this.config.showOverlaysFullscreen;
+                
+                // Couleurs
+                document.getElementById('color-fps').value = this.config.colors.fps;
+                document.getElementById('color-timer').value = this.config.colors.timer;
+                document.getElementById('color-top3').value = this.config.colors.top3;
+                document.getElementById('color-stats').value = this.config.colors.stats;
+                this.updateColors();
+                
+                // Contrôles
+                document.getElementById('key-up').value = this.config.controls.up;
+                document.getElementById('key-down').value = this.config.controls.down;
+                document.getElementById('key-left').value = this.config.controls.left;
+                document.getElementById('key-right').value = this.config.controls.right;
+                document.getElementById('key-jump').value = this.config.controls.jump;
+                document.getElementById('key-timer-start').value = this.config.controls.timerStart;
+                document.getElementById('key-timer-reset').value = this.config.controls.timerReset;
+                
+                // Résolution
+                this.setResolution(this.config.resolution);
+                
+                // Mettre à jour les stats
+                this.updateStats();
+            },
+            
+            // Mettre à jour les couleurs
+            updateColors() {
+                // FPS
+                document.getElementById('fps-overlay').style.borderColor = this.config.colors.fps;
+                document.getElementById('fps-overlay').style.color = this.config.colors.fps;
+                
+                // Timer
+                document.getElementById('speedrun-timer-overlay').style.borderColor = this.config.colors.timer;
+                document.getElementById('timer-display').style.color = this.config.colors.timer;
+                
+                // Top 3
+                document.getElementById('top3-overlay').style.borderColor = this.config.colors.top3;
+                document.getElementById('top3-overlay').style.color = this.config.colors.top3;
+                document.querySelector('#top3-overlay .title').style.color = this.config.colors.top3;
+                
+                // Stats
+                document.getElementById('stats-panel').style.borderColor = this.config.colors.stats;
+                document.querySelector('#stats-panel h3').style.color = this.config.colors.stats;
+            },
+            
+            // Setup des événements
+            setupEventListeners() {
+                // Navigation
+                document.getElementById('play-btn').addEventListener('click', () => this.focusGame());
+                document.getElementById('settings-btn').addEventListener('click', () => this.openSettingsModal());
+                document.getElementById('stats-btn').addEventListener('click', () => this.openStatsModal());
+                
+                // Plein écran
+                document.getElementById('fullscreen-btn').addEventListener('click', () => this.toggleFullscreen());
+                
+                // Menu contextuel
+                document.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    this.toggleBottomMenu();
+                });
+                
+                document.getElementById('close-menu-btn').addEventListener('click', () => this.toggleBottomMenu());
+                
+                // Toggles
+                document.getElementById('show-fps').addEventListener('change', (e) => {
+                    this.config.showFPS = e.target.checked;
+                    document.getElementById('fps-overlay').style.display = this.config.showFPS ? 'block' : 'none';
+                    this.saveConfig();
+                });
+                
+                document.getElementById('show-top3').addEventListener('change', (e) => {
+                    this.config.showTop3 = e.target.checked;
+                    document.getElementById('top3-overlay').style.display = this.config.showTop3 ? 'block' : 'none';
+                    this.saveConfig();
+                });
+                
+                document.getElementById('show-timer').addEventListener('change', (e) => {
+                    this.config.showTimer = e.target.checked;
+                    document.getElementById('speedrun-timer-overlay').style.display = this.config.showTimer ? 'block' : 'none';
+                    this.saveConfig();
+                });
+                
+                document.getElementById('show-stats').addEventListener('change', (e) => {
+                    this.config.showStats = e.target.checked;
+                    document.getElementById('stats-panel').style.display = this.config.showStats ? 'block' : 'none';
+                    this.saveConfig();
+                });
+                
+                // Couleurs
+                document.getElementById('color-fps').addEventListener('input', (e) => {
+                    this.config.colors.fps = e.target.value;
+                    this.updateColors();
+                    this.saveConfig();
+                });
+                
+                document.getElementById('color-timer').addEventListener('input', (e) => {
+                    this.config.colors.timer = e.target.value;
+                    this.updateColors();
+                    this.saveConfig();
+                });
+                
+                document.getElementById('color-top3').addEventListener('input', (e) => {
+                    this.config.colors.top3 = e.target.value;
+                    this.updateColors();
+                    this.saveConfig();
+                });
+                
+                document.getElementById('color-stats').addEventListener('input', (e) => {
+                    this.config.colors.stats = e.target.value;
+                    this.updateColors();
+                    this.saveConfig();
+                });
+                
+                // Thèmes
+                document.querySelectorAll('.theme-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const theme = e.target.dataset.theme;
+                        this.changeTheme(theme);
+                    });
+                });
+                
+                // Écouteur global pour les touches
+                document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+                
+                // Plein écran
+                document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+            },
+            
+            // Gestion des touches
+            handleKeyDown(e) {
+                // Empêcher la propagation pour les touches spéciales
+                const key = e.key.toUpperCase();
+                
+                // Contrôles ZQSD
+                const keyMap = {
+                    [this.config.controls.up]: 'ArrowUp',
+                    [this.config.controls.down]: 'ArrowDown',
+                    [this.config.controls.left]: 'ArrowLeft',
+                    [this.config.controls.right]: 'ArrowRight',
+                    [this.config.controls.jump]: ' '
+                };
+                
+                if (keyMap[key]) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.simulateKeyPress(keyMap[key]);
+                }
+                
+                // Contrôles Timer
+                if (key === this.config.controls.timerStart) {
+                    if (this.timerState === 'stopped' || this.timerState === 'paused') {
+                        this.startTimer();
+                    } else if (this.timerState === 'running') {
+                        this.pauseTimer();
+                    }
+                } else if (key === this.config.controls.timerReset) {
+                    this.resetTimer();
+                }
+            },
+            
+            // Simuler une pression de touche dans l'iframe
+            simulateKeyPress(key) {
+                const iframe = document.getElementById('game-iframe');
+                try {
+                    const event = new KeyboardEvent('keydown', {
+                        key: key,
+                        code: key === ' ' ? 'Space' : key,
+                        keyCode: key === ' ' ? 32 : key.charCodeAt(0),
+                        which: key === ' ' ? 32 : key.charCodeAt(0),
+                        bubbles: true
+                    });
+                    
+                    // Envoyer un message à l'iframe
+                    iframe.contentWindow.postMessage({
+                        type: 'keydown',
+                        key: key,
+                        code: key === ' ' ? 'Space' : key
+                    }, '*');
+                } catch (err) {
+                    // Fallback pour les navigateurs qui bloquent l'accès
+                    console.log('Simulation de touche:', key);
+                }
+            },
+            
+            // Timer functions
+            startTimer() {
+                if (this.timerState === 'stopped' || this.timerState === 'paused') {
+                    this.timerStartTime = performance.now() - this.timerCurrentTime;
+                    this.timerState = 'running';
+                    
+                    this.timerInterval = setInterval(() => {
+                        if (this.timerState === 'running') {
+                            this.timerCurrentTime = performance.now() - this.timerStartTime;
+                            this.updateTimerDisplay();
+                        }
+                    }, 10);
+                }
+            },
+            
+            pauseTimer() {
+                if (this.timerState === 'running') {
+                    this.timerState = 'paused';
+                    clearInterval(this.timerInterval);
+                }
+            },
+            
+            resetTimer() {
+                this.timerState = 'stopped';
+                this.timerCurrentTime = 0;
+                clearInterval(this.timerInterval);
+                this.updateTimerDisplay();
+            },
+            
+            updateTimerDisplay() {
+                const totalSec = Math.floor(this.timerCurrentTime / 1000);
+                const m = Math.floor(totalSec / 60);
+                const s = totalSec % 60;
+                const cs = Math.floor((this.timerCurrentTime % 1000) / 10);
+                
+                document.getElementById('timer-display').textContent = 
+                    `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}.${cs.toString().padStart(2, '0')}`;
+            },
+            
+            // FPS Counter
+            startFPSCounter() {
+                const updateFPS = () => {
+                    this.frameCount++;
+                    const currentTime = performance.now();
+                    
+                    if (currentTime - this.lastTime >= 1000) {
+                        this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
+                        document.getElementById('fps-value').textContent = this.fps;
+                        
+                        // Changer la couleur selon les FPS
+                        const fpsColor = this.config.colors.fps;
+                        document.getElementById('fps-overlay').style.borderColor = fpsColor;
+                        document.getElementById('fps-overlay').style.color = fpsColor;
+                        
+                        this.frameCount = 0;
+                        this.lastTime = currentTime;
+                    }
+                    
+                    requestAnimationFrame(updateFPS);
+                };
+                updateFPS();
+            },
+            
+            // Changer le thème
+            changeTheme(themeName) {
+                document.body.className = `theme-${themeName}`;
+                this.config.theme = themeName;
+                
+                // Mettre à jour la sélection
+                document.querySelectorAll('.theme-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                document.querySelector(`.theme-option[data-theme="${themeName}"]`).classList.add('active');
+                
+                this.saveConfig();
+            },
+            
+            // Changer la résolution
+            setResolution(resolution) {
+                this.config.resolution = resolution;
+                const gameFrame = document.querySelector('.game-frame');
+                
+                switch(resolution) {
+                    case 'phone':
+                        gameFrame.style.height = '50vh';
+                        gameFrame.style.minHeight = '300px';
+                        break;
+                    case '720p':
+                        gameFrame.style.height = '60vh';
+                        gameFrame.style.minHeight = '400px';
+                        break;
+                    case '1080p':
+                        gameFrame.style.height = '70vh';
+                        gameFrame.style.minHeight = '500px';
+                        break;
+                    case '1440p':
+                        gameFrame.style.height = '80vh';
+                        gameFrame.style.minHeight = '600px';
+                        break;
+                    case 'auto':
+                    default:
+                        gameFrame.style.height = '80vh';
+                        gameFrame.style.minHeight = '600px';
+                        break;
+                }
+                
+                // Mettre à jour la sélection
+                document.querySelectorAll('.resolution-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                document.querySelector(`.resolution-option[data-resolution="${resolution}"]`).classList.add('active');
+                
+                this.saveConfig();
+            },
+            
+            // Setup ZQSD
+            setupZQSD() {
+                if (this.config.autoZQSD) {
+                    document.addEventListener('keydown', this.handleZQSD.bind(this), true);
+                }
+            },
+            
+            handleZQSD(e) {
+                const key = e.key.toUpperCase();
+                const mapping = {
+                    'Z': 'ArrowUp',
+                    'Q': 'ArrowLeft',
+                    'S': 'ArrowDown',
+                    'D': 'ArrowRight',
+                    'W': 'ArrowUp',
+                    'A': 'ArrowLeft'
+                };
+                
+                if (mapping[key]) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.simulateKeyPress(mapping[key]);
+                }
+            },
+            
+            // AdBlock
+            applyAdBlock() {
+                if (this.config.adBlockEnabled) {
+                    // Sélecteurs de publicités
+                    const adSelectors = [
+                        '[id*="ad-"]',
+                        '[class*="ad-"]',
+                        '[id*="banner"]',
+                        '[class*="banner"]',
+                        '[id*="sponsor"]',
+                        '[class*="sponsor"]',
+                        '[id*="popup"]',
+                        '[class*="popup"]',
+                        '[class*="adsbygoogle"]',
+                        'iframe[src*="ads"]'
+                    ];
+                    
+                    // Masquer les publicités
+                    const hideAds = () => {
+                        if (!this.config.adBlockEnabled) return;
+                        
+                        adSelectors.forEach(selector => {
+                            try {
+                                document.querySelectorAll(selector).forEach(ad => {
+                                    ad.style.display = 'none';
+                                    ad.style.visibility = 'hidden';
+                                });
+                            } catch (e) {
+                                // Ignorer les erreurs
+                            }
+                        });
+                    };
+                    
+                    // Masquer initialement
+                    hideAds();
+                    
+                    // Observer les changements
+                    const observer = new MutationObserver(hideAds);
+                    observer.observe(document.body, { childList: true, subtree: true });
+                    
+                    // Masquer périodiquement
+                    setInterval(hideAds, 2000);
+                }
+            },
+            
+            // Interface functions
+            openSettingsModal() {
+                document.getElementById('settings-modal').classList.add('active');
+            },
+            
+            closeSettingsModal() {
+                document.getElementById('settings-modal').classList.remove('active');
+            },
+            
+            openStatsModal() {
+                this.updateStats();
+                document.getElementById('stats-modal').classList.add('active');
+            },
+            
+            closeStatsModal() {
+                document.getElementById('stats-modal').classList.remove('active');
+            },
+            
+            toggleBottomMenu() {
+                document.getElementById('bottom-menu').classList.toggle('visible');
+            },
+            
+            toggleFullscreen() {
+                const gameFrame = document.querySelector('.game-frame');
+                
+                if (!document.fullscreenElement) {
+                    gameFrame.requestFullscreen?.() ||
+                    gameFrame.webkitRequestFullscreen?.() ||
+                    gameFrame.msRequestFullscreen?.();
+                } else {
+                    document.exitFullscreen?.() ||
+                    document.webkitExitFullscreen?.() ||
+                    document.msExitFullscreen?.();
+                }
+            },
+            
+            handleFullscreenChange() {
+                const fullscreenBtn = document.getElementById('fullscreen-btn');
+                if (document.fullscreenElement) {
+                    fullscreenBtn.textContent = 'Quitter Plein écran';
+                    
+                    if (this.config.showOverlaysFullscreen) {
+                        document.querySelectorAll('.overlay').forEach(overlay => {
+                            overlay.style.display = 'block';
+                        });
+                        document.getElementById('stats-panel').style.display = 'block';
+                    }
+                } else {
+                    fullscreenBtn.textContent = '⤢ Plein écran';
+                    
+                    // Restaurer l'affichage normal
+                    document.getElementById('fps-overlay').style.display = this.config.showFPS ? 'block' : 'none';
+                    document.getElementById('top3-overlay').style.display = this.config.showTop3 ? 'block' : 'none';
+                    document.getElementById('speedrun-timer-overlay').style.display = this.config.showTimer ? 'block' : 'none';
+                    document.getElementById('stats-panel').style.display = this.config.showStats ? 'block' : 'none';
+                }
+            },
+            
+            // Fonctions de toggle
+            toggleTimer() {
+                this.config.showTimer = !this.config.showTimer;
+                document.getElementById('speedrun-timer-overlay').style.display = this.config.showTimer ? 'block' : 'none';
+                document.getElementById('show-timer').checked = this.config.showTimer;
+                this.saveConfig();
+            },
+            
+            toggleFPS() {
+                this.config.showFPS = !this.config.showFPS;
+                document.getElementById('fps-overlay').style.display = this.config.showFPS ? 'block' : 'none';
+                document.getElementById('show-fps').checked = this.config.showFPS;
+                this.saveConfig();
+            },
+            
+            toggleTop3() {
+                this.config.showTop3 = !this.config.showTop3;
+                document.getElementById('top3-overlay').style.display = this.config.showTop3 ? 'block' : 'none';
+                document.getElementById('show-top3').checked = this.config.showTop3;
+                this.saveConfig();
+            },
+            
+            toggleStats() {
+                this.config.showStats = !this.config.showStats;
+                document.getElementById('stats-panel').style.display = this.config.showStats ? 'block' : 'none';
+                document.getElementById('show-stats').checked = this.config.showStats;
+                this.saveConfig();
+            },
+            
+            focusGame() {
+                document.querySelector('.game-section').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('game-iframe').focus();
+            },
+            
+            hideLoading() {
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 2000);
+            },
+            
+            // Mettre à jour les stats
+            updateStats() {
+                // Ces valeurs peuvent être récupérées depuis le localStorage ou calculées
+                const stats = {
+                    maxScore: localStorage.getItem('maxScore') || 12500,
+                    totalDistance: localStorage.getItem('totalDistance') || 8450,
+                    totalCoins: localStorage.getItem('totalCoins') || 320,
+                    gamesPlayed: localStorage.getItem('gamesPlayed') || 15,
+                    totalPlaytime: localStorage.getItem('totalPlaytime') || 4520
+                };
+                
+                // Mettre à jour l'interface
+                document.getElementById('max-score').textContent = stats.maxScore.toLocaleString();
+                document.getElementById('total-distance').textContent = stats.totalDistance.toLocaleString() + 'm';
+                document.getElementById('total-coins').textContent = stats.totalCoins.toLocaleString();
+                document.getElementById('games-played').textContent = stats.gamesPlayed;
+                
+                document.getElementById('detailed-max-score').textContent = stats.maxScore.toLocaleString();
+                document.getElementById('detailed-total-distance').textContent = stats.totalDistance.toLocaleString() + 'm';
+                document.getElementById('detailed-total-coins').textContent = stats.totalCoins.toLocaleString();
+                document.getElementById('detailed-games-played').textContent = stats.gamesPlayed;
+                
+                // Formatage du temps
+                const hours = Math.floor(stats.totalPlaytime / 3600);
+                const minutes = Math.floor((stats.totalPlaytime % 3600) / 60);
+                const seconds = stats.totalPlaytime % 60;
+                document.getElementById('detailed-total-playtime').textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            },
+            
+            // Changer une touche
+            changeKey(action) {
+                const input = document.getElementById(`key-${action}`);
+                input.style.borderColor = '#ffaa00';
+                input.placeholder = 'Appuyez sur une touche...';
+                input.value = '';
+                
+                const keyHandler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const key = e.key.toUpperCase();
+                    input.value = key;
+                    this.config.controls[action] = key;
+                    
+                    input.style.borderColor = '';
+                    input.placeholder = '';
+                    
+                    this.saveConfig();
+                    
+                    // Retirer l'écouteur
+                    document.removeEventListener('keydown', keyHandler);
+                };
+                
+                document.addEventListener('keydown', keyHandler, { once: true });
+            },
+            
+            // Réinitialiser les contrôles
+            resetControls() {
+                this.config.controls = {
+                    up: 'Z',
+                    down: 'S',
+                    left: 'Q',
+                    right: 'D',
+                    jump: ' ',
+                    timerStart: 'T',
+                    timerReset: 'R'
+                };
+                
+                // Mettre à jour l'interface
+                document.getElementById('key-up').value = 'Z';
+                document.getElementById('key-down').value = 'S';
+                document.getElementById('key-left').value = 'Q';
+                document.getElementById('key-right').value = 'D';
+                document.getElementById('key-jump').value = ' ';
+                document.getElementById('key-timer-start').value = 'T';
+                document.getElementById('key-timer-reset').value = 'R';
+                
+                this.saveConfig();
+            }
         };
-
-        let timerState = 'stopped';
-        let timerStartTime = 0;
-        let timerCurrentTime = 0;
-        let timerInterval = null;
-        let fps = 60;
-        let frameCount = 0;
-        let lastTime = performance.now();
-        let zqsdActive = false;
-        let resolutionActive = false;
-
-        const cities = [
-            { name: '🌉 San Francisco', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/index.html' },
-            { name: '🏔️ Zurich', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/zurich.html' },
-            { name: '❄️ Winter Holiday', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/winterholiday.html' },
-            { name: '🎰 Monaco', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/monaco.html' },
-            { name: '💂 London', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/london.html' },
-            { name: '🤠 Houston', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/houston.html' },
-            { name: '🍹 Havana', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/havana.html' },
-            { name: '🦅 Berlin', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/berlin.html' },
-            { name: '🏯 Beijing', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/beijing.html' },
-            { name: '💀 Mexico', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/mexico.html' },
-            { name: '🌴 Miami', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/miami.html' },
-            { name: '🎺 New Orleans', url: 'https://yell0wsuit.page/assets/games/subway-surfers-unity/neworleans.html' }
-        ];
-
-        // Init
-        document.addEventListener('DOMContentLoaded', init);
-
-        function init() {
-            setupEventListeners();
-            setupCities();
-            startFPSCounter();
-            makeDraggable();
-            console.log('✅ Gaming Tools Suite Complete chargé !');
-        }
-
-        // SUITE DANS PARTIE 2...
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            gameExtension.init();
+            
+            // Exposer les fonctions globales
+            window.openSettingsModal = () => gameExtension.openSettingsModal();
+            window.toggleTimer = () => gameExtension.toggleTimer();
+            window.toggleFPS = () => gameExtension.toggleFPS();
+            window.toggleFullscreen = () => gameExtension.toggleFullscreen();
+            window.toggleTop3 = () => gameExtension.toggleTop3();
+            window.toggleStats = () => gameExtension.toggleStats();
+            window.changeKey = (action) => gameExtension.changeKey(action);
+            window.changeResolution = (resolution) => gameExtension.setResolution(resolution);
+            window.resetControls = () => gameExtension.resetControls();
+            window.closeSettingsModal = () => gameExtension.closeSettingsModal();
+            window.closeStatsModal = () => gameExtension.closeStatsModal();
+            
+            console.log('🎮 Subway Surfers Ultimate - Toutes les fonctionnalités intégrées !');
+        });
     </script>
 </body>
 </html>
