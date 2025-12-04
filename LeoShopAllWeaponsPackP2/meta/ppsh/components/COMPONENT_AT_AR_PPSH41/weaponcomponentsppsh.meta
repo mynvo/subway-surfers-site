@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponComponentInfoBlob>
+	<Infos>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_AR_PPSH41_SUPP_02</Name>
+			<Model>w_at_ar_ppsh41_supp_02</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_AR_PPSH41_SUPP_03</Name>
+			<Model>w_at_ar_ppsh41_supp_03</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_AR_PPSH41_SUPP_04_V2</Name>
+			<Model>w_at_ar_ppsh41_supp_04</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_AR_PPSH41_SUPP_04_V3</Name>
+			<Model>w_at_ar_ppsh41_supp_04_V3</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_AR_PPSH41_SUPP_04_V4</Name>
+			<Model>w_at_ar_ppsh41_supp_04_V4</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_01</Name>
+			<Model>w_ar_ppsh41_mag1</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_AR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="30"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_02</Name>
+			<Model>w_ar_ppsh41_mag2</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_AR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="120"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_03</Name>
+			<Model>w_ar_ppsh41_mag3</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_AR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="40"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_04</Name>
+			<Model>w_ar_ppsh41_mag4</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_AR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="60"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_05</Name>
+			<Model>w_ar_ppsh41_mag5</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_AR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="60"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_03_V2</Name>
+			<Model>w_ar_ppsh41_mag3_v2</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCD_AR_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="60"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_01_V3</Name>
+			<Model>w_ar_ppsh41_mag1_V3</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCD_AR_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="60"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_PPSH41_CLIP_02_V4</Name>
+			<Model>w_ar_ppsh41_mag2_V4</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCD_AR_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="120"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V2</Name>
+			<Model>w_ar_ppsh41_v2</Model>
+			<LocName>"VARMOD2"</LocName>
+			<LocDesc>"VARMOD2"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="2.250000" />
+			</FallOffModifier>
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V3</Name>
+			<Model>w_ar_ppsh41_v3</Model>
+			<LocName>"VARMOD3"</LocName>
+			<LocDesc>"VARMOD3"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="1.250000" />
+			</FallOffModifier>
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V4</Name>
+			<Model>w_ar_ppsh41_v4</Model>
+			<LocName>"VARMOD4"</LocName>
+			<LocDesc>"VARMOD4"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="1.250000" />
+			</FallOffModifier>
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V2_V2</Name>
+			<Model>w_ar_ppsh41_v2_skinv2</Model>
+			<LocName>"VARMOD22"</LocName>
+			<LocDesc>"VARMOD22"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="2.250000" />
+			</FallOffModifier>
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V3_V3</Name>
+			<Model>w_ar_ppsh41_v3_skinv3</Model>
+			<LocName>"VARMOD33"</LocName>
+			<LocDesc>"VARMOD33"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="1.250000" />
+			</FallOffModifier>
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_PPSH41_VARMOD_V2_V4</Name>
+			<Model>w_ar_ppsh41_v2_skinv4</Model>
+			<LocName>"VARMOD33"</LocName>
+			<LocDesc>"VARMOD33"</LocDesc>
+			<AttachBone />
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<FallOffModifier type="CWeaponFallOffModifier">
+			<RangeModifier value="3.250000" />
+			</FallOffModifier>
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK</Name>
+			<Model>w_ar_ppsh41_stock1</Model>
+			<LocName>"STOCK"</LocName>
+			<LocDesc>"STOCK"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK2</Name>
+			<Model>w_ar_ppsh41_stock2</Model>
+			<LocName>"STOCK2"</LocName>
+			<LocDesc>"STOCK2"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK3</Name>
+			<Model>w_ar_ppsh41_stock3</Model>
+			<LocName>"STOCK3"</LocName>
+			<LocDesc>"STOCK3"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK4</Name>
+			<Model>w_ar_ppsh41_stock4</Model>
+			<LocName>"STOCK4"</LocName>
+			<LocDesc>"STOCK4"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK5</Name>
+			<Model>w_ar_ppsh41_stock5</Model>
+			<LocName>"STOCK5"</LocName>
+			<LocDesc>"STOCK5"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK6</Name>
+			<Model>w_ar_ppsh41_stock6</Model>
+			<LocName>"STOCK6"</LocName>
+			<LocDesc>"STOCK6"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK4_V2</Name>
+			<Model>w_ar_ppsh41_stock4_v2</Model>
+			<LocName>"STOCK42"</LocName>
+			<LocDesc>"STOCK42"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK2_V3</Name>
+			<Model>w_ar_ppsh41_stock2_V3</Model>
+			<LocName>"STOCK23"</LocName>
+			<LocDesc>"STOCK23"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_PPSH41_STOCK3_V4</Name>
+			<Model>w_ar_ppsh41_stock3_V4</Model>
+			<LocName>"STOCK34"</LocName>
+			<LocDesc>"STOCK34"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+		<Name>COMPONENT_AT_PPSH41_SCOPE_MEDIUMV3</Name>
+			<Model>w_at_ppsh41_scope_medium_V3</Model>
+			<LocName>WCT_SCOPE_MED</LocName>
+			<LocDesc>WCD_SCOPE_MED</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<ExtraZoomFactorForAccurateMode value="1.200000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+		<Name>COMPONENT_AT_PPSH41_SCOPE_MEDIUMV4</Name>
+			<Model>w_at_ppsh41_scope_medium_V4</Model>
+			<LocName>WCT_SCOPE_MED</LocName>
+			<LocDesc>WCD_SCOPE_MED</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<ExtraZoomFactorForAccurateMode value="1.200000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+	</Infos>
+	<InfoBlobName/>
+</CWeaponComponentInfoBlob>
+

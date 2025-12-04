@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		
+		<!-- Double Barreled Shotgun -->
+		<Item>
+		  <modelName>w_sg_slimaq</modelName>
+		  <txdName>slimaq</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="50"/>
+		</Item>
+				
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

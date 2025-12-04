@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponComponentInfoBlob>
+	<Infos>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_UZILS_SUPP_02</Name>
+			<Model>w_at_uzils_supp_02</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_AT_UZILS_SUPP_02v3</Name>
+			<Model>w_at_uzils_supp_02_v3</Model>
+			<LocName>WCT_SUPP</LocName>
+			<LocDesc>WCD_AR_SUPP2</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="CWeaponDamageModifier">
+				<DamageModifier value="1.000000"/>
+			</DamageModifier>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="-5"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="-5"/>
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_pistol_silencer</FlashFx>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_01</Name>
+			<Model>w_sb_uzils_mag1</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCDMSMG_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="16"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_01v4</Name>
+			<Model>w_sb_uzils_mag1v4</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCDMSMG_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="16"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_DEFAULT"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_02</Name>
+			<Model>w_sb_uzils_mag2</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCDMSMG_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="32"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_02v13</Name>
+			<Model>w_sb_uzils_mag2v13</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCDMSMG_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="32"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_02v18</Name>
+			<Model>w_sb_uzils_mag2v18</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCDMSMG_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="32"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_03</Name>
+			<Model>w_sb_uzils_mag3</Model>
+			<LocName>WCT_CLIP3</LocName>
+			<LocDesc>WCDMSMG_CLIP3</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="35"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_03v3</Name>
+			<Model>w_sb_uzils_mag3v3</Model>
+			<LocName>WCT_CLIP3</LocName>
+			<LocDesc>WCDMSMG_CLIP3</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="35"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_03v16</Name>
+			<Model>w_sb_uzils_mag3v16</Model>
+			<LocName>WCT_CLIP3</LocName>
+			<LocDesc>WCDMSMG_CLIP3</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="35"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_UZILS_CLIP_04</Name>
+			<Model>w_sb_uzils_mag4</Model>
+			<LocName>WCT_CLIP4</LocName>
+			<LocDesc>WCDMSMG_CLIP4</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="87"/>
+			<HudAccuracy value="0"/>
+			<HudRange value="0"/>
+			<ClipSize value="40"/>
+			<AmmoInfo/>
+			<ReloadData ref="RELOAD_LARGE"/>
+		</Item>
+		
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCK</Name>
+			<Model>w_sb_uzils_stock</Model>
+			<LocName>"STOCK"</LocName>
+			<LocDesc>"STOCK"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCKv13</Name>
+			<Model>w_sb_uzils_stockv13</Model>
+			<LocName>"STOCK"</LocName>
+			<LocDesc>"STOCK"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCKv18</Name>
+			<Model>w_sb_uzils_stockv18</Model>
+			<LocName>"STOCK"</LocName>
+			<LocDesc>"STOCK"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCK2</Name>
+			<Model>w_sb_uzils_stock2</Model>
+			<LocName>"STOCK2"</LocName>
+			<LocDesc>"STOCK2"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCK3</Name>
+			<Model>w_sb_uzils_stock3</Model>
+			<LocName>"STOCK3"</LocName>
+			<LocDesc>"STOCK3"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCK3v3</Name>
+			<Model>w_sb_uzils_stock3v3</Model>
+			<LocName>"STOCK3"</LocName>
+			<LocDesc>"STOCK3"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_STOCK4</Name>
+			<Model>w_sb_uzils_stock4</Model>
+			<LocName>"STOCK4"</LocName>
+			<LocDesc>"STOCK4"</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPGrip</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARREL</Name>
+			<Model>w_sb_uzils_barrel</Model>
+			<LocName>"BARREL"</LocName>
+			<LocDesc>"BARREL"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARRELv18</Name>
+			<Model>w_sb_uzils_barrelv18</Model>
+			<LocName>"BARREL"</LocName>
+			<LocDesc>"BARREL"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARREL2</Name>
+			<Model>w_sb_uzils_barrel2</Model>
+			<LocName>"BARREL2"</LocName>
+			<LocDesc>"BARREL2"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<FallOffModifier type="CWeaponFallOffModifier">
+        	<RangeModifier value="2.10000" />
+      		</FallOffModifier>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARREL3</Name>
+			<Model>w_sb_uzils_barrel3</Model>
+			<LocName>"BARREL3"</LocName>
+			<LocDesc>"BARREL3"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<FallOffModifier type="CWeaponFallOffModifier">
+        	<RangeModifier value="2.10000" />
+      		</FallOffModifier>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARREL4</Name>
+			<Model>w_sb_uzils_barrel4</Model>
+			<LocName>"BARREL4"</LocName>
+			<LocDesc>"BARREL4"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<FallOffModifier type="CWeaponFallOffModifier">
+        	<RangeModifier value="2.10000" />
+      		</FallOffModifier>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_UZILS_BARREL4v13</Name>
+			<Model>w_sb_uzils_barrel4v13</Model>
+			<LocName>"BARREL4"</LocName>
+			<LocDesc>"BARREL4"</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>NM_Butt_Marker</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="false"/>
+			<CreateObject value="true"/>
+			<FallOffModifier type="CWeaponFallOffModifier">
+        	<RangeModifier value="2.10000" />
+      		</FallOffModifier>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_UZILS_VARMOD_V3</Name>
+			<Model>w_sb_uzilsv3</Model>
+			<LocName>WCT_INVALID</LocName>
+			<LocDesc>WCD_INVALID</LocDesc>
+			<AttachBone />
+			<FallOffModifier type="CWeaponFallOffModifier">
+       		 <RangeModifier value="1.10000" />
+      		</FallOffModifier>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_UZILS_VARMOD_V4</Name>
+			<Model>w_sb_uzilsv4</Model>
+			<LocName>WCT_INVALID</LocName>
+			<LocDesc>WCD_INVALID</LocDesc>
+			<AttachBone />
+			<FallOffModifier type="CWeaponFallOffModifier">
+       		 <RangeModifier value="1.10000" />
+      		</FallOffModifier>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_UZILS_VARMOD_V13</Name>
+			<Model>w_sb_uzilsv13</Model>
+			<LocName>WCT_INVALID</LocName>
+			<LocDesc>WCD_INVALID</LocDesc>
+			<AttachBone />
+			<FallOffModifier type="CWeaponFallOffModifier">
+       		 <RangeModifier value="1.10000" />
+      		</FallOffModifier>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_UZILS_VARMOD_V16</Name>
+			<Model>w_sb_uzilsv16</Model>
+			<LocName>WCT_INVALID</LocName>
+			<LocDesc>WCD_INVALID</LocDesc>
+			<AttachBone />
+			<FallOffModifier type="CWeaponFallOffModifier">
+       		 <RangeModifier value="1.10000" />
+      		</FallOffModifier>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+		<Item type="CWeaponComponentVariantModelInfo">
+			<Name>COMPONENT_UZILS_VARMOD_V18</Name>
+			<Model>w_sb_uzilsv18</Model>
+			<LocName>WCT_INVALID</LocName>
+			<LocDesc>WCD_INVALID</LocDesc>
+			<AttachBone />
+			<FallOffModifier type="CWeaponFallOffModifier">
+       		 <RangeModifier value="1.10000" />
+      		</FallOffModifier>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="false" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<TintIndexOverride value="0" />
+			<ExtraComponents>
+			</ExtraComponents>
+		</Item>
+	</Infos>
+	<InfoBlobName/>
+</CWeaponComponentInfoBlob>
+

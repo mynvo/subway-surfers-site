@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		
+		
+		<!-- ### special carbine ### -->
+		<Item>
+		  <modelName>w_ar_g36</modelName>
+		  <txdName>g36</txdName>
+		  <ptfxAssetName>null</ptfxAssetName>
+		  <lodDist value="500"/>
+		</Item>
+		<Item>
+		  <modelName>w_ar_g36_mag1</modelName>
+		  <txdName>g36</txdName>
+		  <ptfxAssetName>null</ptfxAssetName>
+		  <lodDist value="300"/>
+		</Item>
+		<Item>
+		  <modelName>w_ar_g36_mag2</modelName>
+		  <txdName>g36</txdName>
+		  <ptfxAssetName>null</ptfxAssetName>
+		  <lodDist value="300"/>
+		</Item>
+		<Item>
+		  <modelName>w_ar_g36_mag3</modelName>
+		  <txdName>g36</txdName>
+		  <ptfxAssetName>null</ptfxAssetName>
+		  <lodDist value="300"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_g36_supp_02</modelName>
+		  <txdName>w_at_ar_supp_02</txdName>
+		  <ptfxAssetName>null</ptfxAssetName>
+		  <lodDist value="50"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

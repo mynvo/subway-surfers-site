@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+
+		<!-- Compact Rifle -->
+		<Item>
+		  <modelName>w_ar_miniaksum</modelName>
+		  <txdName>miniaksum</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_miniaksum_mag1</modelName>
+			<txdName>miniaksum</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_miniaksum_mag2</modelName>
+			<txdName>miniaksum</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		
+				
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

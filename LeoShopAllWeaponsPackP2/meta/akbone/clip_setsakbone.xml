@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fwClipSetManager>
+    <clipSets>
+    <Item type="fwClipSet" key="weapons@rifle@lo@carbine_str@lshop">
+      <fallbackId>weapons@rifle@lo@carbine_str</fallbackId>
+      <clipDictionaryName>weapons@rifle@lo@carbine_str@lshop</clipDictionaryName>
+      <clipItems>
+        <Item type="fwClipItem" key="w_reload_aim" />
+      </clipItems>
+      <moveNetworkFlags>
+        <Item>HasFireAnim</Item>
+        <Item>UseAdditives</Item>
+        <Item>HasBwdAdditive</Item>
+        <Item>HasSettle</Item>
+        <Item>HasIntro</Item>
+        <Item>HasWeaponSprint</Item>
+        <Item>HasLeftAimGrip</Item>
+        <Item>HasLeftMoveGrip</Item>
+      </moveNetworkFlags>
+    </Item>
+    </clipSets>
+    <clipDictionaryMetadatas>
+      <Item key="weapons@rifle@lo@carbine_str@lshop">
+        <streamingPolicy>SP_STREAMING</streamingPolicy>
+        <memoryGroup>MG_Weapons</memoryGroup>
+        <streamingPriority>SP_Medium</streamingPriority>
+      </Item>
+    </clipDictionaryMetadatas>
+</fwClipSetManager>

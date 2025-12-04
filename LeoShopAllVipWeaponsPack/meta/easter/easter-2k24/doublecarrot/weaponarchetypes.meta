@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+
+		
+		<Item>
+			<modelName>w_pi_doublecarrot</modelName>
+			<txdName>doublecarrot</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+
+	
+		
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

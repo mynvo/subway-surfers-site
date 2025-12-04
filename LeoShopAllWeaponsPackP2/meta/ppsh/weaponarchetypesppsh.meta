@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_at_ar_ppsh41_supp_04_V4</modelName>
+			<txdName>w_at_ar_ppsh41_supp_04_V4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_ppsh41_supp_04_V3</modelName>
+			<txdName>w_at_ar_ppsh41_supp_04_V3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_ppsh41_supp_04</modelName>
+			<txdName>w_at_ar_ppsh41_supp_04</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_ppsh41_supp_03</modelName>
+			<txdName>w_at_ar_ppsh41_supp_03</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_ppsh41_supp_02</modelName>
+			<txdName>w_at_ar_ppsh41_supp_02</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock3_V4</modelName>
+			<txdName>w_ar_ppsh41_stock3_V4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock2_V3</modelName>
+			<txdName>w_ar_ppsh41_stock2_V3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock4_v2</modelName>
+			<txdName>w_ar_ppsh41_stock4_v2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock6</modelName>
+			<txdName>w_ar_ppsh41_stock6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock5</modelName>
+			<txdName>w_ar_ppsh41_stock5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock4</modelName>
+			<txdName>w_ar_ppsh41_stock4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock3</modelName>
+			<txdName>w_ar_ppsh41_stock3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock2</modelName>
+			<txdName>w_ar_ppsh41_stock2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_stock1</modelName>
+			<txdName>w_ar_ppsh41_stock1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag2_V4</modelName>
+			<txdName>w_ar_ppsh41_mag2_V4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag1_V3</modelName>
+			<txdName>w_ar_ppsh41_mag1_V3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag3_v2</modelName>
+			<txdName>w_ar_ppsh41_mag3_v2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag5</modelName>
+			<txdName>w_ar_ppsh41_mag5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag4</modelName>
+			<txdName>w_ar_ppsh41_mag4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag3</modelName>
+			<txdName>w_ar_ppsh41_mag3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag2</modelName>
+			<txdName>w_ar_ppsh41_mag2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_mag1</modelName>
+			<txdName>w_ar_ppsh41_mag1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41</modelName>
+			<txdName>ppsh41</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v2</modelName>
+			<txdName>ppsh41_v2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v3</modelName>
+			<txdName>ppsh41_v3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v4</modelName>
+			<txdName>ppsh41_v4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v2_skinv2</modelName>
+			<txdName>ppsh41_V2_V2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v3_skinv3</modelName>
+			<txdName>pphs41_V3_V3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_ppsh41_v2_skinv4</modelName>
+			<txdName>ppsh41_V4_V4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ppsh41_scope_medium_V3</modelName>
+			<txdName>w_at_ppsh41_scope_medium_V3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ppsh41_scope_medium_V4</modelName>
+			<txdName>w_at_ppsh41_scope_medium_V4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>
+
