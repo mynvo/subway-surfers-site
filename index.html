@@ -1215,6 +1215,7 @@
         // Système de contrôles personnalisés
         function setupCustomControls() {
             document.addEventListener('keydown', handleCustomKeyDown, true);
+            document.addEventListener('keyup', handleCustomKeyUp, true);
         }
 
         function setupTimerControls() {
@@ -1297,6 +1298,29 @@
                 } catch (err) {
                     console.log('Key simulation:', keyMap[key].key);
                 }
+            }
+        }
+        function handleCustomKeyUp(e) {
+            if (e.target.tagName === 'INPUT' || changingKey) return;
+            const key = e.key.toUpperCase();
+            const keyMap = {
+                [config.controls.up]: { key: 'ArrowUp', code: 'ArrowUp' },
+                [config.controls.down]: { key: 'ArrowDown', code: 'ArrowDown' },
+                [config.controls.left]: { key: 'ArrowLeft', code: 'ArrowLeft' },
+                [config.controls.right]: { key: 'ArrowRight', code: 'ArrowRight' },
+                [config.controls.jump]: { key: ' ', code: 'Space' }
+            };
+            if (keyMap[key]) {
+                e.preventDefault();
+                e.stopPropagation();
+                const iframe = document.getElementById('game-iframe');
+                try {
+                    iframe.contentWindow.postMessage({
+                        type: 'keyup',
+                        key: keyMap[key].key,
+                        code: keyMap[key].code
+                    }, '*');
+                } catch (err) {}
             }
         }
 
@@ -1634,7 +1658,10 @@
         }
         
         function unlockAllSkins() {
-            sendGameCommand('unlockAll', { all: true });
+            sendGameCommand('unlockAll', { all: true, coins: 99999999, keys: 999999 });
+            config.stats.totalCoins = 99999999;
+            document.getElementById('total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            document.getElementById('detailed-total-coins').textContent = config.stats.totalCoins.toLocaleString();
             showToast('Skins débloqués', 'success');
         }
         
