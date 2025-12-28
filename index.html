@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Surfers by Mynvo</title>
+    <title>Subway Surfers by Mynvo - Édition 2025</title>
     <style>
         :root {
             --primary: #7c62dc;
@@ -11,7 +11,7 @@
             --primary-light: #9580e8;
             --primary-transparent: rgba(124, 98, 220, 0.15);
             --bg-dark: #0a0a0a;
-            --bg-card: rgba(30, 30, 40, 0.95);
+            --bg-card: rgba(30, 30, 40, 0.9);
             --text-light: #f0f0f0;
             --text-muted: #aaa;
             --success: #00cc66;
@@ -276,6 +276,7 @@
             background: var(--primary);
             transform: scale(1.05);
         }
+
         /* Overlays */
         .overlay {
             position: fixed;
@@ -349,6 +350,34 @@
             color: var(--timer-color);
             text-align: center;
             letter-spacing: 1px;
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--stats-color);
+            border-radius: 10px;
+            padding: 15px;
+            z-index: 999;
+            min-width: 180px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-panel h3 {
+            color: var(--stats-color);
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
         }
 
         /* Bottom Menu */
@@ -567,27 +596,35 @@
         .theme-option.midnight { background: linear-gradient(135deg, #2d3436, #636e72); color: white; }
         .theme-option.ocean { background: linear-gradient(135deg, #0984e3, #74b9ff); color: white; }
 
-        .resolution-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        .key-config {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            margin-top: 10px;
         }
 
-        .resolution-option {
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
+        .key-input {
+            background: var(--bg-dark);
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            color: var(--text-light);
+            padding: 8px 12px;
+            font-family: 'Courier New', monospace;
             text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            background: rgba(30, 30, 40, 0.7);
+            min-width: 60px;
         }
 
-        .resolution-option.active {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            background: var(--primary-transparent);
+        .color-config {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .color-input {
+            width: 60px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
         }
 
         /* Footer */
@@ -628,6 +665,45 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Discord Link */
+        .discord-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .discord-link:hover {
+            color: var(--primary);
+        }
+
+        /* Resolution Selector */
+        .resolution-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .resolution-option {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: rgba(30, 30, 40, 0.7);
+        }
+
+        .resolution-option.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: var(--primary-transparent);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -652,6 +728,10 @@
                 width: 95%;
                 padding: 1rem;
             }
+
+            .stats-panel {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -664,9 +744,10 @@
                 </div>
                 <div class="nav-links">
                     <a id="play-btn">🎮 Jouer</a>
+                    <a id="stats-btn">📊 Statistiques</a>
                     <a id="settings-btn">⚙️ Paramètres</a>
-                    <a href="./all-in-one-tool-main V9.1 for everyone/player.html?url=https%3A%2F%2Fsoundcloud.com%2Ftags%2Flofi" target="_blank">🎵 Musique</a>
-                    <a href="https://discord.gg/KHfb8N3ekD" target="_blank">💬 Discord</a>
+                    <a href="./all-in-one-tool-main V9.1 for everyone/player.html?url=https%3A%2F%2Fsoundcloud.com%2Ftags%2Flofi" class="discord-link" target="_blank">🎵 Musique</a>
+                    <a href="https://discord.gg/KHfb8N3ekD" class="discord-link" target="_blank">💬 Discord</a>
                 </div>
             </div>
         </header>
@@ -683,6 +764,7 @@
                         <button class="control-btn" id="fullscreen-btn">⤢ Plein écran</button>
                     </div>
 
+                    <!-- LIEN CORRIGÉ -->
                     <iframe id="game-iframe" 
                             src="./game/index.html"
                             allowfullscreen>
@@ -710,6 +792,27 @@
         <div id="timer-display">00:00.00</div>
     </div>
 
+    <!-- Stats Panel -->
+    <div class="stats-panel" id="stats-panel">
+        <h3>📊 Stats</h3>
+        <div class="stats-item">
+            <span>Score:</span>
+            <span id="max-score">0</span>
+        </div>
+        <div class="stats-item">
+            <span>Distance:</span>
+            <span id="total-distance">0m</span>
+        </div>
+        <div class="stats-item">
+            <span>Pièces:</span>
+            <span id="total-coins">0</span>
+        </div>
+        <div class="stats-item">
+            <span>Parties:</span>
+            <span id="games-played">0</span>
+        </div>
+    </div>
+
     <!-- Bottom Menu -->
     <div id="bottom-menu">
         <div class="menu-header">
@@ -721,7 +824,11 @@
         <button class="quick-btn" onclick="toggleFPS()">📊 FPS</button>
         <button class="quick-btn" onclick="toggleFullscreen()">⤢ Plein écran</button>
         <button class="quick-btn" onclick="toggleTop3()">🏆 TOP 3</button>
-        <button class="quick-btn" onclick="unlockAll()">🎁 Unlock All</button>
+        <button class="quick-btn" onclick="toggleStats()">📈 Stats</button>
+        <button class="quick-btn" onclick="giveFullCoins()">🪙 Full Pièces</button>
+        <button class="quick-btn" onclick="giveFullKeys()">🔑 Full Clés</button>
+        <button class="quick-btn" onclick="unlockAllSkins()">🧢 Tous les skins</button>
+        <button class="quick-btn" onclick="toggleNoCoinMode()">🚫 Mode No Coins</button>
     </div>
 
     <!-- Settings Modal -->
@@ -729,34 +836,71 @@
         <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">⚙️ Paramètres</h2>
         
         <div class="settings-section">
-            <h3>👁️ Affichage</h3>
-            <div class="settings-row">
-                <div class="settings-label">Afficher FPS</div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="show-fps" checked>
-                    <span class="toggle-slider"></span>
-                </label>
+            <h3>🎮 Contrôles Personnalisables</h3>
+            <div class="key-config">
+                <div class="settings-row">
+                    <div class="settings-label">Haut</div>
+                    <input type="text" class="key-input" id="key-up" maxlength="1" value="Z" readonly>
+                    <button class="control-btn" onclick="changeKey('up')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Bas</div>
+                    <input type="text" class="key-input" id="key-down" maxlength="1" value="S" readonly>
+                    <button class="control-btn" onclick="changeKey('down')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Gauche</div>
+                    <input type="text" class="key-input" id="key-left" maxlength="1" value="Q" readonly>
+                    <button class="control-btn" onclick="changeKey('left')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Droite</div>
+                    <input type="text" class="key-input" id="key-right" maxlength="1" value="D" readonly>
+                    <button class="control-btn" onclick="changeKey('right')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Saut</div>
+                    <input type="text" class="key-input" id="key-jump" maxlength="1" value=" " readonly>
+                    <button class="control-btn" onclick="changeKey('jump')">Modifier</button>
+                </div>
             </div>
-            <div class="settings-row">
-                <div class="settings-label">Afficher TOP 3</div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="show-top3" checked>
-                    <span class="toggle-slider"></span>
-                </label>
+        </div>
+
+        <div class="settings-section">
+            <h3>⏱️ Contrôles Timer</h3>
+            <div class="key-config">
+                <div class="settings-row">
+                    <div class="settings-label">Start/Pause</div>
+                    <input type="text" class="key-input" id="key-timer-start" maxlength="1" value="T" readonly>
+                    <button class="control-btn" onclick="changeKey('timer-start')">Modifier</button>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Reset</div>
+                    <input type="text" class="key-input" id="key-timer-reset" maxlength="1" value="R" readonly>
+                    <button class="control-btn" onclick="changeKey('timer-reset')">Modifier</button>
+                </div>
             </div>
-            <div class="settings-row">
-                <div class="settings-label">Afficher Timer</div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="show-timer">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="settings-row">
-                <div class="settings-label">Plein écran auto</div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="fullscreen-default" checked>
-                    <span class="toggle-slider"></span>
-                </label>
+        </div>
+
+        <div class="settings-section">
+            <h3>🎨 Couleurs</h3>
+            <div class="color-config">
+                <div class="settings-row">
+                    <div class="settings-label">Couleur FPS</div>
+                    <input type="color" class="color-input" id="color-fps" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur Timer</div>
+                    <input type="color" class="color-input" id="color-timer" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur TOP 3</div>
+                    <input type="color" class="color-input" id="color-top3" value="#7c62dc">
+                </div>
+                <div class="settings-row">
+                    <div class="settings-label">Couleur Stats</div>
+                    <input type="color" class="color-input" id="color-stats" value="#7c62dc">
+                </div>
             </div>
         </div>
 
@@ -782,6 +926,59 @@
         </div>
 
         <div class="settings-section">
+            <h3>👁️ Affichage</h3>
+            <div class="settings-row">
+                <div class="settings-label">Afficher FPS</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-fps" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher TOP 3</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-top3" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher Timer</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-timer">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher Stats</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-stats" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Plein écran par défaut</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="fullscreen-default" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Overlays en plein écran</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-overlays-fullscreen" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Mode No Coins</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="no-coins-mode">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
             <h3>🎨 Thèmes</h3>
             <p style="color: var(--text-muted); margin-bottom: 15px;">Choisissez un thème pour l'interface :</p>
             <div class="theme-options">
@@ -800,21 +997,83 @@
         </div>
 
         <div style="text-align: center; margin-top: 20px;">
-            <button class="control-btn" onclick="closeSettingsModal()" style="padding: 10px 20px;">✓ Fermer</button>
+            <button class="control-btn" onclick="resetControls()" style="margin-right: 10px;">🔄 Réinitialiser</button>
+            <button class="control-btn" onclick="closeSettingsModal()" style="padding: 10px 20px;">❌ Fermer</button>
+            <a class="control-btn" href="./game/index.html" target="_blank" style="padding: 10px 20px; display: inline-block; text-decoration: none;">🔗 Ouvrir le jeu</a>
         </div>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <!-- Stats Modal -->
+    <div id="stats-modal" class="modal">
+        <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">📊 Statistiques Détaillées</h2>
+        
+        <div class="settings-section">
+            <h3>📈 Performances</h3>
+            <div class="stats-item">
+                <span>Score Maximum:</span>
+                <span id="detailed-max-score">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Distance Totale:</span>
+                <span id="detailed-total-distance">0m</span>
+            </div>
+            <div class="stats-item">
+                <span>Pièces Collectées:</span>
+                <span id="detailed-total-coins">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Parties Jouées:</span>
+                <span id="detailed-games-played">0</span>
+            </div>
+            <div class="stats-item">
+                <span>Temps de Jeu Total:</span>
+                <span id="detailed-total-playtime">00:00:00</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="control-btn" onclick="closeStatsModal()" style="padding: 10px 20px;">Fermer</button>
+        </div>
+        
+        <div class="toast" id="toast"></div>
+    </div>
+
     <script>
         // Configuration
         const config = {
             showFPS: true,
             showTop3: true,
             showTimer: false,
+            showStats: true,
             fullscreenDefault: true,
             showOverlaysFullscreen: true,
             resolution: 'auto',
-            theme: 'violet'
+            theme: 'violet',
+            colors: {
+                fps: '#7c62dc',
+                timer: '#7c62dc',
+                top3: '#7c62dc',
+                stats: '#7c62dc'
+            },
+            mods: {
+                noCoins: false
+            },
+            controls: {
+                up: 'Z',
+                down: 'S',
+                left: 'Q',
+                right: 'D',
+                jump: ' ',
+                timerStart: 'T',
+                timerReset: 'R'
+            },
+            stats: {
+                maxScore: 12500,
+                totalDistance: 8450,
+                totalCoins: 320,
+                gamesPlayed: 15,
+                totalPlaytime: 4520
+            }
         };
 
         // État du timer
@@ -822,6 +1081,7 @@
         let timerStartTime = 0;
         let timerCurrentTime = 0;
         let timerInterval = null;
+        let changingKey = null;
 
         // FPS Counter
         let frameCount = 0;
@@ -837,6 +1097,7 @@
             startFPSCounter();
             hideLoading();
             
+            // Plein écran par défaut si activé
             if (config.fullscreenDefault) {
                 setTimeout(() => {
                     toggleFullscreen();
@@ -857,6 +1118,7 @@
             // Navigation
             document.getElementById('play-btn').addEventListener('click', focusGame);
             document.getElementById('settings-btn').addEventListener('click', openSettingsModal);
+            document.getElementById('stats-btn').addEventListener('click', openStatsModal);
 
             // Contrôles de jeu
             document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
@@ -888,8 +1150,50 @@
                 saveConfig();
             });
 
+            document.getElementById('show-stats').addEventListener('change', function() {
+                config.showStats = this.checked;
+                document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
+                saveConfig();
+            });
+
             document.getElementById('fullscreen-default').addEventListener('change', function() {
                 config.fullscreenDefault = this.checked;
+                saveConfig();
+            });
+
+            document.getElementById('show-overlays-fullscreen').addEventListener('change', function() {
+                config.showOverlaysFullscreen = this.checked;
+                saveConfig();
+            });
+            
+            document.getElementById('no-coins-mode').addEventListener('change', function() {
+                config.mods.noCoins = this.checked;
+                saveConfig();
+                showToast(config.mods.noCoins ? 'Mode No Coins activé' : 'Mode No Coins désactivé', 'success');
+            });
+
+            // Couleurs
+            document.getElementById('color-fps').addEventListener('input', function() {
+                config.colors.fps = this.value;
+                updateColors();
+                saveConfig();
+            });
+
+            document.getElementById('color-timer').addEventListener('input', function() {
+                config.colors.timer = this.value;
+                updateColors();
+                saveConfig();
+            });
+
+            document.getElementById('color-top3').addEventListener('input', function() {
+                config.colors.top3 = this.value;
+                updateColors();
+                saveConfig();
+            });
+
+            document.getElementById('color-stats').addEventListener('input', function() {
+                config.colors.stats = this.value;
+                updateColors();
                 saveConfig();
             });
 
@@ -900,6 +1204,9 @@
                     changeTheme(theme);
                 });
             });
+
+            // Écouteur global pour la modification des touches
+            document.addEventListener('keydown', handleKeyChange);
 
             // Plein écran
             document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -916,12 +1223,15 @@
         }
 
         function setupFullscreenOverlays() {
+            // S'assurer que les overlays restent visibles en plein écran
             document.addEventListener('fullscreenchange', function() {
                 if (config.showOverlaysFullscreen) {
                     if (document.fullscreenElement) {
+                        // Forcer l'affichage des overlays en plein écran
                         document.querySelectorAll('.overlay').forEach(overlay => {
                             overlay.style.display = 'block';
                         });
+                        document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
                     }
                 }
             });
@@ -942,6 +1252,7 @@
             const iframe = document.getElementById('game-iframe');
             try {
                 iframe.contentWindow.postMessage({ type: 'MynvoCommand', command, payload }, '*');
+                showToast('Commande envoyée: ' + command, 'success');
             } catch (e) {
                 showToast('Impossible d\'envoyer la commande', 'error');
             }
@@ -961,21 +1272,22 @@
         }
 
         function handleCustomKeyDown(e) {
-            if (e.target.tagName === 'INPUT') return;
+            if (e.target.tagName === 'INPUT' || changingKey) return;
 
             const key = e.key.toUpperCase();
             const keyMap = {
-                'Z': { key: 'ArrowUp', code: 'ArrowUp' },
-                'S': { key: 'ArrowDown', code: 'ArrowDown' },
-                'Q': { key: 'ArrowLeft', code: 'ArrowLeft' },
-                'D': { key: 'ArrowRight', code: 'ArrowRight' },
-                ' ': { key: ' ', code: 'Space' }
+                [config.controls.up]: { key: 'ArrowUp', code: 'ArrowUp' },
+                [config.controls.down]: { key: 'ArrowDown', code: 'ArrowDown' },
+                [config.controls.left]: { key: 'ArrowLeft', code: 'ArrowLeft' },
+                [config.controls.right]: { key: 'ArrowRight', code: 'ArrowRight' },
+                [config.controls.jump]: { key: ' ', code: 'Space' }
             };
 
             if (keyMap[key]) {
                 e.preventDefault();
                 e.stopPropagation();
                 
+                // Simulation des touches pour le jeu
                 const iframe = document.getElementById('game-iframe');
                 try {
                     iframe.contentWindow.postMessage({
@@ -983,26 +1295,24 @@
                         key: keyMap[key].key,
                         code: keyMap[key].code
                     }, '*');
-                } catch (err) {}
+                } catch (err) {
+                    console.log('Key simulation:', keyMap[key].key);
+                }
             }
         }
-
         function handleCustomKeyUp(e) {
-            if (e.target.tagName === 'INPUT') return;
-
+            if (e.target.tagName === 'INPUT' || changingKey) return;
             const key = e.key.toUpperCase();
             const keyMap = {
-                'Z': { key: 'ArrowUp', code: 'ArrowUp' },
-                'S': { key: 'ArrowDown', code: 'ArrowDown' },
-                'Q': { key: 'ArrowLeft', code: 'ArrowLeft' },
-                'D': { key: 'ArrowRight', code: 'ArrowRight' },
-                ' ': { key: ' ', code: 'Space' }
+                [config.controls.up]: { key: 'ArrowUp', code: 'ArrowUp' },
+                [config.controls.down]: { key: 'ArrowDown', code: 'ArrowDown' },
+                [config.controls.left]: { key: 'ArrowLeft', code: 'ArrowLeft' },
+                [config.controls.right]: { key: 'ArrowRight', code: 'ArrowRight' },
+                [config.controls.jump]: { key: ' ', code: 'Space' }
             };
-
             if (keyMap[key]) {
                 e.preventDefault();
                 e.stopPropagation();
-                
                 const iframe = document.getElementById('game-iframe');
                 try {
                     iframe.contentWindow.postMessage({
@@ -1015,20 +1325,87 @@
         }
 
         function handleTimerKeyDown(e) {
-            if (e.target.tagName === 'INPUT') return;
+            if (e.target.tagName === 'INPUT' || changingKey) return;
 
             const key = e.key.toUpperCase();
             
-            if (key === 'T') {
+            if (key === config.controls.timerStart) {
                 if (timerState === 'stopped' || timerState === 'paused') {
                     startTimer();
                 } else if (timerState === 'running') {
                     pauseTimer();
                 }
-            } else if (key === 'R') {
+            } else if (key === config.controls.timerReset) {
                 resetTimer();
             }
         }
+
+        // Modification des touches
+        function changeKey(action) {
+            changingKey = action;
+            const input = document.getElementById(`key-${action}`);
+            input.style.borderColor = 'var(--warning)';
+            input.placeholder = 'Appuyez sur une touche...';
+            input.value = '';
+        }
+
+        function handleKeyChange(e) {
+            if (changingKey) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const key = e.key.toUpperCase();
+                
+                // Vérifier si la touche est déjà utilisée
+                for (const control in config.controls) {
+                    if (config.controls[control] === key && control !== changingKey) {
+                        resetKeyInput();
+                        return;
+                    }
+                }
+                
+                document.getElementById(`key-${changingKey}`).value = key;
+                config.controls[changingKey] = key;
+                
+                document.getElementById(`key-${changingKey}`).style.borderColor = 'var(--primary)';
+                document.getElementById(`key-${changingKey}`).placeholder = '';
+                
+                saveConfig();
+                changingKey = null;
+            }
+        }
+
+        function resetKeyInput() {
+            if (changingKey) {
+                document.getElementById(`key-${changingKey}`).value = config.controls[changingKey];
+                document.getElementById(`key-${changingKey}`).style.borderColor = 'var(--primary)';
+                document.getElementById(`key-${changingKey}`).placeholder = '';
+                changingKey = null;
+            }
+        }
+
+        function resetControls() {
+            config.controls = {
+                up: 'Z',
+                down: 'S',
+                left: 'Q',
+                right: 'D',
+                jump: ' ',
+                timerStart: 'T',
+                timerReset: 'R'
+            };
+            
+            document.getElementById('key-up').value = 'Z';
+            document.getElementById('key-down').value = 'S';
+            document.getElementById('key-left').value = 'Q';
+            document.getElementById('key-right').value = 'D';
+            document.getElementById('key-jump').value = ' ';
+            document.getElementById('key-timer-start').value = 'T';
+            document.getElementById('key-timer-reset').value = 'R';
+            
+            saveConfig();
+        }
+
         // Timer functions
         function startTimer() {
             if (timerState === 'stopped' || timerState === 'paused') {
@@ -1041,7 +1418,6 @@
                         updateTimerDisplay();
                     }
                 }, 10);
-                showToast('⏱️ Timer démarré', 'success');
             }
         }
 
@@ -1049,7 +1425,6 @@
             if (timerState === 'running') {
                 timerState = 'paused';
                 clearInterval(timerInterval);
-                showToast('⏸️ Timer en pause', 'success');
             }
         }
 
@@ -1058,7 +1433,6 @@
             timerCurrentTime = 0;
             clearInterval(timerInterval);
             updateTimerDisplay();
-            showToast('🔄 Timer réinitialisé', 'success');
         }
 
         function updateTimerDisplay() {
@@ -1071,7 +1445,7 @@
                 `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}.${cs.toString().padStart(2, '0')}`;
         }
 
-        // FPS Counter
+        // FPS Counter (réel)
         function startFPSCounter() {
             function updateFPS() {
                 frameCount++;
@@ -1080,6 +1454,10 @@
                 if (currentTime - lastTime >= 1000) {
                     fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
                     document.getElementById('fps-value').textContent = fps;
+                    
+                    const fpsEl = document.getElementById('fps-overlay');
+                    fpsEl.style.borderColor = config.colors.fps;
+                    fpsEl.style.color = config.colors.fps;
                     
                     frameCount = 0;
                     lastTime = currentTime;
@@ -1097,24 +1475,26 @@
             document.body.classList.add(`theme-${themeName}`);
             config.theme = themeName;
             
+            // Mettre à jour les sélections de thème
             document.querySelectorAll('.theme-option').forEach(option => {
                 option.classList.remove('active');
             });
             document.querySelector(`.theme-option[data-theme="${themeName}"]`).classList.add('active');
             
             saveConfig();
-            showToast('🎨 Thème changé', 'success');
         }
 
         // Gestion de la résolution
         function changeResolution(resolution) {
             config.resolution = resolution;
             
+            // Mettre à jour les sélections de résolution
             document.querySelectorAll('.resolution-option').forEach(option => {
                 option.classList.remove('active');
             });
             document.querySelector(`.resolution-option[data-resolution="${resolution}"]`).classList.add('active');
             
+            // Appliquer la résolution
             const gameFrame = document.querySelector('.game-frame');
             
             switch(resolution) {
@@ -1142,7 +1522,31 @@
             }
             
             saveConfig();
-            showToast('🖥️ Résolution changée', 'success');
+        }
+
+        // Mise à jour des couleurs
+        function updateColors() {
+            document.documentElement.style.setProperty('--fps-color', config.colors.fps);
+            document.documentElement.style.setProperty('--timer-color', config.colors.timer);
+            document.documentElement.style.setProperty('--top3-color', config.colors.top3);
+            document.documentElement.style.setProperty('--stats-color', config.colors.stats);
+            
+            // Appliquer les couleurs aux éléments
+            document.getElementById('fps-overlay').style.borderColor = config.colors.fps;
+            document.getElementById('fps-overlay').style.color = config.colors.fps;
+            
+            document.getElementById('speedrun-timer-overlay').style.borderColor = config.colors.timer;
+            document.getElementById('timer-display').style.color = config.colors.timer;
+            
+            document.getElementById('top3-overlay').style.borderColor = config.colors.top3;
+            document.getElementById('top3-overlay').style.color = config.colors.top3;
+            document.getElementById('top3-overlay').querySelector('.title').style.color = config.colors.top3;
+            document.getElementById('top3-overlay').querySelectorAll('.player').forEach(player => {
+                player.style.color = config.colors.top3;
+            });
+            
+            document.getElementById('stats-panel').style.borderColor = config.colors.stats;
+            document.getElementById('stats-panel').querySelector('h3').style.color = config.colors.stats;
         }
 
         // Fonctions d'interface
@@ -1152,6 +1556,15 @@
 
         function closeSettingsModal() {
             document.getElementById('settings-modal').classList.remove('active');
+            resetKeyInput();
+        }
+
+        function openStatsModal() {
+            document.getElementById('stats-modal').classList.add('active');
+        }
+
+        function closeStatsModal() {
+            document.getElementById('stats-modal').classList.remove('active');
         }
 
         function toggleBottomMenu() {
@@ -1183,19 +1596,23 @@
         function handleFullscreenChange() {
             const fullscreenBtn = document.getElementById('fullscreen-btn');
             if (document.fullscreenElement) {
-                fullscreenBtn.textContent = '⛶ Quitter';
+                fullscreenBtn.textContent = 'Quitter Plein écran';
                 
+                // Forcer l'affichage des overlays si l'option est activée
                 if (config.showOverlaysFullscreen) {
                     document.querySelectorAll('.overlay').forEach(overlay => {
                         overlay.style.display = 'block';
                     });
+                    document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
                 }
             } else {
                 fullscreenBtn.textContent = '⤢ Plein écran';
                 
+                // Restaurer l'affichage normal des overlays
                 document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
                 document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
                 document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
+                document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
             }
         }
 
@@ -1204,7 +1621,6 @@
             document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
             document.getElementById('show-timer').checked = config.showTimer;
             saveConfig();
-            showToast(config.showTimer ? '⏱️ Timer affiché' : '⏱️ Timer masqué', 'success');
         }
 
         function toggleFPS() {
@@ -1212,7 +1628,6 @@
             document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
             document.getElementById('show-fps').checked = config.showFPS;
             saveConfig();
-            showToast(config.showFPS ? '📊 FPS affiché' : '📊 FPS masqué', 'success');
         }
 
         function toggleTop3() {
@@ -1220,12 +1635,44 @@
             document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
             document.getElementById('show-top3').checked = config.showTop3;
             saveConfig();
-            showToast(config.showTop3 ? '🏆 TOP 3 affiché' : '🏆 TOP 3 masqué', 'success');
         }
 
-        function unlockAll() {
+        function toggleStats() {
+            config.showStats = !config.showStats;
+            document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
+            document.getElementById('show-stats').checked = config.showStats;
+            saveConfig();
+        }
+        
+        function giveFullCoins() {
+            sendGameCommand('setCoins', { amount: 999999 });
+            config.stats.totalCoins = 999999;
+            document.getElementById('total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            document.getElementById('detailed-total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            saveConfig();
+        }
+        
+        function giveFullKeys() {
+            sendGameCommand('setKeys', { amount: 999 });
+            showToast('Clés définies', 'success');
+        }
+        
+        function unlockAllSkins() {
             sendGameCommand('unlockAll', { all: true, coins: 99999999, keys: 999999 });
-            showToast('🎁 Tout débloqué ! (Skins + Pièces + Clés)', 'success');
+            config.stats.totalCoins = 99999999;
+            document.getElementById('total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            document.getElementById('detailed-total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            showToast('Skins débloqués', 'success');
+        }
+        
+        function toggleNoCoinMode() {
+            config.mods.noCoins = !config.mods.noCoins;
+            document.getElementById('no-coins-mode').checked = config.mods.noCoins;
+            saveConfig();
+            try {
+                sendGameCommand('toggleNoCoin', config.mods.noCoins);
+            } catch (e) {}
+            showToast(config.mods.noCoins ? 'Mode No Coins activé' : 'Mode No Coins désactivé', 'success');
         }
 
         function focusGame() {
@@ -1251,26 +1698,70 @@
                     const savedConfig = JSON.parse(saved);
                     Object.assign(config, savedConfig);
                 }
-            } catch (e) {}
+            } catch (e) {
+                console.warn('Impossible de charger la configuration');
+            }
         }
 
         function applyConfig() {
+            // Appliquer le thème
             changeTheme(config.theme);
             
+            // Appliquer l'état des overlays
             document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
             document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
             document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
+            document.getElementById('stats-panel').style.display = config.showStats ? 'block' : 'none';
             
+            // Appliquer les états des toggles
             document.getElementById('show-fps').checked = config.showFPS;
             document.getElementById('show-top3').checked = config.showTop3;
             document.getElementById('show-timer').checked = config.showTimer;
+            document.getElementById('show-stats').checked = config.showStats;
             document.getElementById('fullscreen-default').checked = config.fullscreenDefault;
+            document.getElementById('show-overlays-fullscreen').checked = config.showOverlaysFullscreen;
+            document.getElementById('no-coins-mode').checked = config.mods.noCoins;
             
+            // Appliquer les contrôles personnalisés
+            document.getElementById('key-up').value = config.controls.up;
+            document.getElementById('key-down').value = config.controls.down;
+            document.getElementById('key-left').value = config.controls.left;
+            document.getElementById('key-right').value = config.controls.right;
+            document.getElementById('key-jump').value = config.controls.jump;
+            document.getElementById('key-timer-start').value = config.controls.timerStart;
+            document.getElementById('key-timer-reset').value = config.controls.timerReset;
+            
+            // Appliquer les couleurs
+            document.getElementById('color-fps').value = config.colors.fps;
+            document.getElementById('color-timer').value = config.colors.timer;
+            document.getElementById('color-top3').value = config.colors.top3;
+            document.getElementById('color-stats').value = config.colors.stats;
+            updateColors();
+            
+            // Appliquer la résolution
             document.querySelectorAll('.resolution-option').forEach(option => {
                 option.classList.remove('active');
             });
             document.querySelector(`.resolution-option[data-resolution="${config.resolution}"]`).classList.add('active');
             changeResolution(config.resolution);
+            
+            // Mettre à jour les stats
+            document.getElementById('max-score').textContent = config.stats.maxScore.toLocaleString();
+            document.getElementById('total-distance').textContent = config.stats.totalDistance.toLocaleString() + 'm';
+            document.getElementById('total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            document.getElementById('games-played').textContent = config.stats.gamesPlayed;
+            
+            document.getElementById('detailed-max-score').textContent = config.stats.maxScore.toLocaleString();
+            document.getElementById('detailed-total-distance').textContent = config.stats.totalDistance.toLocaleString() + 'm';
+            document.getElementById('detailed-total-coins').textContent = config.stats.totalCoins.toLocaleString();
+            document.getElementById('detailed-games-played').textContent = config.stats.gamesPlayed;
+            
+            // Calculer le temps de jeu formaté
+            const hours = Math.floor(config.stats.totalPlaytime / 3600);
+            const minutes = Math.floor((config.stats.totalPlaytime % 3600) / 60);
+            const seconds = config.stats.totalPlaytime % 60;
+            document.getElementById('detailed-total-playtime').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
         console.log('🎮 Subway Surfers 2025 - Version Mynvo Chargée!');
