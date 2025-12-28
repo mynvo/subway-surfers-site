@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V9.1 designed by volt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette Dark Premium */
+            --bg-body: #09090b;       /* Fond très sombre (presque noir) */
+            --bg-sidebar: #101012;    /* Sidebar légèrement plus claire */
+            --bg-card: #18181b;       /* Cartes */
+            --bg-input: #27272a;      /* Inputs */
+            --bg-hover: #27272a;      /* Survol */
+            
+            --accent: #6366f1;        /* Indigo vibrant */
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --accent-hover: #4f46e5;
+            
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            
+            --border: #27272a;
+            --border-highlight: #3f3f46;
+            
+            --success: #10b981;
+            --danger: #ef4444;
+            
+            --radius: 10px;           /* Coins un peu plus arrondis */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        body {
+            width: 700px;
+            height: 540px;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 180px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            padding: 0 24px 20px 24px;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .brand i { 
+            color: var(--accent); 
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+
+        .nav-item:hover { color: var(--text-main); background: rgba(255,255,255,0.03); }
+        
+        .nav-item.active {
+            color: var(--text-main);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            border-left-color: var(--accent);
+        }
+        .nav-item.active i { color: var(--accent); }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 24px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-image: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 40%);
+        }
+
+        .view-section { display: none; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .view-section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header { margin-bottom: 20px; }
+        .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-main); }
+        .section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        /* GRID */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+        /* CARDS */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--border-highlight); }
+
+        .card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px; 
+        }
+        .card-title { 
+            font-size: 12px; font-weight: 700; color: var(--text-muted); 
+            text-transform: uppercase; letter-spacing: 0.8px; 
+        }
+
+        /* CONTROLS */
+        .control-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .control-row:last-child { border-bottom: none; }
+        
+        .control-label { font-size: 14px; font-weight: 500; color: var(--text-main); }
+        .control-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        /* SWITCH */
+        .switch { position: relative; display: inline-block; width: 42px; height: 22px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--bg-input); transition: .3s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+            background-color: var(--text-muted); transition: .3s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+        input:checked + .slider:before { transform: translateX(20px); background-color: white; }
+
+        /* BUTTONS */
+        .btn {
+            padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+            background: var(--bg-input); color: var(--text-main); font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; text-align: center; width: 100%;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn:hover { background: var(--border-highlight); transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+        
+        .btn-primary { 
+            background: var(--accent); border-color: var(--accent); color: white; 
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+        .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+        
+        .btn-danger { 
+            background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: var(--danger); 
+        }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); border-color: var(--danger); }
+        
+        .btn-mini { padding: 8px 12px; font-size: 12px; }
+
+        /* INPUTS */
+        input[type="text"], input[type="number"], select {
+            background: var(--bg-input); border: 1px solid transparent;
+            color: var(--text-main); padding: 10px 12px; border-radius: var(--radius); 
+            width: 100%; font-size: 13px; font-family: inherit; transition: all 0.2s;
+        }
+        input[type="text"]:focus, select:focus { 
+            border-color: var(--accent); background: var(--bg-card); 
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        .scroll-list {
+            max-height: 200px; overflow-y: auto; padding-right: 6px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+
+        /* KEY BUTTONS */
+        .hotkey-container {
+            background: var(--bg-body); padding: 4px; border-radius: var(--radius);
+            border: 1px solid var(--border); display: flex; gap: 4px;
+        }
+        .key-btn {
+            flex: 1; border: none; background: transparent; color: var(--text-muted);
+            padding: 8px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 11px;
+            text-transform: uppercase; transition: all 0.2s;
+        }
+        .key-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
+        .key-btn.active { background: var(--bg-card); color: var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+        /* TOAST */
+        .status-toast {
+            position: fixed; bottom: 24px; right: 24px;
+            background: var(--bg-card); color: var(--text-main);
+            padding: 12px 16px; border-radius: var(--radius);
+            font-size: 13px; font-weight: 500; 
+            border: 1px solid var(--border-highlight);
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(100px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 999; display: flex; align-items: center; gap: 12px;
+        }
+        .status-toast.show { transform: translateY(0); }
+
+        /* LANGUAGE MODAL */
+        .language-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; }
+        .language-modal.hidden { display: none; }
+        .language-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+        .language-card {
+            position: relative;
+            width: 440px;
+            max-width: 90vw;
+            background: var(--bg-card);
+            border: 1px solid var(--border-highlight);
+            border-radius: 14px;
+            padding: 22px 22px 18px 22px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+        }
+        .language-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--text-main); }
+        .language-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+        .language-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+        .language-option {
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            color: var(--text-main);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .language-option:hover { border-color: var(--border-highlight); background: rgba(255,255,255,0.03); }
+        .language-option.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .language-badge { font-size: 12px; color: var(--text-muted); }
+        .language-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="languageModal" class="language-modal hidden">
+        <div class="language-backdrop"></div>
+        <div class="language-card">
+            <div class="language-title" data-i18n-key="language.title">Choisissez votre langue</div>
+            <div class="language-subtitle" data-i18n-key="language.subtitle">Nous l'utiliserons pour l'interface du popup.</div>
+            <div class="language-options">
+                <button class="language-option" data-lang="fr">
+                    <span>🇫🇷</span>
+                    <div>
+                        <div data-i18n-key="language.fr">Français</div>
+                        <div class="language-badge" data-i18n-key="language.frLabel">Par défaut</div>
+                    </div>
+                </button>
+                <button class="language-option" data-lang="en">
+                    <span>🇺🇸</span>
+                    <div>
+                        <div data-i18n-key="language.en">English</div>
+                        <div class="language-badge" data-i18n-key="language.enLabel">International</div>
+                    </div>
+                </button>
+                <button class="language-option" data-lang="pt-BR">
+                    <span>🇧🇷</span>
+                    <div>
+                        <div data-i18n-key="language.pt">Português (Brasil)</div>
+                        <div class="language-badge" data-i18n-key="language.ptLabel">Comunidade BR</div>
+                    </div>
+                </button>
+                <button class="language-option" data-lang="zh">
+                    <span>🇨🇳</span>
+                    <div>
+                        <div data-i18n-key="language.zh">中文</div>
+                        <div class="language-badge" data-i18n-key="language.zhLabel">简体中文</div>
+                    </div>
+                </button>
+            </div>
+            <div class="language-actions">
+                <button class="btn" id="languageLater" data-i18n-key="language.later">Plus tard</button>
+                <button class="btn btn-primary" id="confirmLanguage" data-i18n-key="language.confirm">Valider</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-ghost"></i> V9.1 designed by volt
+        </div>
+        
+        <div class="nav-item active" data-target="dashboard">
+            <i class="fa-solid fa-gauge-high" style="width: 20px;"></i> <span data-i18n-key="nav.dashboard">Dashboard</span>
+        </div>
+        <div class="nav-item" data-target="gametools">
+            <i class="fa-solid fa-gamepad" style="width: 20px;"></i> <span data-i18n-key="nav.gametools">Game Tools</span>
+        </div>
+        <div class="nav-item" data-target="rankings">
+            <i class="fa-solid fa-trophy" style="width: 20px;"></i> <span data-i18n-key="nav.rankings">Rankings</span>
+        </div>
+        <div class="nav-item" data-target="appearance">
+            <i class="fa-solid fa-wand-magic-sparkles" style="width: 20px;"></i> <span data-i18n-key="nav.appearance">Style</span>
+        </div>
+        <div class="nav-item" data-target="media">
+            <i class="fa-solid fa-music" style="width: 20px;"></i> <span data-i18n-key="nav.media">Media</span>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="https://paypal.me/Leboncoinscrap" target="_blank" class="btn btn-primary" style="text-decoration: none;">
+                <i class="fa-brands fa-paypal"></i> Support Dev
+            </a>
+            <button class="btn btn-mini" id="openLanguagePicker" style="margin-top: 10px; width: 100%;" data-i18n-key="language.switch">Changer de langue</button>
+        </div>
+    </div>
+
+    <div class="main">
+        
+        <div id="dashboard" class="view-section active">
+            <div class="section-header">
+                <div class="section-title" data-i18n-key="section.dashboard.title">Dashboard</div>
+                <div class="section-subtitle" data-i18n-key="section.dashboard.subtitle">Contrôles principaux & Overlays</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.liveOverlays">Live Overlays</span></div>
+                
+                <div class="control-row">
+                    <div>
+                        <div class="control-label" data-i18n-key="label.speedrun">Speedrun Timer</div>
+                        <div class="control-desc" data-i18n-key="desc.speedrun">Chrono précis au millième</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" id="toggleTimerSwitch"><span class="slider"></span></label>
+                </div>
+
+                <div style="margin: 10px 0 20px 0;">
+                    <div class="control-desc" style="margin-bottom: 8px;" data-i18n-key="desc.timerHotkey">Touche d'activation du Timer :</div>
+                    <div class="hotkey-container">
+                        <button class="key-btn hotkey-btn active" data-key="Control">CTRL</button>
+                        <button class="key-btn hotkey-btn" data-key="Shift">SHIFT</button>
+                        <button class="key-btn hotkey-btn" data-key="Alt">ALT</button>
+                        <button class="key-btn hotkey-btn" data-key="Space">SPACE</button>
+                    </div>
+                    <input type="text" id="customKeyInput" placeholder="Ou tapez une touche personnalisée..." data-i18n-placeholder="placeholder.customKey" style="margin-top: 8px; border: 1px solid var(--border);">
+                </div>
+
+                <div class="control-row">
+                    <div>
+                        <div class="control-label" data-i18n-key="label.fps">FPS Counter</div>
+                        <div class="control-desc" data-i18n-key="desc.fps">Affiche les images/seconde</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" id="toggleFpsSwitch"><span class="slider"></span></label>
+                </div>
+                <div class="control-row">
+                    <div>
+                        <div class="control-label" data-i18n-key="label.keypress">Affichage Touches</div>
+                        <div class="control-desc" data-i18n-key="desc.keypress">Visualisez vos inputs en direct</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" id="toggleKeypressSwitch"><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.resolution">Résolution</span></div>
+                <div class="grid-2">
+                    <select id="resolutionSelect">
+                        <option value="608x1080">608x1080 (Format Vertical Mobile)</option>
+                        <option value="890x1080">890x1080 (Format Large)</option>
+                    </select>
+                    <button class="btn btn-primary" id="activateResolution" data-i18n-key="btn.force">Forcer</button>
+                </div>
+                <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="blackBarsToggle" checked style="width: auto;">
+                        <span style="font-size: 13px; color: var(--text-muted);" data-i18n-key="label.blackBars">Bandes noires</span>
+                    </div>
+                    <button class="btn btn-mini" id="deactivateResolution" style="width: auto; background:transparent; border-color:var(--border);" data-i18n-key="btn.reset">Réinitialiser</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gametools" class="view-section">
+            <div class="section-header">
+                <div class="section-title" data-i18n-key="section.gametools.title">Outils Jeu</div>
+                <div class="section-subtitle" data-i18n-key="section.gametools.subtitle">Sauvegardes, Cartes & Contrôles</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.backup">Gestionnaire de Sauvegarde</span></div>
+                <div class="grid-2">
+                    <button class="btn" id="backup"><i class="fa-solid fa-download"></i> <span data-i18n-key="btn.backup">Backup</span></button>
+                    <button class="btn" id="restore"><i class="fa-solid fa-upload"></i> <span data-i18n-key="btn.restore">Restore</span></button>
+                    <button class="btn btn-primary" id="save100"><i class="fa-solid fa-unlock"></i> <span data-i18n-key="btn.unlock">Unlock All</span></button>
+                    <button class="btn btn-danger" id="cleanData"><i class="fa-solid fa-trash"></i> <span data-i18n-key="btn.resetData">Reset Data</span></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.mapSelector">Sélecteur de Carte (Versions Précédentes)</span></div>
+                <div class="scroll-list">
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/index.html">🌉 San Francisco</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/winterholiday.html">❄️ Winter Holiday</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/monaco.html">🏎️ Monaco</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/zurich.html">🏔️ Zurich</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/london.html">💂🏼 London</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/houston.html">🤠 Houston</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/havana.html">🍹 Havana</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/berlin.html">🦅 Berlin</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/beijing.html">🏯 Beijing</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/mexico.html">💀 Mexico</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/iceland.html">🌋 Iceland</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/buenos-aires.html">💃 Buenos Aires</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/barcelona.html">🎨 Barcelona</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/miami.html">🌴 Miami</button>
+                    <button class="btn btn-mini city-link" data-url="https://yell0wsuit.page/assets/games/subway-surfers-unity/neworleans.html">🎺 New Orleans</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.keymap">Mapping Clavier (ZQSD)</span></div>
+                <div class="grid-4">
+                    <input type="text" id="upKey" placeholder="Haut (Z)" data-i18n-placeholder="placeholder.up">
+                    <input type="text" id="leftKey" placeholder="Gauche (Q)" data-i18n-placeholder="placeholder.left">
+                    <input type="text" id="downKey" placeholder="Bas (S)" data-i18n-placeholder="placeholder.down">
+                    <input type="text" id="rightKey" placeholder="Droite (D)" data-i18n-placeholder="placeholder.right">
+                </div>
+                <div class="grid-2" style="margin-top: 10px;">
+                    <button class="btn btn-primary" id="saveZqsdKeys" data-i18n-key="btn.apply">Appliquer</button>
+                    <button class="btn" id="deactivateZqsd" data-i18n-key="btn.disable">Désactiver</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="rankings" class="view-section">
+            <div class="section-header">
+                <div class="section-title" data-i18n-key="section.rankings.title">Classements</div>
+                <div class="section-subtitle" data-i18n-key="section.rankings.subtitle">Speedrun & Records</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.rankCalc">Calculateur de Rang</span></div>
+                <div class="control-desc" style="margin-bottom: 8px;" data-i18n-key="desc.rankCalc">Entrez un temps pour voir le rang correspondant.</div>
+                <input type="text" id="timeInput" placeholder="Ex: 1h 13m 45s" data-i18n-placeholder="placeholder.timeInput">
+                <div id="rankResult" style="margin-top: 12px; font-weight: bold; color: var(--accent); height: 1em;"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.worldRecords">World Records</span></div>
+                <button class="btn city-link" data-url="https://www.speedrun.com/subsurf?h=No_Coins-no-hoverboard-no-keys-web&x=n2y350ed-j84eeg2n.21gy6p81-onv47omn.81p9k88q">
+                    🏆 <span data-i18n-key="btn.leaderboard">Voir le Leaderboard Speedrun.com</span>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.topFrance">Top France</span></div>
+                <a href="https://github.com/youssefbeny/images/blob/main/image.png" target="_blank" style="display: block; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <img src="https://github.com/youssefbeny/images/blob/main/image.png?raw=true" style="width: 100%; display: block; opacity: 0.9; transition: 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+                </a>
+            </div>
+        </div>
+
+        <div id="appearance" class="view-section">
+            <div class="section-header">
+                <div class="section-title" data-i18n-key="section.appearance.title">Apparence</div>
+                <div class="section-subtitle" data-i18n-key="section.appearance.subtitle">Personnalisez votre interface</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.overlay">Overlay Touches</span></div>
+                
+                <div class="hotkey-container" style="margin-bottom: 12px;">
+                    <button class="key-btn key-layout-btn active" data-layout="arrows">Arrows</button>
+                    <button class="key-btn key-layout-btn" data-layout="wasd">WASD</button>
+                    <button class="key-btn key-layout-btn" data-layout="zqsd">ZQSD</button>
+                </div>
+
+                <div class="grid-3">
+                    <button class="btn btn-mini key-theme-btn" data-theme="default">Default</button>
+                    <button class="btn btn-mini key-theme-btn" data-theme="minimal">Minimal</button>
+                    <button class="btn btn-mini key-theme-btn" data-theme="block">Block</button>
+                    <button class="btn btn-mini key-theme-btn" data-theme="classic">Classic</button>
+                    <button class="btn btn-mini key-theme-btn" data-theme="retro">Retro</button>
+                    <button class="btn btn-mini key-theme-btn" data-theme="block-white">White</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.backgrounds">Images de Fond</span></div>
+                <div class="grid-2">
+                    <div>
+                        <div class="control-desc" data-i18n-key="desc.globalBackground">Fond Global</div>
+                         						<button class="btn" id="import-background-btn" data-i18n-key="btn.import">Importer Image</button>
+                                                <input type="file" id="background-upload" accept="image/*" style="display: none;">
+                                            </div>
+                                            <div>
+                                                <div class="control-desc" data-i18n-key="desc.activeBackground">Fond Touche Active</div>
+                                                <button class="btn" id="import-background-active-btn" data-i18n-key="btn.import">Importer Image</button>
+                                                <input type="file" id="background-upload-active" accept="image/*" style="display: none;">                    </div>
+                </div>
+                <button class="btn btn-danger" id="remove-background" style="margin-top: 12px;" data-i18n-key="btn.removeBackgrounds">Supprimer les fonds</button>
+                <button id="remove-background-active" style="display:none"></button>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.timerColors">Couleurs du Timer</span></div>
+                <div class="grid-3">
+                    <div>
+                        <div class="control-desc" data-i18n-key="desc.colorRunning">En cours</div>
+                        <input type="color" id="color-running" class="color-picker" style="height: 35px; padding: 0; background:none; border:none; cursor:pointer;">
+                    </div>
+                    <div>
+                        <div class="control-desc" data-i18n-key="desc.colorPaused">Pause</div>
+                        <input type="color" id="color-paused" class="color-picker" style="height: 35px; padding: 0; background:none; border:none; cursor:pointer;">
+                    </div>
+                    <div>
+                        <div class="control-desc" data-i18n-key="desc.colorStopped">Arrêt</div>
+                        <input type="color" id="color-stopped" class="color-picker" style="height: 35px; padding: 0; background:none; border:none; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="media" class="view-section">
+            <div class="section-header">
+                <div class="section-title" data-i18n-key="section.media.title">Média</div>
+                <div class="section-subtitle" data-i18n-key="section.media.subtitle">Audio et Musique</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.volume">Volume Global du Jeu</span></div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fa-solid fa-volume-high" style="color: var(--text-muted);"></i>
+                    <input type="range" id="volumeSlider" class="slider-range" min="0" max="100" style="flex: 1;">
+                    <span id="volumeValue" style="font-weight: 700; width: 45px; text-align: right; color: var(--accent);">100%</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><span class="card-title" data-i18n-key="card.soundcloud">Lecteur SoundCloud</span></div>
+                <input type="text" id="soundcloudUrl" placeholder="URL de la Playlist..." style="margin-bottom: 12px;" data-i18n-placeholder="placeholder.playlist">
+                <button class="btn btn-primary" id="loadSoundcloudPlaylist"><i class="fa-solid fa-play"></i> <span data-i18n-key="btn.launchPlayer">Lancer le Player</span></button>
+                <div id="music-embed-container" style="margin-top: 8px; font-size: 11px; color: var(--text-muted); text-align: center;" data-i18n-key="desc.soundcloud">Ouvre une fenêtre pop-up dédiée.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="status" class="status-toast">
+        <span data-i18n-key="status.done">Action effectuée</span>
+    </div>
+
+    <button id="toggleTimer" style="display:none;"></button>
+    <button id="toggleFps" style="display:none;"></button>
+    <button id="toggleKeypress" style="display:none;"></button>
+
+    <script src="popup.js"></script>
+</body>
+</html>
