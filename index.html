@@ -17,12 +17,132 @@
             --success: #00cc66;
             --danger: #ff4444;
             --warning: #ffaa00;
+            --timer-color: #7c62dc;
+            --stats-color: #7c62dc;
+            --top3-color: #7c62dc;
+            --fps-color: #7c62dc;
         }
 
-        .theme-violet { --primary: #7c62dc; --primary-dark: #6a50c9; --primary-light: #9580e8; }
-        .theme-blue { --primary: #4a6fa5; --primary-dark: #3a5a85; --primary-light: #6b8cc0; }
-        .theme-green { --primary: #2ecc71; --primary-dark: #27ae60; --primary-light: #58d68d; }
-        .theme-red { --primary: #e74c3c; --primary-dark: #c0392b; --primary-light: #ff7979; }
+        .theme-violet {
+            --primary: #7c62dc;
+            --primary-dark: #6a50c9;
+            --primary-light: #9580e8;
+            --primary-transparent: rgba(124, 98, 220, 0.15);
+            --timer-color: #7c62dc;
+            --stats-color: #7c62dc;
+            --top3-color: #7c62dc;
+            --fps-color: #7c62dc;
+        }
+
+        .theme-blue {
+            --primary: #4a6fa5;
+            --primary-dark: #3a5a85;
+            --primary-light: #6b8cc0;
+            --primary-transparent: rgba(74, 111, 165, 0.15);
+            --timer-color: #4a6fa5;
+            --stats-color: #4a6fa5;
+            --top3-color: #4a6fa5;
+            --fps-color: #4a6fa5;
+        }
+
+        .theme-green {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #58d68d;
+            --primary-transparent: rgba(46, 204, 113, 0.15);
+            --timer-color: #2ecc71;
+            --stats-color: #2ecc71;
+            --top3-color: #2ecc71;
+            --fps-color: #2ecc71;
+        }
+
+        .theme-red {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --primary-light: #ff7979;
+            --primary-transparent: rgba(231, 76, 60, 0.15);
+            --timer-color: #e74c3c;
+            --stats-color: #e74c3c;
+            --top3-color: #e74c3c;
+            --fps-color: #e74c3c;
+        }
+
+        .theme-orange {
+            --primary: #e67e22;
+            --primary-dark: #d35400;
+            --primary-light: #f39c12;
+            --primary-transparent: rgba(230, 126, 34, 0.15);
+            --timer-color: #e67e22;
+            --stats-color: #e67e22;
+            --top3-color: #e67e22;
+            --fps-color: #e67e22;
+        }
+
+        .theme-purple {
+            --primary: #9b59b6;
+            --primary-dark: #8e44ad;
+            --primary-light: #bb8fce;
+            --primary-transparent: rgba(155, 89, 182, 0.15);
+            --timer-color: #9b59b6;
+            --stats-color: #9b59b6;
+            --top3-color: #9b59b6;
+            --fps-color: #9b59b6;
+        }
+
+        .theme-pink {
+            --primary: #e84393;
+            --primary-dark: #fd79a8;
+            --primary-light: #fab1a0;
+            --primary-transparent: rgba(232, 67, 147, 0.15);
+            --timer-color: #e84393;
+            --stats-color: #e84393;
+            --top3-color: #e84393;
+            --fps-color: #e84393;
+        }
+
+        .theme-cyan {
+            --primary: #00cec9;
+            --primary-dark: #00b894;
+            --primary-light: #81ecec;
+            --primary-transparent: rgba(0, 206, 201, 0.15);
+            --timer-color: #00cec9;
+            --stats-color: #00cec9;
+            --top3-color: #00cec9;
+            --fps-color: #00cec9;
+        }
+
+        .theme-yellow {
+            --primary: #fdcb6e;
+            --primary-dark: #fdcb6e;
+            --primary-light: #ffeaa7;
+            --primary-transparent: rgba(253, 203, 110, 0.15);
+            --timer-color: #fdcb6e;
+            --stats-color: #fdcb6e;
+            --top3-color: #fdcb6e;
+            --fps-color: #fdcb6e;
+        }
+
+        .theme-midnight {
+            --primary: #2d3436;
+            --primary-dark: #636e72;
+            --primary-light: #b2bec3;
+            --primary-transparent: rgba(45, 52, 54, 0.15);
+            --timer-color: #2d3436;
+            --stats-color: #2d3436;
+            --top3-color: #2d3436;
+            --fps-color: #2d3436;
+        }
+
+        .theme-ocean {
+            --primary: #0984e3;
+            --primary-dark: #0984e3;
+            --primary-light: #74b9ff;
+            --primary-transparent: rgba(9, 132, 227, 0.15);
+            --timer-color: #0984e3;
+            --stats-color: #0984e3;
+            --top3-color: #0984e3;
+            --fps-color: #0984e3;
+        }
 
         * {
             margin: 0;
@@ -42,20 +162,19 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Header */
+        /* Header Styles */
         header {
             background: var(--primary-transparent);
             backdrop-filter: blur(12px);
-            padding: 1.2rem 2rem;
-            border-bottom: 3px solid var(--primary);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--primary);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .header-content {
@@ -65,17 +184,16 @@
         }
 
         .logo {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             display: flex;
             align-items: center;
             gap: 12px;
-            text-shadow: 0 2px 10px rgba(124, 98, 220, 0.5);
         }
 
         .logo span {
             color: var(--primary);
-            text-shadow: 0 0 20px var(--primary);
+            text-shadow: 0 0 10px var(--primary-transparent);
         }
 
         .nav-links {
@@ -88,19 +206,15 @@
             color: var(--text-light);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 8px;
         }
 
         .nav-links a:hover {
             color: var(--primary);
-            background: var(--primary-transparent);
-            transform: translateY(-2px);
         }
 
-        /* Game Section */
+        /* Game Container */
         .game-section {
             flex: 1;
             display: flex;
@@ -115,7 +229,7 @@
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 20px 60px var(--primary-transparent), 0 0 40px rgba(124, 98, 220, 0.1);
+            box-shadow: 0 20px 60px var(--primary-transparent);
             border: 2px solid var(--primary);
         }
 
@@ -123,8 +237,8 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            border: 3px solid var(--primary);
+            box-shadow: 0 15px 40px var(--primary-transparent);
+            border: 2px solid var(--primary);
             height: 80vh;
             min-height: 600px;
             background: #000;
@@ -147,100 +261,94 @@
         }
 
         .control-btn {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid var(--primary);
             color: #fff;
-            padding: 10px 16px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 600;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            font-size: 14px;
         }
 
         .control-btn:hover {
             background: var(--primary);
             transform: scale(1.05);
-            box-shadow: 0 5px 15px var(--primary-transparent);
         }
-
         /* Overlays */
         .overlay {
             position: fixed;
             z-index: 2147483647;
             backdrop-filter: blur(10px);
             pointer-events: none;
+            resize: both;
+            overflow: auto;
+            min-width: 120px;
+            min-height: 40px;
         }
 
         #fps-overlay {
             top: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.9);
-            color: var(--primary);
-            padding: 12px 18px;
-            border-radius: 12px;
-            border: 2px solid var(--primary);
+            color: var(--fps-color);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--fps-color);
             font-family: 'Courier New', monospace;
             font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         #top3-overlay {
             bottom: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.95);
-            color: var(--primary);
-            padding: 15px 18px;
-            border-radius: 12px;
-            border: 2px solid var(--primary);
-            min-width: 180px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            color: var(--top3-color);
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--top3-color);
+            min-width: 160px;
         }
 
         #top3-overlay .title {
-            color: var(--primary);
-            font-size: 14px;
+            color: var(--top3-color);
+            font-size: 12px;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: center;
-            text-shadow: 0 0 10px var(--primary);
         }
 
         #top3-overlay .player {
-            margin: 6px 0;
-            padding: 6px 8px;
-            border-radius: 6px;
+            margin: 4px 0;
+            padding: 4px 6px;
+            border-radius: 5px;
             background: var(--primary-transparent);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         #top3-overlay .player.first {
-            color: var(--primary);
+            color: var(--top3-color);
             font-weight: 700;
-            text-shadow: 0 0 8px var(--primary);
         }
 
         #speedrun-timer-overlay {
             bottom: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 15px 20px;
+            border: 2px solid var(--timer-color);
+            border-radius: 10px;
+            padding: 12px 15px;
             font-family: 'Courier New', monospace;
-            min-width: 160px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            min-width: 140px;
         }
 
         #timer-display {
             font-weight: bold;
-            font-size: 24px;
-            color: var(--primary);
+            font-size: 18px;
+            color: var(--timer-color);
             text-align: center;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--primary);
+            letter-spacing: 1px;
         }
 
         /* Bottom Menu */
@@ -249,40 +357,30 @@
             bottom: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.95);
-            border: 3px solid var(--primary);
-            border-radius: 15px;
-            padding: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
             z-index: 999999;
-            min-width: 240px;
+            min-width: 220px;
             backdrop-filter: blur(15px);
             display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
         }
 
         #bottom-menu.visible {
             display: block;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .menu-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--primary);
+            margin-bottom: 10px;
         }
 
         .menu-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
         }
 
         .close-btn {
@@ -291,69 +389,52 @@
             color: #000;
             font-weight: 700;
             border-radius: 6px;
-            padding: 5px 10px;
+            padding: 4px 8px;
             cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 2px 10px var(--primary);
+            font-size: 10px;
         }
 
         .quick-btn {
             width: 100%;
-            padding: 10px 12px;
+            padding: 8px 10px;
             background: #111;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
             color: #fff;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
-            transition: all 0.2s ease;
-            margin-top: 8px;
+            font-size: 11px;
+            transition: all 0.15s ease;
+            margin-top: 6px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             pointer-events: all;
         }
 
         .quick-btn:hover {
             background: var(--primary);
             color: #000;
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px var(--primary-transparent);
         }
         
         .toast {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.95);
+            left: 20px;
+            background: rgba(0,0,0,0.9);
             border: 2px solid var(--primary);
             color: #fff;
-            padding: 12px 20px;
-            border-radius: 12px;
-            z-index: 10000000;
-            min-width: 200px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 10px 14px;
+            border-radius: 10px;
+            z-index: 1000000;
+            min-width: 180px;
+            font-size: 12px;
             display: none;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
         }
         
-        .toast.success { border-color: var(--success); box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3); }
-        .toast.error { border-color: var(--danger); box-shadow: 0 8px 30px rgba(255, 68, 68, 0.3); }
-        .toast.visible { display: block; animation: toastIn 0.3s ease; }
-
-        @keyframes toastIn {
-            from { opacity: 0; transform: translate(-50%, 20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
+        .toast.success { border-color: var(--success); }
+        .toast.error { border-color: var(--danger); }
+        .toast.visible { display: block; }
 
         /* Settings Modal */
         .modal {
@@ -363,72 +444,56 @@
             transform: translate(-50%, -50%);
             background: var(--bg-card);
             border: 3px solid var(--primary);
-            border-radius: 20px;
-            padding: 2.5rem;
+            border-radius: 15px;
+            padding: 2rem;
             z-index: 100000;
             max-width: 90%;
-            width: 700px;
-            max-height: 85vh;
+            width: 600px;
+            max-height: 80vh;
             overflow-y: auto;
             backdrop-filter: blur(20px);
             display: none;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
         .modal.active {
             display: block;
-            animation: modalIn 0.3s ease;
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: translate(-50%, -48%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .modal h2 {
-            color: var(--primary);
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 28px;
-            text-shadow: 0 0 15px var(--primary);
         }
 
         .settings-section {
-            background: rgba(20, 20, 30, 0.8);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 2px solid var(--primary-transparent);
+            background: rgba(20, 20, 30, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--primary-transparent);
         }
 
         .settings-section h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 18px;
+            margin-bottom: 12px;
+            font-size: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .settings-row {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
         .settings-label {
-            min-width: 140px;
+            min-width: 120px;
             color: var(--text-muted);
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
         }
 
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 55px;
-            height: 28px;
+            width: 50px;
+            height: 24px;
         }
 
         .toggle-switch input {
@@ -446,17 +511,16 @@
             bottom: 0;
             background-color: #333;
             transition: .4s;
-            border-radius: 28px;
-            border: 2px solid #555;
+            border-radius: 24px;
         }
 
         .toggle-slider:before {
             position: absolute;
             content: "";
-            height: 20px;
-            width: 20px;
+            height: 16px;
+            width: 16px;
             left: 4px;
-            bottom: 2px;
+            bottom: 4px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
@@ -464,7 +528,6 @@
 
         input:checked + .toggle-slider {
             background-color: var(--primary);
-            border-color: var(--primary);
         }
 
         input:checked + .toggle-slider:before {
@@ -473,67 +536,58 @@
 
         .theme-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .theme-option {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 14px;
         }
 
         .theme-option.active {
-            border-color: #fff;
-            transform: scale(1.08);
-            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
-        }
-
-        .theme-option:hover {
+            border-color: var(--primary);
             transform: scale(1.05);
         }
 
-        .theme-option.violet { background: linear-gradient(135deg, #7c62dc, #6a50c9); }
-        .theme-option.blue { background: linear-gradient(135deg, #4a6fa5, #3a5a85); }
-        .theme-option.green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-        .theme-option.red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .theme-option.violet { background: linear-gradient(135deg, #7c62dc, #6a50c9); color: white; }
+        .theme-option.blue { background: linear-gradient(135deg, #4a6fa5, #3a5a85); color: white; }
+        .theme-option.green { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
+        .theme-option.red { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .theme-option.orange { background: linear-gradient(135deg, #e67e22, #d35400); color: white; }
+        .theme-option.purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; }
+        .theme-option.pink { background: linear-gradient(135deg, #e84393, #fd79a8); color: white; }
+        .theme-option.cyan { background: linear-gradient(135deg, #00cec9, #00b894); color: white; }
+        .theme-option.yellow { background: linear-gradient(135deg, #fdcb6e, #ffeaa7); color: #333; }
+        .theme-option.midnight { background: linear-gradient(135deg, #2d3436, #636e72); color: white; }
+        .theme-option.ocean { background: linear-gradient(135deg, #0984e3, #74b9ff); color: white; }
 
-        .modal-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary-transparent);
+        .resolution-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        .modal-btn {
-            padding: 12px 30px;
-            background: var(--primary);
-            border: none;
-            border-radius: 10px;
-            color: #000;
-            font-weight: 700;
-            font-size: 15px;
+        .resolution-option {
+            padding: 10px;
+            border-radius: 8px;
             cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
+            background: rgba(30, 30, 40, 0.7);
         }
 
-        .modal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px var(--primary-transparent);
-        }
-
-        .modal-btn.secondary {
-            background: #333;
-            color: #fff;
-            border: 2px solid var(--primary);
+        .resolution-option.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: var(--primary-transparent);
         }
 
         /* Footer */
@@ -543,7 +597,7 @@
             font-size: 14px;
             opacity: 0.8;
             color: var(--text-muted);
-            border-top: 2px solid var(--primary-transparent);
+            border-top: 1px solid var(--primary-transparent);
         }
 
         /* Loading */
@@ -553,22 +607,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 3px solid var(--primary);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--primary);
             z-index: 10;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
         }
 
         .spinner {
-            width: 60px;
-            height: 60px;
-            border: 6px solid #ffffff22;
-            border-top: 6px solid var(--primary);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ffffff33;
+            border-top: 5px solid var(--primary);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -581,20 +634,23 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
             .nav-links {
                 gap: 1rem;
-                font-size: 14px;
             }
+
             .game-frame {
                 height: 60vh;
                 min-height: 400px;
             }
+
             #top3-overlay {
                 display: none;
             }
+
             .modal {
                 width: 95%;
-                padding: 1.5rem;
+                padding: 1rem;
             }
         }
     </style>
@@ -609,8 +665,8 @@
                 <div class="nav-links">
                     <a id="play-btn">🎮 Jouer</a>
                     <a id="settings-btn">⚙️ Paramètres</a>
-                    <a href="./all-in-one-tool-main V9.1 for everyone/player.html?url=https%3A%2F%2Fsoundcloud.com%2Ftags%2Flofi" class="discord-link" target="_blank">🎵 Musique</a>
-                    <a href="https://discord.gg/KHfb8N3ekD" class="discord-link" target="_blank">💬 Discord</a>
+                    <a href="./all-in-one-tool-main V9.1 for everyone/player.html?url=https%3A%2F%2Fsoundcloud.com%2Ftags%2Flofi" target="_blank">🎵 Musique</a>
+                    <a href="https://discord.gg/KHfb8N3ekD" target="_blank">💬 Discord</a>
                 </div>
             </div>
         </header>
@@ -624,7 +680,7 @@
                     </div>
                     
                     <div class="game-controls">
-                        <button class="control-btn" id="fullscreen-btn">⛶ Plein écran</button>
+                        <button class="control-btn" id="fullscreen-btn">⤢ Plein écran</button>
                     </div>
 
                     <iframe id="game-iframe" 
@@ -645,9 +701,9 @@
 
     <div id="top3-overlay" class="overlay">
         <div class="title">🏆 TOP 3</div>
-        <div class="player first">🥇 Mynvo — 13:27</div>
-        <div class="player">🥈 Le_A — 11:51</div>
-        <div class="player">🥉 Pro — 10:23</div>
+        <div class="player first">🥇 Mynvo – 13:27</div>
+        <div class="player">🥈 Le_A – 11:51</div>
+        <div class="player">🥉 Pro – 10:23</div>
     </div>
 
     <div id="speedrun-timer-overlay" class="overlay">
@@ -663,17 +719,17 @@
         <button class="quick-btn" onclick="openSettingsModal()">🎮 Paramètres</button>
         <button class="quick-btn" onclick="toggleTimer()">⏱️ Timer</button>
         <button class="quick-btn" onclick="toggleFPS()">📊 FPS</button>
-        <button class="quick-btn" onclick="toggleFullscreen()">⛶ Plein écran</button>
+        <button class="quick-btn" onclick="toggleFullscreen()">⤢ Plein écran</button>
         <button class="quick-btn" onclick="toggleTop3()">🏆 TOP 3</button>
         <button class="quick-btn" onclick="unlockAll()">🎁 Unlock All</button>
     </div>
 
     <!-- Settings Modal -->
     <div id="settings-modal" class="modal">
-        <h2>⚙️ Paramètres</h2>
+        <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">⚙️ Paramètres</h2>
         
         <div class="settings-section">
-            <h3>💡 Affichage</h3>
+            <h3>👁️ Affichage</h3>
             <div class="settings-row">
                 <div class="settings-label">Afficher FPS</div>
                 <label class="toggle-switch">
@@ -705,41 +761,76 @@
         </div>
 
         <div class="settings-section">
+            <h3>🖥️ Résolution</h3>
+            <div class="resolution-options">
+                <div class="resolution-option" data-resolution="phone" onclick="changeResolution('phone')">
+                    📱 Téléphone
+                </div>
+                <div class="resolution-option" data-resolution="720p" onclick="changeResolution('720p')">
+                    🖥️ 720p
+                </div>
+                <div class="resolution-option" data-resolution="1080p" onclick="changeResolution('1080p')">
+                    🖥️ 1080p
+                </div>
+                <div class="resolution-option" data-resolution="1440p" onclick="changeResolution('1440p')">
+                    🖥️ 1440p
+                </div>
+                <div class="resolution-option active" data-resolution="auto" onclick="changeResolution('auto')">
+                    🔄 Auto
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
             <h3>🎨 Thèmes</h3>
-            <p style="color: var(--text-muted); margin-bottom: 15px;">Choisissez votre thème préféré :</p>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Choisissez un thème pour l'interface :</p>
             <div class="theme-options">
                 <div class="theme-option violet active" data-theme="violet">🔮 Violet</div>
                 <div class="theme-option blue" data-theme="blue">🔵 Bleu</div>
                 <div class="theme-option green" data-theme="green">💚 Vert</div>
                 <div class="theme-option red" data-theme="red">❤️ Rouge</div>
+                <div class="theme-option orange" data-theme="orange">🟠 Orange</div>
+                <div class="theme-option purple" data-theme="purple">🟣 Pourpre</div>
+                <div class="theme-option pink" data-theme="pink">🌸 Rose</div>
+                <div class="theme-option cyan" data-theme="cyan">💧 Cyan</div>
+                <div class="theme-option yellow" data-theme="yellow">💛 Jaune</div>
+                <div class="theme-option midnight" data-theme="midnight">🌙 Minuit</div>
+                <div class="theme-option ocean" data-theme="ocean">🌊 Océan</div>
             </div>
         </div>
 
-        <div class="modal-actions">
-            <button class="modal-btn" onclick="closeSettingsModal()">✓ Fermer</button>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="control-btn" onclick="closeSettingsModal()" style="padding: 10px 20px;">✓ Fermer</button>
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
-
     <script>
+        // Configuration
         const config = {
             showFPS: true,
             showTop3: true,
             showTimer: false,
             fullscreenDefault: true,
+            showOverlaysFullscreen: true,
+            resolution: 'auto',
             theme: 'violet'
         };
 
+        // État du timer
         let timerState = 'stopped';
         let timerStartTime = 0;
         let timerCurrentTime = 0;
         let timerInterval = null;
+
+        // FPS Counter
         let frameCount = 0;
         let lastTime = performance.now();
         let fps = 60;
+        
         let toastTimeout = null;
 
+        // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
             setupEventListeners();
@@ -747,7 +838,9 @@
             hideLoading();
             
             if (config.fullscreenDefault) {
-                setTimeout(() => toggleFullscreen(), 1000);
+                setTimeout(() => {
+                    toggleFullscreen();
+                }, 1000);
             }
         });
 
@@ -756,14 +849,19 @@
             applyConfig();
             setupCustomControls();
             setupTimerControls();
+            setupFullscreenOverlays();
             setupMessageBridge();
         }
 
         function setupEventListeners() {
+            // Navigation
             document.getElementById('play-btn').addEventListener('click', focusGame);
             document.getElementById('settings-btn').addEventListener('click', openSettingsModal);
+
+            // Contrôles de jeu
             document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
 
+            // Menu contextuel
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 toggleBottomMenu();
@@ -771,6 +869,7 @@
 
             document.getElementById('close-menu-btn').addEventListener('click', toggleBottomMenu);
 
+            // Paramètres
             document.getElementById('show-fps').addEventListener('change', function() {
                 config.showFPS = this.checked;
                 document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
@@ -794,36 +893,40 @@
                 saveConfig();
             });
 
+            // Thèmes
             document.querySelectorAll('.theme-option').forEach(option => {
                 option.addEventListener('click', function() {
-                    changeTheme(this.dataset.theme);
+                    const theme = this.dataset.theme;
+                    changeTheme(theme);
                 });
             });
 
+            // Plein écran
             document.addEventListener('fullscreenchange', handleFullscreenChange);
         }
 
+        // Système de contrôles personnalisés
         function setupCustomControls() {
             document.addEventListener('keydown', handleCustomKeyDown, true);
             document.addEventListener('keyup', handleCustomKeyUp, true);
         }
 
         function setupTimerControls() {
-            document.addEventListener('keydown', function(e) {
-                if (e.target.tagName === 'INPUT') return;
-                
-                if (e.key.toUpperCase() === 'T') {
-                    if (timerState === 'stopped' || timerState === 'paused') {
-                        startTimer();
-                    } else if (timerState === 'running') {
-                        pauseTimer();
-                    }
-                } else if (e.key.toUpperCase() === 'R') {
-                    resetTimer();
-                }
-            }, true);
+            document.addEventListener('keydown', handleTimerKeyDown, true);
         }
 
+        function setupFullscreenOverlays() {
+            document.addEventListener('fullscreenchange', function() {
+                if (config.showOverlaysFullscreen) {
+                    if (document.fullscreenElement) {
+                        document.querySelectorAll('.overlay').forEach(overlay => {
+                            overlay.style.display = 'block';
+                        });
+                    }
+                }
+            });
+        }
+        
         function setupMessageBridge() {
             window.addEventListener('message', function(event) {
                 try {
@@ -834,7 +937,7 @@
                 } catch (e) {}
             });
         }
-
+        
         function sendGameCommand(command, payload = {}) {
             const iframe = document.getElementById('game-iframe');
             try {
@@ -843,7 +946,7 @@
                 showToast('Impossible d\'envoyer la commande', 'error');
             }
         }
-
+        
         function showToast(message, status = 'success') {
             const el = document.getElementById('toast');
             el.textContent = message;
@@ -854,7 +957,7 @@
             if (toastTimeout) clearTimeout(toastTimeout);
             toastTimeout = setTimeout(() => {
                 el.classList.remove('visible');
-            }, 2500);
+            }, 2000);
         }
 
         function handleCustomKeyDown(e) {
@@ -911,6 +1014,22 @@
             }
         }
 
+        function handleTimerKeyDown(e) {
+            if (e.target.tagName === 'INPUT') return;
+
+            const key = e.key.toUpperCase();
+            
+            if (key === 'T') {
+                if (timerState === 'stopped' || timerState === 'paused') {
+                    startTimer();
+                } else if (timerState === 'running') {
+                    pauseTimer();
+                }
+            } else if (key === 'R') {
+                resetTimer();
+            }
+        }
+        // Timer functions
         function startTimer() {
             if (timerState === 'stopped' || timerState === 'paused') {
                 timerStartTime = performance.now() - timerCurrentTime;
@@ -922,6 +1041,7 @@
                         updateTimerDisplay();
                     }
                 }, 10);
+                showToast('⏱️ Timer démarré', 'success');
             }
         }
 
@@ -929,6 +1049,7 @@
             if (timerState === 'running') {
                 timerState = 'paused';
                 clearInterval(timerInterval);
+                showToast('⏸️ Timer en pause', 'success');
             }
         }
 
@@ -937,6 +1058,7 @@
             timerCurrentTime = 0;
             clearInterval(timerInterval);
             updateTimerDisplay();
+            showToast('🔄 Timer réinitialisé', 'success');
         }
 
         function updateTimerDisplay() {
@@ -949,6 +1071,7 @@
                 `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}.${cs.toString().padStart(2, '0')}`;
         }
 
+        // FPS Counter
         function startFPSCounter() {
             function updateFPS() {
                 frameCount++;
@@ -967,8 +1090,10 @@
             updateFPS();
         }
 
+        // Gestion des thèmes
         function changeTheme(themeName) {
-            document.body.classList.remove('theme-violet', 'theme-blue', 'theme-green', 'theme-red');
+            document.body.classList.remove('theme-violet', 'theme-blue', 'theme-green', 'theme-red', 'theme-orange', 
+                                         'theme-purple', 'theme-pink', 'theme-cyan', 'theme-yellow', 'theme-midnight', 'theme-ocean');
             document.body.classList.add(`theme-${themeName}`);
             config.theme = themeName;
             
@@ -978,8 +1103,49 @@
             document.querySelector(`.theme-option[data-theme="${themeName}"]`).classList.add('active');
             
             saveConfig();
+            showToast('🎨 Thème changé', 'success');
         }
 
+        // Gestion de la résolution
+        function changeResolution(resolution) {
+            config.resolution = resolution;
+            
+            document.querySelectorAll('.resolution-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.resolution-option[data-resolution="${resolution}"]`).classList.add('active');
+            
+            const gameFrame = document.querySelector('.game-frame');
+            
+            switch(resolution) {
+                case 'phone':
+                    gameFrame.style.height = '50vh';
+                    gameFrame.style.minHeight = '300px';
+                    break;
+                case '720p':
+                    gameFrame.style.height = '60vh';
+                    gameFrame.style.minHeight = '400px';
+                    break;
+                case '1080p':
+                    gameFrame.style.height = '70vh';
+                    gameFrame.style.minHeight = '500px';
+                    break;
+                case '1440p':
+                    gameFrame.style.height = '80vh';
+                    gameFrame.style.minHeight = '600px';
+                    break;
+                case 'auto':
+                default:
+                    gameFrame.style.height = '80vh';
+                    gameFrame.style.minHeight = '600px';
+                    break;
+            }
+            
+            saveConfig();
+            showToast('🖥️ Résolution changée', 'success');
+        }
+
+        // Fonctions d'interface
         function openSettingsModal() {
             document.getElementById('settings-modal').classList.add('active');
         }
@@ -1018,8 +1184,18 @@
             const fullscreenBtn = document.getElementById('fullscreen-btn');
             if (document.fullscreenElement) {
                 fullscreenBtn.textContent = '⛶ Quitter';
+                
+                if (config.showOverlaysFullscreen) {
+                    document.querySelectorAll('.overlay').forEach(overlay => {
+                        overlay.style.display = 'block';
+                    });
+                }
             } else {
-                fullscreenBtn.textContent = '⛶ Plein écran';
+                fullscreenBtn.textContent = '⤢ Plein écran';
+                
+                document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
+                document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
+                document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
             }
         }
 
@@ -1028,7 +1204,7 @@
             document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
             document.getElementById('show-timer').checked = config.showTimer;
             saveConfig();
-            showToast(config.showTimer ? 'Timer activé' : 'Timer désactivé', 'success');
+            showToast(config.showTimer ? '⏱️ Timer affiché' : '⏱️ Timer masqué', 'success');
         }
 
         function toggleFPS() {
@@ -1036,7 +1212,7 @@
             document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
             document.getElementById('show-fps').checked = config.showFPS;
             saveConfig();
-            showToast(config.showFPS ? 'FPS activé' : 'FPS désactivé', 'success');
+            showToast(config.showFPS ? '📊 FPS affiché' : '📊 FPS masqué', 'success');
         }
 
         function toggleTop3() {
@@ -1044,7 +1220,7 @@
             document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
             document.getElementById('show-top3').checked = config.showTop3;
             saveConfig();
-            showToast(config.showTop3 ? 'TOP 3 activé' : 'TOP 3 désactivé', 'success');
+            showToast(config.showTop3 ? '🏆 TOP 3 affiché' : '🏆 TOP 3 masqué', 'success');
         }
 
         function unlockAll() {
@@ -1063,6 +1239,7 @@
             }, 2000);
         }
 
+        // Sauvegarde/Chargement de la configuration
         function saveConfig() {
             localStorage.setItem('mynvoConfig', JSON.stringify(config));
         }
@@ -1088,6 +1265,12 @@
             document.getElementById('show-top3').checked = config.showTop3;
             document.getElementById('show-timer').checked = config.showTimer;
             document.getElementById('fullscreen-default').checked = config.fullscreenDefault;
+            
+            document.querySelectorAll('.resolution-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.resolution-option[data-resolution="${config.resolution}"]`).classList.add('active');
+            changeResolution(config.resolution);
         }
 
         console.log('🎮 Subway Surfers 2025 - Version Mynvo Chargée!');
