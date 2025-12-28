@@ -34,5 +34,61 @@
 
   <body>
     <script src="master-loader.js"></script>
+    <script>
+    (function(){
+      var canvas=null;
+      function sendAck(msg,ok){
+        try{ parent.postMessage({type:'MynvoAck',message:msg,success:!!ok},'*'); }catch(_){}
+      }
+      function getCanvas(){
+        if(canvas && document.body.contains(canvas)) return canvas;
+        canvas=document.querySelector('canvas');
+        return canvas||document.body;
+      }
+      function kcode(key){
+        if(key==='Space') return 32;
+        if(key==='ArrowUp') return 38;
+        if(key==='ArrowDown') return 40;
+        if(key==='ArrowLeft') return 37;
+        if(key==='ArrowRight') return 39;
+        return 0;
+      }
+      function dispatch(type,key,code){
+        var targets=[window,document,getCanvas()];
+        var kc=kcode(code||key);
+        targets.forEach(function(t){
+          try{
+            t.dispatchEvent(new KeyboardEvent(type,{
+              key:key, code:code, keyCode:kc, which:kc, bubbles:true
+            }));
+          }catch(_){}
+        });
+      }
+      function writeSaves(mut){
+        var keys=['subway-surfers-v1-data','SubwaySurfersData','ss_data','ss_save_data'];
+        keys.forEach(function(k){
+          var d={};
+          try{ d=JSON.parse(localStorage.getItem(k)||'{}'); }catch(_){}
+          Object.keys(mut).forEach(function(m){ d[m]=mut[m]; });
+          localStorage.setItem(k,JSON.stringify(d));
+        });
+      }
+      window.addEventListener('message',function(e){
+        var data=e.data||{};
+        if(data.type==='keydown'){ dispatch('keydown',data.key||'',data.code||''); }
+        else if(data.type==='keyup'){ dispatch('keyup',data.key||'',data.code||''); }
+        else if(data.type==='MynvoCommand'){
+          var c=data.command, p=data.payload||{};
+          if(c==='setCoins'){ writeSaves({coins: p.amount || 999999}); sendAck('Pièces définies',true); }
+          else if(c==='setKeys'){ writeSaves({keys: p.amount || 999}); sendAck('Clés définies',true); }
+          else if(c==='unlockAll'){
+            writeSaves({coins: p.coins || 99999999, keys: p.keys || 999999, charactersUnlocked:true, unlockAll:true});
+            sendAck('Unlock All',true);
+          }
+          else if(c==='toggleNoCoin'){ window.noCoinActive = !!p; sendAck('No Coins',true); }
+        }
+      });
+    })();
+    </script>
   </body>
 </html>
