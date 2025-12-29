@@ -13,12 +13,9 @@
         debug: false,
         maxRatio: 16 / 9,
         minRatio: 9 / 16,
-
         title: "Subway Surfers: San Francisco",
-
         unityVersion: "2019.4.18f1",
         unityWebglBuildUrl: "Build/SanFrancisco.json",
-
         fileSize: 35,
         cachedDecompressedFileSizes: {
           "SanFrancisco.asm.code.unityweb": 9077143,
@@ -37,25 +34,52 @@
     <script>
     (function(){
       var canvas=null;
+
+      // --- TRADUCTION ZQSD & TRANSMISSION PARENT ---
+      window.addEventListener('keydown', function(e) {
+        const key = e.key.toUpperCase();
+        
+        // 1. Envoyer la touche au site principal (pour le Timer)
+        try { 
+            window.parent.postMessage({ type: 'keydown', key: e.key }, '*'); 
+        } catch(err) {}
+
+        // 2. Traduire ZQSD pour le moteur de jeu
+        const map = { 
+            'Z': { k: 'ArrowUp', c: 'ArrowUp' }, 
+            'S': { k: 'ArrowDown', c: 'ArrowDown' }, 
+            'Q': { k: 'ArrowLeft', c: 'ArrowLeft' }, 
+            'D': { k: 'ArrowRight', c: 'ArrowRight' } 
+        };
+
+        if (map[key]) {
+            dispatch('keydown', map[key].k, map[key].c);
+        }
+      }, true);
+
       function sendAck(msg,ok){
         try{ parent.postMessage({type:'MynvoAck',message:msg,success:!!ok},'*'); }catch(_){}
       }
+
       function getCanvas(){
         if(canvas && document.body.contains(canvas)) return canvas;
         canvas=document.querySelector('canvas');
         return canvas||document.body;
       }
+
       function kcode(key){
         if(key==='Space') return 32;
-        if(key==='ArrowUp') return 38;
-        if(key==='ArrowDown') return 40;
-        if(key==='ArrowLeft') return 37;
-        if(key==='ArrowRight') return 39;
+        if(key==='ArrowUp' || key==='z') return 38;
+        if(key==='ArrowDown' || key==='s') return 40;
+        if(key==='ArrowLeft' || key==='q') return 37;
+        if(key==='ArrowRight' || key==='d') return 39;
         return 0;
       }
+
       function dispatch(type,key,code){
         var targets=[window,document,getCanvas()];
-        var kc=kcode(code||key);
+        var kc = (code === 'ArrowUp') ? 38 : (code === 'ArrowDown') ? 40 : (code === 'ArrowLeft') ? 37 : (code === 'ArrowRight') ? 39 : kcode(code||key);
+        
         targets.forEach(function(t){
           try{
             t.dispatchEvent(new KeyboardEvent(type,{
@@ -64,6 +88,7 @@
           }catch(_){}
         });
       }
+
       function writeSaves(mut){
         var keys=['subway-surfers-v1-data','SubwaySurfersData','ss_data','ss_save_data'];
         keys.forEach(function(k){
@@ -73,6 +98,7 @@
           localStorage.setItem(k,JSON.stringify(d));
         });
       }
+
       window.addEventListener('message',function(e){
         var data=e.data||{};
         if(data.type==='keydown'){ dispatch('keydown',data.key||'',data.code||''); }
@@ -82,10 +108,16 @@
           if(c==='setCoins'){ writeSaves({coins: p.amount || 999999}); sendAck('Pièces définies',true); }
           else if(c==='setKeys'){ writeSaves({keys: p.amount || 999}); sendAck('Clés définies',true); }
           else if(c==='unlockAll'){
-            writeSaves({coins: p.coins || 99999999, keys: p.keys || 999999, charactersUnlocked:true, unlockAll:true});
-            sendAck('Unlock All',true);
+            writeSaves({
+                coins: 99999999, 
+                keys: 999999, 
+                charactersUnlocked:true, 
+                unlockAll:true,
+                scores: [9999999]
+            });
+            sendAck('Unlock All effectué ! Relancez le jeu.',true);
           }
-          else if(c==='toggleNoCoin'){ window.noCoinActive = !!p; sendAck('No Coins',true); }
+          else if(c==='toggleNoCoin'){ window.noCoinActive = !!p; sendAck('No Coins activé',true); }
         }
       });
     })();
