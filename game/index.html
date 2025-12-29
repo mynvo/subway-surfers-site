@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Subway Surfers</title>
+    <title>Subway Surfers - Mynvo Edition</title>
     <link rel="icon" href="img/FirstAvatar.png">
 
     <script type="text/javascript" src="4399.z.js"></script>
@@ -29,13 +29,13 @@
     </script>
   </head>
 
-  <body>
+  <body style="margin:0; overflow:hidden; background:#000;">
     <script src="master-loader.js"></script>
     <script>
     (function(){
-      var canvas=null;
+      var canvas = null;
 
-      // Map de conversion ZQSD vers Flèches
+      // Map de conversion ZQSD -> Flèches
       const controlsMap = { 
           'Z': { key: 'ArrowUp', code: 'ArrowUp', keyCode: 38 }, 
           'S': { key: 'ArrowDown', code: 'ArrowDown', keyCode: 40 }, 
@@ -43,61 +43,44 @@
           'D': { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39 } 
       };
 
-      // --- ECOUTEUR DES TOUCHES (KEYDOWN & KEYUP) ---
+      // Gestionnaire de touches
       function handleKeyEvent(e) {
         const keyUpper = e.key.toUpperCase();
         
-        // 1. Envoyer au parent (Timer) - On envoie l'événement d'origine
+        // 1. Envoi au site parent (ton dossier racine /index.html) pour le Timer
         try { 
-            window.parent.postMessage({ type: e.type, key: e.key, code: e.code }, '*'); 
+            window.parent.postMessage({ type: e.type, key: e.key }, '*'); 
         } catch(err) {}
 
-        // 2. Traduction ZQSD pour Unity
+        // 2. Conversion ZQSD pour Unity
         if (controlsMap[keyUpper]) {
-            const translated = controlsMap[keyUpper];
-            dispatch(e.type, translated.key, translated.code, translated.keyCode);
+            const trans = controlsMap[keyUpper];
             
-            // Empêche le navigateur de faire défiler la page avec les touches
-            if(["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(translated.code)) {
-                e.preventDefault();
-            }
+            // On crée un nouvel événement clavier "Flèche"
+            const event = new KeyboardEvent(e.type, {
+                key: trans.key,
+                code: trans.code,
+                keyCode: trans.keyCode,
+                which: trans.keyCode,
+                bubbles: true,
+                cancelable: true
+            });
+
+            // On l'envoie au jeu
+            const target = document.querySelector('canvas') || document;
+            target.dispatchEvent(event);
+
+            // Empêche le conflit (évite que Z fasse autre chose dans le navigateur)
+            if(e.type === 'keydown') e.preventDefault();
         }
       }
 
       window.addEventListener('keydown', handleKeyEvent, true);
       window.addEventListener('keyup', handleKeyEvent, true);
 
-      function getCanvas(){
-        if(canvas && document.body.contains(canvas)) return canvas;
-        canvas = document.querySelector('canvas') || document.querySelector('#unity-canvas');
-        return canvas || document.body;
-      }
-
-      function dispatch(type, key, code, keyCode){
-        const targetCanvas = getCanvas();
-        const targets = [window, document, targetCanvas];
-        
-        const event = new KeyboardEvent(type, {
-          key: key,
-          code: code,
-          keyCode: keyCode,
-          which: keyCode,
-          bubbles: true,
-          cancelable: true
-        });
-        
-        targets.forEach(function(t){
-          try { t.dispatchEvent(event); } catch(_) {}
-        });
-      }
-
-      // --- SYSTÈME DE SAUVEGARDE ET COMMANDES (MYNVO) ---
-      function sendAck(msg, ok){
-        try{ parent.postMessage({type:'MynvoAck', message:msg, success:!!ok}, '*'); }catch(_){}
-      }
-
+      // --- COMMANDES DE TRICHE (Pièces / Clés) ---
       function writeSaves(mut){
-        var keys=['subway-surfers-v1-data','SubwaySurfersData','ss_data','ss_save_data'];
+        var keys=['subway-surfers-v1-data','SubwaySurfersData','ss_data'];
         keys.forEach(function(k){
           var d={};
           try{ d=JSON.parse(localStorage.getItem(k)||'{}'); }catch(_){}
@@ -107,33 +90,16 @@
       }
 
       window.addEventListener('message', function(e){
-        var data = e.data || {};
-        // Commandes reçues depuis le site parent (index.html racine)
-        if(data.type === 'MynvoCommand'){
-          var c = data.command, p = data.payload || {};
-          if(c === 'setCoins'){ 
-             writeSaves({coins: p.amount || 999999}); 
-             sendAck('Pièces définies !', true); 
-          }
-          else if(c === 'setKeys'){ 
-             writeSaves({keys: p.amount || 999}); 
-             sendAck('Clés définies !', true); 
-          }
-          else if(c === 'unlockAll'){
-            writeSaves({
-                coins: 99999999, 
-                keys: 999999, 
-                charactersUnlocked: true, 
-                unlockAll: true,
-                scores: [9999999]
-            });
-            sendAck('Tout est débloqué ! Relancez le jeu.', true);
+        if(e.data && e.data.type === 'MynvoCommand'){
+          const c = e.data.command;
+          const p = e.data.payload || {};
+          if(c === 'unlockAll'){
+            writeSaves({ coins: 999999, keys: 9999, unlockAll: true });
+            alert("Cheat activé ! Relance le jeu.");
           }
         }
       });
 
-      // Nettoyage console pour éviter les logs inutiles
-      console.log("🎮 Subway Surfers Game Engine Ready");
     })();
     </script>
   </body>
