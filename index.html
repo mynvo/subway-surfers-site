@@ -3,283 +3,1094 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Surfers by Mynvo - Pro Edition 2025</title>
+    <title>Subway Surfers by Mynvo - Édition 2025</title>
     <style>
         :root {
             --primary: #7c62dc;
-            --primary-glow: rgba(124, 98, 220, 0.5);
+            --primary-dark: #6a50c9;
+            --primary-light: #9580e8;
+            --primary-transparent: rgba(124, 98, 220, 0.15);
             --bg-dark: #0a0a0a;
-            --bg-card: rgba(20, 20, 25, 0.95);
+            --bg-card: rgba(30, 30, 40, 0.95);
             --text-light: #f0f0f0;
-            --success: #00ff88;
+            --text-muted: #aaa;
+            --success: #00cc66;
+            --danger: #ff4444;
+            --warning: #ffaa00;
         }
 
-        .theme-violet { --primary: #7c62dc; --primary-glow: rgba(124, 98, 220, 0.5); }
-        .theme-blue { --primary: #00a2ff; --primary-glow: rgba(0, 162, 255, 0.5); }
-        .theme-red { --primary: #ff4444; --primary-glow: rgba(255, 68, 68, 0.5); }
+        .theme-violet { --primary: #7c62dc; --primary-dark: #6a50c9; --primary-light: #9580e8; }
+        .theme-blue { --primary: #4a6fa5; --primary-dark: #3a5a85; --primary-light: #6b8cc0; }
+        .theme-green { --primary: #2ecc71; --primary-dark: #27ae60; --primary-light: #58d68d; }
+        .theme-red { --primary: #e74c3c; --primary-dark: #c0392b; --primary-light: #ff7979; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background: var(--bg-dark);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
             color: var(--text-light);
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        /* --- HEADER --- */
+        /* Header */
         header {
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid var(--primary);
+            background: var(--primary-transparent);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 2rem;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 0 20px var(--primary-glow);
         }
-        .logo { font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; }
-        .logo span { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
-        /* --- GAME AREA --- */
-        .main-content {
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 2px 10px rgba(124, 98, 220, 0.5);
+        }
+
+        .logo span {
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: var(--primary-transparent);
+            transform: translateY(-2px);
+        }
+
+        /* Game Section */
+        .game-section {
             flex: 1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            position: relative;
+            justify-content: center;
+            padding: 2rem;
         }
-        .game-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1100px;
-            height: 100%;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            background: #000;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-        }
-        iframe { width: 100%; height: 100%; border: none; border-radius: 10px; }
 
-        /* --- OVERLAYS (Livesplit Style) --- */
-        .overlay {
+        .game-container {
+            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px var(--primary-transparent), 0 0 40px rgba(124, 98, 220, 0.1);
+            border: 2px solid var(--primary);
+        }
+
+        .game-frame {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border: 3px solid var(--primary);
+            height: 80vh;
+            min-height: 600px;
+            background: #000;
+        }
+
+        #game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+
+        .game-controls {
             position: absolute;
+            top: 15px;
+            right: 15px;
             z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
             background: rgba(0, 0, 0, 0.85);
-            border: 1px solid var(--primary);
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
+            border: 2px solid var(--primary);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--primary-transparent);
+        }
+
+        /* Overlays */
+        .overlay {
+            position: fixed;
+            z-index: 2147483647;
+            backdrop-filter: blur(10px);
             pointer-events: none;
         }
-        #fps-box { top: 15px; left: 15px; color: var(--success); font-weight: bold; }
+
+        #fps-overlay {
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--primary);
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #top3-overlay {
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            color: var(--primary);
+            padding: 15px 18px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            min-width: 180px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #top3-overlay .title {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        #top3-overlay .player {
+            margin: 6px 0;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: var(--primary-transparent);
+            font-size: 12px;
+        }
+
+        #top3-overlay .player.first {
+            color: var(--primary);
+            font-weight: 700;
+            text-shadow: 0 0 8px var(--primary);
+        }
+
+        #speedrun-timer-overlay {
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px 20px;
+            font-family: 'Courier New', monospace;
+            min-width: 160px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #timer-display {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--primary);
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Bottom Menu */
+        #bottom-menu {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid var(--primary);
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 999999;
+            min-width: 240px;
+            backdrop-filter: blur(15px);
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        }
+
+        #bottom-menu.visible {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .menu-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .close-btn {
+            background: var(--primary);
+            border: none;
+            color: #000;
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 10px var(--primary);
+        }
+
+        .quick-btn {
+            width: 100%;
+            padding: 10px 12px;
+            background: #111;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: all;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px var(--primary-transparent);
+        }
         
-        #timer-box { 
-            bottom: 20px; 
-            right: 20px; 
-            min-width: 180px; 
-            text-align: right;
-            border-right: 4px solid var(--primary);
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.95);
+            border: 2px solid var(--primary);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            z-index: 10000000;
+            min-width: 200px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
         }
-        #timer-val { font-size: 28px; font-weight: bold; color: #fff; }
-        #timer-label { font-size: 10px; color: var(--primary); text-transform: uppercase; }
+        
+        .toast.success { border-color: var(--success); box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3); }
+        .toast.error { border-color: var(--danger); box-shadow: 0 8px 30px rgba(255, 68, 68, 0.3); }
+        .toast.visible { display: block; animation: toastIn 0.3s ease; }
 
-        #top3-box { bottom: 20px; left: 20px; font-size: 13px; }
-
-        /* --- SETTINGS MODAL --- */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            display: none; justify-content: center; align-items: center; z-index: 1000;
+        @keyframes toastIn {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
         }
+
+        /* Settings Modal */
         .modal {
-            background: var(--bg-card); border: 2px solid var(--primary);
-            padding: 30px; border-radius: 15px; width: 400px;
-        }
-        .setting-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        input[type="text"] { 
-            width: 50px; background: #000; border: 1px solid var(--primary); 
-            color: #fff; text-align: center; padding: 5px; border-radius: 4px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            z-index: 100000;
+            max-width: 90%;
+            width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            display: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        /* --- CONTEXT MENU --- */
-        #ctx-menu {
-            position: fixed; background: #151515; border: 1px solid var(--primary);
-            border-radius: 5px; padding: 5px 0; display: none; z-index: 2000; min-width: 160px;
+        .modal.active {
+            display: block;
+            animation: modalIn 0.3s ease;
         }
-        .ctx-item { padding: 8px 15px; cursor: pointer; font-size: 14px; }
-        .ctx-item:hover { background: var(--primary); color: #000; }
 
-        .btn-ui {
-            background: var(--primary); color: #000; border: none;
-            padding: 8px 16px; border-radius: 5px; font-weight: bold; cursor: pointer;
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 28px;
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        .settings-section {
+            background: rgba(20, 20, 30, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid var(--primary-transparent);
+        }
+
+        .settings-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .settings-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .settings-label {
+            min-width: 140px;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 55px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 28px;
+            border: 2px solid #555;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .theme-option {
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .theme-option.active {
+            border-color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+
+        .theme-option:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-option.violet { background: linear-gradient(135deg, #7c62dc, #6a50c9); }
+        .theme-option.blue { background: linear-gradient(135deg, #4a6fa5, #3a5a85); }
+        .theme-option.green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .theme-option.red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-transparent);
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--primary-transparent);
+        }
+
+        .modal-btn.secondary {
+            background: #333;
+            color: #fff;
+            border: 2px solid var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 14px;
+            opacity: 0.8;
+            color: var(--text-muted);
+            border-top: 2px solid var(--primary-transparent);
+        }
+
+        /* Loading */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid var(--primary);
+            z-index: 10;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #ffffff22;
+            border-top: 6px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                font-size: 14px;
+            }
+            .game-frame {
+                height: 60vh;
+                min-height: 400px;
+            }
+            #top3-overlay {
+                display: none;
+            }
+            .modal {
+                width: 95%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body class="theme-violet">
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    🚇 Subway<span>Surfers</span> by <span>Mynvo</span>
+                </div>
+                <div class="nav-links">
+                    <a id="play-btn">🎮 Jouer</a>
+                    <a id="settings-btn">⚙️ Paramètres</a>
+                    <a href="./all-in-one-tool-main V9.1 for everyone/player.html?url=https%3A%2F%2Fsoundcloud.com%2Ftags%2Flofi" class="discord-link" target="_blank">🎵 Musique</a>
+                    <a href="https://discord.gg/XPQ5EuCc" class="discord-link" target="_blank">💬 Discord</a>
+                </div>
+            </div>
+        </header>
 
-    <header>
-        <div class="logo">🚇 SUBWAY<span>SURFERS</span></div>
-        <div style="display: flex; gap: 15px;">
-            <button class="btn-ui" onclick="toggleModal()">PARAMÈTRES</button>
+        <main class="game-section">
+            <div class="game-container">
+                <div class="game-frame">
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Chargement de Subway Surfers...</p>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="control-btn" id="fullscreen-btn">⛶ Plein écran</button>
+                    </div>
+
+                    <iframe id="game-iframe" 
+                            src="./game/index.html"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            Subway Surfers 2k26 by Mynvo
+        </footer>
+    </div>
+
+    <!-- Overlays -->
+    <div id="fps-overlay" class="overlay">FPS: <span id="fps-value">60</span></div>
+
+    <div id="top3-overlay" class="overlay">
+        <div class="title">🏆 TOP 3</div>
+        <div class="player first">🥇 intr0vable — 12:34</div>
+        <div class="player">🥈 Leomsr — 12:25</div>
+        <div class="player">🥉 spawox — 11:22</div>S
+    </div>
+
+    <div id="speedrun-timer-overlay" class="overlay">
+        <div id="timer-display">00:00.00</div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <div id="bottom-menu">
+        <div class="menu-header">
+            <div class="menu-title">⚙️ Menu Rapide</div>
+            <button class="close-btn" id="close-menu-btn">✖</button>
         </div>
-    </header>
+        <button class="quick-btn" onclick="openSettingsModal()">🎮 Paramètres</button>
+        <button class="quick-btn" onclick="toggleTimer()">⏱️ Timer</button>
+        <button class="quick-btn" onclick="toggleFPS()">📊 FPS</button>
+        <button class="quick-btn" onclick="toggleFullscreen()">⛶ Plein écran</button>
+        <button class="quick-btn" onclick="toggleTop3()">🏆 TOP 3</button>
+        <button class="quick-btn" onclick="unlockAll()">🎁 Unlock All</button>
+    </div>
 
-    <div class="main-content">
-        <div class="game-wrapper" id="capture-zone">
-            <div id="fps-box" class="overlay">FPS: <span id="fps-num">60</span></div>
-            
-            <div id="timer-box" class="overlay">
-                <div id="timer-label">Session Timer</div>
-                <div id="timer-val">00:00.00</div>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <h2>⚙️ Paramètres</h2>
+        
+        <div class="settings-section">
+            <h3>💡 Affichage</h3>
+            <div class="settings-row">
+                <div class="settings-label">Afficher FPS</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-fps" checked>
+                    <span class="toggle-slider"></span>
+                </label>
             </div>
-
-            <div id="top3-box" class="overlay">
-                <div style="color: var(--primary); margin-bottom: 5px;">TOP RECORDS</div>
-                <div>🥇 Mynvo: 1:22:04</div>
-                <div>🥈 Player: 0:45:12</div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher TOP 3</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-top3" checked>
+                    <span class="toggle-slider"></span>
+                </label>
             </div>
+            <div class="settings-row">
+                <div class="settings-label">Afficher Timer</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-timer">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="settings-row">
+                <div class="settings-label">Plein écran auto</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="fullscreen-default" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
 
-            <iframe id="game-iframe" src="https://yell0wsuit.page/games/subway-surfers/"></iframe>
+        <div class="settings-section">
+            <h3>🎨 Thèmes</h3>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Choisissez votre thème préféré :</p>
+            <div class="theme-options">
+                <div class="theme-option violet active" data-theme="violet">🔮 Violet</div>
+                <div class="theme-option blue" data-theme="blue">🔵 Bleu</div>
+                <div class="theme-option green" data-theme="green">💚 Vert</div>
+                <div class="theme-option red" data-theme="red">❤️ Rouge</div>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button class="modal-btn" onclick="closeSettingsModal()">✓ Fermer</button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <h2 style="margin-bottom: 20px; text-align: center;">Configuration</h2>
-            <div class="setting-row">
-                <span>Touche Timer</span>
-                <input type="text" id="cfg-timer-key" maxlength="1" value="T" oninput="updateConfig()">
-            </div>
-            <div class="setting-row">
-                <span>Contrôles ZQSD</span>
-                <input type="checkbox" id="cfg-zqsd" checked onchange="updateConfig()">
-            </div>
-            <button class="btn-ui" style="width: 100%;" onclick="toggleModal()">SAUVEGARDER</button>
-        </div>
-    </div>
-
-    <div id="ctx-menu">
-        <div class="ctx-item" onclick="resetTimer()">Réinitialiser Timer</div>
-        <div class="ctx-item" onclick="toggleFS()">Plein Écran (F)</div>
-        <div class="ctx-item" onclick="toggleModal()">Paramètres</div>
-    </div>
+    <div class="toast" id="toast"></div>
 
     <script>
-        // 1. CONFIGURATION INITIALE
-        let config = {
-            timerKey: 'T',
-            zqsdActive: true,
-            fpsActive: true
+        const config = {
+            showFPS: true,
+            showTop3: true,
+            showTimer: false,
+            fullscreenDefault: true,
+            theme: 'violet'
         };
 
-        // 2. LOGIQUE DU TIMER
-        let timerStart = 0, timerElapsed = 0, timerRunning = false, timerInterval;
+        let timerState = 'stopped';
+        let timerStartTime = 0;
+        let timerCurrentTime = 0;
+        let timerInterval = null;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let fps = 60;
+        let toastTimeout = null;
 
-        function toggleTimer() {
-            if (!timerRunning) {
-                timerStart = Date.now() - timerElapsed;
-                timerInterval = setInterval(updateTimerUI, 10);
-                timerRunning = true;
-            } else {
-                clearInterval(timerInterval);
-                timerRunning = false;
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            startFPSCounter();
+            hideLoading();
+            
+            if (config.fullscreenDefault) {
+                setTimeout(() => toggleFullscreen(), 1000);
+            }
+        });
+
+        function initializeApp() {
+            loadConfig();
+            applyConfig();
+            setupCustomControls();
+            setupTimerControls();
+            setupMessageBridge();
+        }
+
+        function setupEventListeners() {
+            document.getElementById('play-btn').addEventListener('click', focusGame);
+            document.getElementById('settings-btn').addEventListener('click', openSettingsModal);
+            document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                toggleBottomMenu();
+            });
+
+            document.getElementById('close-menu-btn').addEventListener('click', toggleBottomMenu);
+
+            document.getElementById('show-fps').addEventListener('change', function() {
+                config.showFPS = this.checked;
+                document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
+                saveConfig();
+            });
+
+            document.getElementById('show-top3').addEventListener('change', function() {
+                config.showTop3 = this.checked;
+                document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
+                saveConfig();
+            });
+
+            document.getElementById('show-timer').addEventListener('change', function() {
+                config.showTimer = this.checked;
+                document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
+                saveConfig();
+            });
+
+            document.getElementById('fullscreen-default').addEventListener('change', function() {
+                config.fullscreenDefault = this.checked;
+                saveConfig();
+            });
+
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    changeTheme(this.dataset.theme);
+                });
+            });
+
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+        }
+
+        function setupCustomControls() {
+            document.addEventListener('keydown', handleCustomKeyDown, true);
+            document.addEventListener('keyup', handleCustomKeyUp, true);
+        }
+
+        function setupTimerControls() {
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT') return;
+                
+                if (e.key.toUpperCase() === 'T') {
+                    if (timerState === 'stopped' || timerState === 'paused') {
+                        startTimer();
+                    } else if (timerState === 'running') {
+                        pauseTimer();
+                    }
+                } else if (e.key.toUpperCase() === 'R') {
+                    resetTimer();
+                }
+            }, true);
+        }
+
+        function setupMessageBridge() {
+            window.addEventListener('message', function(event) {
+                try {
+                    const data = event.data || {};
+                    if (data && data.type === 'MynvoAck') {
+                        showToast(data.message || 'Commande reçue', data.success ? 'success' : 'error');
+                    }
+                } catch (e) {}
+            });
+        }
+
+        function sendGameCommand(command, payload = {}) {
+            const iframe = document.getElementById('game-iframe');
+            try {
+                iframe.contentWindow.postMessage({ type: 'MynvoCommand', command, payload }, '*');
+            } catch (e) {
+                showToast('Impossible d\'envoyer la commande', 'error');
             }
         }
 
-        function updateTimerUI() {
-            timerElapsed = Date.now() - timerStart;
-            let time = new Date(timerElapsed);
-            let m = String(time.getUTCMinutes()).padStart(2, '0');
-            let s = String(time.getUTCSeconds()).padStart(2, '0');
-            let ms = String(Math.floor(time.getUTCMilliseconds() / 10)).padStart(2, '0');
-            document.getElementById('timer-val').innerText = `${m}:${s}.${ms}`;
+        function showToast(message, status = 'success') {
+            const el = document.getElementById('toast');
+            el.textContent = message;
+            el.classList.remove('success', 'error', 'visible');
+            if (status === 'success') el.classList.add('success');
+            if (status === 'error') el.classList.add('error');
+            el.classList.add('visible');
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                el.classList.remove('visible');
+            }, 2500);
+        }
+
+        function handleCustomKeyDown(e) {
+            if (e.target.tagName === 'INPUT') return;
+
+            const key = e.key.toUpperCase();
+            const keyMap = {
+                'Z': { key: 'ArrowUp', code: 'ArrowUp' },
+                'S': { key: 'ArrowDown', code: 'ArrowDown' },
+                'Q': { key: 'ArrowLeft', code: 'ArrowLeft' },
+                'D': { key: 'ArrowRight', code: 'ArrowRight' },
+                ' ': { key: ' ', code: 'Space' }
+            };
+
+            if (keyMap[key]) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const iframe = document.getElementById('game-iframe');
+                try {
+                    iframe.contentWindow.postMessage({
+                        type: 'keydown',
+                        key: keyMap[key].key,
+                        code: keyMap[key].code
+                    }, '*');
+                } catch (err) {}
+            }
+        }
+
+        function handleCustomKeyUp(e) {
+            if (e.target.tagName === 'INPUT') return;
+
+            const key = e.key.toUpperCase();
+            const keyMap = {
+                'Z': { key: 'ArrowUp', code: 'ArrowUp' },
+                'S': { key: 'ArrowDown', code: 'ArrowDown' },
+                'Q': { key: 'ArrowLeft', code: 'ArrowLeft' },
+                'D': { key: 'ArrowRight', code: 'ArrowRight' },
+                ' ': { key: ' ', code: 'Space' }
+            };
+
+            if (keyMap[key]) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const iframe = document.getElementById('game-iframe');
+                try {
+                    iframe.contentWindow.postMessage({
+                        type: 'keyup',
+                        key: keyMap[key].key,
+                        code: keyMap[key].code
+                    }, '*');
+                } catch (err) {}
+            }
+        }
+
+        function startTimer() {
+            if (timerState === 'stopped' || timerState === 'paused') {
+                timerStartTime = performance.now() - timerCurrentTime;
+                timerState = 'running';
+                
+                timerInterval = setInterval(() => {
+                    if (timerState === 'running') {
+                        timerCurrentTime = performance.now() - timerStartTime;
+                        updateTimerDisplay();
+                    }
+                }, 10);
+            }
+        }
+
+        function pauseTimer() {
+            if (timerState === 'running') {
+                timerState = 'paused';
+                clearInterval(timerInterval);
+            }
         }
 
         function resetTimer() {
+            timerState = 'stopped';
+            timerCurrentTime = 0;
             clearInterval(timerInterval);
-            timerRunning = false;
-            timerElapsed = 0;
-            document.getElementById('timer-val').innerText = "00:00.00";
+            updateTimerDisplay();
         }
 
-        // 3. CAPTURE DES TOUCHES (CORRECTION ZQSD + FOCUS)
-        // On utilise la phase de capture (true) pour intercepter avant l'iframe
-        window.addEventListener('keydown', (e) => {
-            const key = e.key.toUpperCase();
+        function updateTimerDisplay() {
+            const totalSec = Math.floor(timerCurrentTime / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            const cs = Math.floor((timerCurrentTime % 1000) / 10);
+            
+            document.getElementById('timer-display').textContent = 
+                `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}.${cs.toString().padStart(2, '0')}`;
+        }
 
-            // Timer
-            if (key === config.timerKey.toUpperCase()) {
-                e.preventDefault();
-                toggleTimer();
-            }
-            if (key === 'R') resetTimer();
-            if (key === 'F') toggleFS();
-
-            // ZQSD vers Flèches
-            if (config.zqsdActive) {
-                const map = { 'Z': 'ArrowUp', 'S': 'ArrowDown', 'Q': 'ArrowLeft', 'D': 'ArrowRight' };
-                if (map[key]) {
-                    // On simule l'event pour l'iframe
-                    const gameIframe = document.getElementById('game-iframe');
-                    gameIframe.contentWindow.postMessage({ type: 'keydown', key: map[key] }, '*');
+        function startFPSCounter() {
+            function updateFPS() {
+                frameCount++;
+                const currentTime = performance.now();
+                
+                if (currentTime - lastTime >= 1000) {
+                    fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                    document.getElementById('fps-value').textContent = fps;
                     
-                    // On redirige le focus si besoin
-                    gameIframe.focus();
+                    frameCount = 0;
+                    lastTime = currentTime;
+                }
+                
+                requestAnimationFrame(updateFPS);
+            }
+            updateFPS();
+        }
+
+        function changeTheme(themeName) {
+            document.body.classList.remove('theme-violet', 'theme-blue', 'theme-green', 'theme-red');
+            document.body.classList.add(`theme-${themeName}`);
+            config.theme = themeName;
+            
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.theme-option[data-theme="${themeName}"]`).classList.add('active');
+            
+            saveConfig();
+        }
+
+        function openSettingsModal() {
+            document.getElementById('settings-modal').classList.add('active');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+
+        function toggleBottomMenu() {
+            document.getElementById('bottom-menu').classList.toggle('visible');
+        }
+
+        function toggleFullscreen() {
+            const gameFrame = document.querySelector('.game-frame');
+            
+            if (!document.fullscreenElement) {
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
                 }
             }
-        }, true);
+        }
 
-        // 4. COMPTEUR FPS
-        let frames = 0, lastFpsUpdate = performance.now();
-        function trackFPS() {
-            frames++;
-            let now = performance.now();
-            if (now - lastFpsUpdate >= 1000) {
-                document.getElementById('fps-num').innerText = frames;
-                frames = 0;
-                lastFpsUpdate = now;
+        function handleFullscreenChange() {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = '⛶ Quitter';
+            } else {
+                fullscreenBtn.textContent = '⛶ Plein écran';
             }
-            requestAnimationFrame(trackFPS);
-        }
-        trackFPS();
-
-        // 5. INTERFACE ET MENUS
-        function toggleModal() {
-            const m = document.getElementById('modal');
-            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function updateConfig() {
-            config.timerKey = document.getElementById('cfg-timer-key').value || 'T';
-            config.zqsdActive = document.getElementById('cfg-zqsd').checked;
+        function toggleTimer() {
+            config.showTimer = !config.showTimer;
+            document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
+            document.getElementById('show-timer').checked = config.showTimer;
+            saveConfig();
+            showToast(config.showTimer ? 'Timer activé' : 'Timer désactivé', 'success');
         }
 
-        function toggleFS() {
-            const wrapper = document.getElementById('capture-zone');
-            if (!document.fullscreenElement) wrapper.requestFullscreen();
-            else document.exitFullscreen();
+        function toggleFPS() {
+            config.showFPS = !config.showFPS;
+            document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
+            document.getElementById('show-fps').checked = config.showFPS;
+            saveConfig();
+            showToast(config.showFPS ? 'FPS activé' : 'FPS désactivé', 'success');
         }
 
-        // Clic droit personnalisé
-        document.addEventListener('contextmenu', e => {
-            e.preventDefault();
-            const menu = document.getElementById('ctx-menu');
-            menu.style.display = 'block';
-            menu.style.left = e.pageX + 'px';
-            menu.style.top = e.pageY + 'px';
-        });
+        function toggleTop3() {
+            config.showTop3 = !config.showTop3;
+            document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
+            document.getElementById('show-top3').checked = config.showTop3;
+            saveConfig();
+            showToast(config.showTop3 ? 'TOP 3 activé' : 'TOP 3 désactivé', 'success');
+        }
 
-        document.addEventListener('click', () => {
-            document.getElementById('ctx-menu').style.display = 'none';
-        });
+        function unlockAll() {
+            sendGameCommand('unlockAll', { all: true, coins: 99999999, keys: 999999 });
+            showToast('🎁 Tout débloqué ! (Skins + Pièces + Clés)', 'success');
+        }
 
-        // Forcer le focus au démarrage
-        window.onload = () => {
+        function focusGame() {
+            document.querySelector('.game-section').scrollIntoView({ behavior: 'smooth' });
             document.getElementById('game-iframe').focus();
-        };
+        }
+
+        function hideLoading() {
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 2000);
+        }
+
+        function saveConfig() {
+            localStorage.setItem('mynvoConfig', JSON.stringify(config));
+        }
+
+        function loadConfig() {
+            try {
+                const saved = localStorage.getItem('mynvoConfig');
+                if (saved) {
+                    const savedConfig = JSON.parse(saved);
+                    Object.assign(config, savedConfig);
+                }
+            } catch (e) {}
+        }
+
+        function applyConfig() {
+            changeTheme(config.theme);
+            
+            document.getElementById('fps-overlay').style.display = config.showFPS ? 'block' : 'none';
+            document.getElementById('top3-overlay').style.display = config.showTop3 ? 'block' : 'none';
+            document.getElementById('speedrun-timer-overlay').style.display = config.showTimer ? 'block' : 'none';
+            
+            document.getElementById('show-fps').checked = config.showFPS;
+            document.getElementById('show-top3').checked = config.showTop3;
+            document.getElementById('show-timer').checked = config.showTimer;
+            document.getElementById('fullscreen-default').checked = config.fullscreenDefault;
+        }
+
+        console.log('🎮 Subway Surfers 2025 - Version Mynvo Chargée!');
     </script>
 </body>
 </html>
